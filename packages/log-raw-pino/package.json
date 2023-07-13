@@ -1,0 +1,26 @@
+{
+  "name": "@nsr/log-raw-pino",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "Alberto Villa <villa.alberto@gmail.com>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist",
+    "!*.map",
+    "!*.test.*"
+  ],
+  "scripts": {
+    "prebuild": "npm run clean",
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@nsr/log-fp-ts-pino": "^0.0.0",
+    "@nsr/log-raw": "^0.0.0"
+  },
+  "peerDependencies": {
+    "pino": "^8.14.1"
+  }
+}
