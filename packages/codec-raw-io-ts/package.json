@@ -1,0 +1,26 @@
+{
+  "name": "@nsr/codec-raw-io-ts",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "Alberto Villa <villa.alberto@gmail.com>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist",
+    "!*.map",
+    "!*.test.*"
+  ],
+  "scripts": {
+    "prebuild": "npm run clean",
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@nsr/codec-fp-ts-io-ts": "^0.0.0",
+    "@nsr/codec-raw": "^0.0.0"
+  },
+  "peerDependencies": {
+    "io-ts": "^2.2.20"
+  }
+}
