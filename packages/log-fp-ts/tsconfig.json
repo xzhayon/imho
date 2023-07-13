@@ -1,0 +1,5 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "references": [{ "path": "../effect-fp-ts" }, { "path": "../log" }],
+  "compilerOptions": { "rootDir": "src", "outDir": "dist" }
+}
