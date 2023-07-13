@@ -1,0 +1,26 @@
+{
+  "name": "@nsr/cache-fp-ts",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "Alberto Villa <villa.alberto@gmail.com>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist",
+    "!*.map",
+    "!*.test.*"
+  ],
+  "scripts": {
+    "prebuild": "npm run clean",
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "peerDependencies": {
+    "@nsr/cache": "^0.0.0",
+    "@nsr/codec": "^0.0.0",
+    "@nsr/codec-fp-ts": "^0.0.0",
+    "@nsr/log-fp-ts": "^0.0.0",
+    "fp-ts": "^2.16.0"
+  }
+}
