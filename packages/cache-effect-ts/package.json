@@ -23,5 +23,8 @@
     "@nsr/codec": "*",
     "@nsr/codec-effect-ts": "*",
     "@nsr/log-effect-ts": "*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

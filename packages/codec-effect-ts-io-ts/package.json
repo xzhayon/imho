@@ -22,5 +22,8 @@
   },
   "peerDependencies": {
     "io-ts": "^2.2.20"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

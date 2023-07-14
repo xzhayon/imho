@@ -15,5 +15,8 @@
     "prebuild": "npm run clean",
     "build": "tsc -b",
     "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

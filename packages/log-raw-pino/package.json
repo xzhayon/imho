@@ -22,5 +22,8 @@
   },
   "peerDependencies": {
     "pino": "^8.14.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

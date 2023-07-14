@@ -22,5 +22,8 @@
     "@nsr/codec-fp-ts": "*",
     "@nsr/log-fp-ts": "*",
     "fp-ts": "^2.16.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -23,5 +23,8 @@
   "peerDependencies": {
     "@effect-ts/core": "^0.60.5",
     "pino": "^8.14.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

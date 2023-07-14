@@ -28,5 +28,8 @@
     "@nsr/log-fp-ts": "*",
     "@redis/client": "^1.5.8",
     "fp-ts": "^2.16.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

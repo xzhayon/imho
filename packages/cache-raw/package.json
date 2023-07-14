@@ -20,5 +20,8 @@
     "@nsr/cache-fp-ts": "*",
     "@nsr/codec-raw": "*",
     "@nsr/log-raw": "*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
