@@ -21,6 +21,7 @@
     "preclean": "rm -rf test/dist",
     "clean": "npm run clean -ws --if-present",
     "prepack": "npm run build",
+    "release": "lerna publish --yes",
     "test": "jest"
   },
   "devDependencies": {

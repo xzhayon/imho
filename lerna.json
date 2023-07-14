@@ -1,9 +1,8 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "version": "independent",
-  "command": {
-    "version": {
-      "conventionalCommits": true
-    }
-  }
+  "conventionalCommits": true,
+  "createRelease": "github",
+  "message": "chore: release",
+  "private": false
 }
