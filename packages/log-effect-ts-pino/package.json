@@ -17,8 +17,8 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
-    "@nsr/log-effect-ts": "^0.0.0",
-    "@nsr/log-fp-ts-pino": "^0.0.0"
+    "@nsr/log-effect-ts": "*",
+    "@nsr/log-fp-ts-pino": "*"
   },
   "peerDependencies": {
     "@effect-ts/core": "^0.60.5",

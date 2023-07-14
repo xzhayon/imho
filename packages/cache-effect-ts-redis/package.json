@@ -17,12 +17,12 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
-    "@nsr/cache-effect-ts": "^0.0.0",
-    "@nsr/cache-fp-ts-redis": "^0.0.0"
+    "@nsr/cache-effect-ts": "*",
+    "@nsr/cache-fp-ts-redis": "*"
   },
   "peerDependencies": {
     "@effect-ts/core": "^0.60.5",
-    "@nsr/log-effect-ts": "^0.0.0",
+    "@nsr/log-effect-ts": "*",
     "@redis/client": "^1.5.8"
   }
 }

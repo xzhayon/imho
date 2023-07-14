@@ -17,7 +17,7 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "peerDependencies": {
-    "@nsr/log-fp-ts": "^0.0.0",
+    "@nsr/log-fp-ts": "*",
     "fp-ts": "^2.16.0"
   }
 }

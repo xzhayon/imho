@@ -17,11 +17,11 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
-    "@nsr/cache-fp-ts-redis": "^0.0.0",
-    "@nsr/cache-raw": "^0.0.0"
+    "@nsr/cache-fp-ts-redis": "*",
+    "@nsr/cache-raw": "*"
   },
   "peerDependencies": {
-    "@nsr/log-raw": "^0.0.0",
+    "@nsr/log-raw": "*",
     "@redis/client": "^1.5.8"
   }
 }

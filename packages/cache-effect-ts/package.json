@@ -18,10 +18,10 @@
   },
   "peerDependencies": {
     "@effect-ts/core": "^0.60.5",
-    "@nsr/cache": "^0.0.0",
-    "@nsr/cache-fp-ts": "^0.0.0",
-    "@nsr/codec": "^0.0.0",
-    "@nsr/codec-effect-ts": "^0.0.0",
-    "@nsr/log-effect-ts": "^0.0.0"
+    "@nsr/cache": "*",
+    "@nsr/cache-fp-ts": "*",
+    "@nsr/codec": "*",
+    "@nsr/codec-effect-ts": "*",
+    "@nsr/log-effect-ts": "*"
   }
 }

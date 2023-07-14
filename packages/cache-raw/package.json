@@ -17,8 +17,8 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "peerDependencies": {
-    "@nsr/cache-fp-ts": "^0.0.0",
-    "@nsr/codec-raw": "^0.0.0",
-    "@nsr/log-raw": "^0.0.0"
+    "@nsr/cache-fp-ts": "*",
+    "@nsr/codec-raw": "*",
+    "@nsr/log-raw": "*"
   }
 }

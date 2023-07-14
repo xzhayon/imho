@@ -17,8 +17,8 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
-    "@nsr/codec-fp-ts-io-ts": "^0.0.0",
-    "@nsr/codec-raw": "^0.0.0"
+    "@nsr/codec-fp-ts-io-ts": "*",
+    "@nsr/codec-raw": "*"
   },
   "peerDependencies": {
     "io-ts": "^2.2.20"
