@@ -1,5 +1,5 @@
 {
-  "name": "@nsr/log-raw",
+  "name": "@imho/log-raw",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
@@ -18,7 +18,7 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "peerDependencies": {
-    "@nsr/log-fp-ts": "*",
+    "@imho/log-fp-ts": "*",
     "fp-ts": "^2.16.0"
   },
   "publishConfig": {

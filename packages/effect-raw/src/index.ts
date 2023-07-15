@@ -1,4 +1,4 @@
-import * as _ from '@nsr/effect'
+import * as _ from '@imho/effect'
 
 export type Raw<A> = A extends _.Option<infer B>
   ? Raw<B> | undefined

@@ -1,8 +1,8 @@
 import { Effect, Managed, pipe } from '@effect-ts/core'
-import { CacheError } from '@nsr/cache'
-import { Cache, FpTsToEffectTsCache } from '@nsr/cache-effect-ts'
-import * as fpTs from '@nsr/cache-fp-ts-redis'
-import { EffectTsToFpTsLog, HasLog, Log } from '@nsr/log-effect-ts'
+import { CacheError } from '@imho/cache'
+import { Cache, FpTsToEffectTsCache } from '@imho/cache-effect-ts'
+import * as fpTs from '@imho/cache-fp-ts-redis'
+import { EffectTsToFpTsLog, HasLog, Log } from '@imho/log-effect-ts'
 import {
   RedisClientType,
   RedisFunctions,

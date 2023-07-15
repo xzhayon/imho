@@ -1,6 +1,6 @@
 import { Either } from '@effect-ts/core'
-import { CodecError } from '@nsr/codec'
-import * as fpTs from '@nsr/codec-fp-ts'
+import { CodecError } from '@imho/codec'
+import * as fpTs from '@imho/codec-fp-ts'
 import { either } from 'fp-ts'
 import { pipe } from 'fp-ts/function'
 import { Codec } from './Codec'

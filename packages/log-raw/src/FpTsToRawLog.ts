@@ -1,4 +1,4 @@
-import * as fpTs from '@nsr/log-fp-ts'
+import * as fpTs from '@imho/log-fp-ts'
 import { Log } from './Log'
 
 export class FpTsToRawLog implements Log {

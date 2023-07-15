@@ -1,5 +1,5 @@
 {
-  "name": "@nsr/cache-fp-ts-redis",
+  "name": "@imho/cache-fp-ts-redis",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
@@ -18,15 +18,15 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
-    "@nsr/codec-fp-ts-io-ts": "*",
+    "@imho/codec-fp-ts-io-ts": "*",
     "io-ts": "^2.2.20",
     "io-ts-types": "^0.5.19"
   },
   "peerDependencies": {
-    "@nsr/cache": "*",
-    "@nsr/codec": "*",
-    "@nsr/codec-fp-ts": "*",
-    "@nsr/log-fp-ts": "*",
+    "@imho/cache": "*",
+    "@imho/codec": "*",
+    "@imho/codec-fp-ts": "*",
+    "@imho/log-fp-ts": "*",
     "@redis/client": "^1.5.8",
     "fp-ts": "^2.16.0"
   },

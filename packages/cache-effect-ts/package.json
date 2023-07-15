@@ -1,5 +1,5 @@
 {
-  "name": "@nsr/cache-effect-ts",
+  "name": "@imho/cache-effect-ts",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
@@ -19,11 +19,11 @@
   },
   "peerDependencies": {
     "@effect-ts/core": "^0.60.5",
-    "@nsr/cache": "*",
-    "@nsr/cache-fp-ts": "*",
-    "@nsr/codec": "*",
-    "@nsr/codec-effect-ts": "*",
-    "@nsr/log-effect-ts": "*"
+    "@imho/cache": "*",
+    "@imho/cache-fp-ts": "*",
+    "@imho/codec": "*",
+    "@imho/codec-effect-ts": "*",
+    "@imho/log-effect-ts": "*"
   },
   "publishConfig": {
     "access": "public"

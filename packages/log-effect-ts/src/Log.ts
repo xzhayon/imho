@@ -1,6 +1,6 @@
 import { Effect, Has } from '@effect-ts/core'
-import { EffectTs } from '@nsr/effect-effect-ts'
-import * as _ from '@nsr/log'
+import { EffectTs } from '@imho/effect-effect-ts'
+import * as _ from '@imho/log'
 
 export interface Log extends EffectTs<_.Log> {}
 

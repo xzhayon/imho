@@ -1,5 +1,5 @@
 {
-  "name": "@nsr/log-effect-ts",
+  "name": "@imho/log-effect-ts",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
@@ -19,7 +19,7 @@
   },
   "peerDependencies": {
     "@effect-ts/core": "^0.60.5",
-    "@nsr/log-fp-ts": "*",
+    "@imho/log-fp-ts": "*",
     "fp-ts": "^2.16.0"
   },
   "publishConfig": {

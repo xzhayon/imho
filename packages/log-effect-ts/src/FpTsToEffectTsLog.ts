@@ -1,5 +1,5 @@
 import { Effect } from '@effect-ts/core'
-import * as fpTs from '@nsr/log-fp-ts'
+import * as fpTs from '@imho/log-fp-ts'
 import { Log } from './Log'
 
 export class FpTsToEffectTsLog implements Log {

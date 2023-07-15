@@ -1,5 +1,5 @@
 {
-  "name": "@nsr/log-raw-pino",
+  "name": "@imho/log-raw-pino",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
@@ -18,8 +18,8 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
-    "@nsr/log-fp-ts-pino": "*",
-    "@nsr/log-raw": "*"
+    "@imho/log-fp-ts-pino": "*",
+    "@imho/log-raw": "*"
   },
   "peerDependencies": {
     "pino": "^8.14.1"

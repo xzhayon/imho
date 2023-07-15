@@ -1,5 +1,5 @@
-import { FpTsToEffectTsCodec } from '@nsr/codec-effect-ts'
-import * as fpTs from '@nsr/codec-fp-ts-io-ts'
+import { FpTsToEffectTsCodec } from '@imho/codec-effect-ts'
+import * as fpTs from '@imho/codec-fp-ts-io-ts'
 import * as t from 'io-ts'
 
 export class IoTsCodec<A, O = A, I = unknown> extends FpTsToEffectTsCodec<

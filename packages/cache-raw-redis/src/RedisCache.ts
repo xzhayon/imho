@@ -1,6 +1,6 @@
-import * as fpTs from '@nsr/cache-fp-ts-redis'
-import { FpTsToRawCache } from '@nsr/cache-raw'
-import { Log, RawToFpTsLog } from '@nsr/log-raw'
+import * as fpTs from '@imho/cache-fp-ts-redis'
+import { FpTsToRawCache } from '@imho/cache-raw'
+import { Log, RawToFpTsLog } from '@imho/log-raw'
 import {
   RedisClientType,
   RedisFunctions,

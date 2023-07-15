@@ -1,4 +1,4 @@
-import { Task } from '@nsr/effect'
+import { Task } from '@imho/effect'
 import { Severity } from './Severity'
 
 export type Log = {

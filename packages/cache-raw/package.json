@@ -1,5 +1,5 @@
 {
-  "name": "@nsr/cache-raw",
+  "name": "@imho/cache-raw",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
@@ -18,9 +18,9 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "peerDependencies": {
-    "@nsr/cache-fp-ts": "*",
-    "@nsr/codec-raw": "*",
-    "@nsr/log-raw": "*"
+    "@imho/cache-fp-ts": "*",
+    "@imho/codec-raw": "*",
+    "@imho/log-raw": "*"
   },
   "publishConfig": {
     "access": "public"

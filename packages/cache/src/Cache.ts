@@ -1,5 +1,5 @@
-import { CodecError, Decoder } from '@nsr/codec'
-import { Either, Task } from '@nsr/effect'
+import { CodecError, Decoder } from '@imho/codec'
+import { Either, Task } from '@imho/effect'
 import { CacheError } from './CacheError'
 
 export interface Cache {

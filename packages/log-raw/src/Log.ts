@@ -1,4 +1,4 @@
-import { Raw } from '@nsr/effect-raw'
-import * as _ from '@nsr/log'
+import { Raw } from '@imho/effect-raw'
+import * as _ from '@imho/log'
 
 export interface Log extends Raw<_.Log> {}

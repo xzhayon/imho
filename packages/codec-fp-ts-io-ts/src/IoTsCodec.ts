@@ -1,5 +1,5 @@
-import { CodecError } from '@nsr/codec'
-import { Codec } from '@nsr/codec-fp-ts'
+import { CodecError } from '@imho/codec'
+import { Codec } from '@imho/codec-fp-ts'
 import { either } from 'fp-ts'
 import { pipe } from 'fp-ts/function'
 import * as t from 'io-ts'

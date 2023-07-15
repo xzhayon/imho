@@ -1,10 +1,10 @@
 import { Effect, Has } from '@effect-ts/core'
 import { IO } from '@effect-ts/core/Effect'
-import * as _ from '@nsr/cache'
-import { CacheError } from '@nsr/cache'
-import { CodecError } from '@nsr/codec'
-import { Decoder } from '@nsr/codec-effect-ts'
-import { EffectTs } from '@nsr/effect-effect-ts'
+import * as _ from '@imho/cache'
+import { CacheError } from '@imho/cache'
+import { CodecError } from '@imho/codec'
+import { Decoder } from '@imho/codec-effect-ts'
+import { EffectTs } from '@imho/effect-effect-ts'
 
 export interface Cache extends EffectTs<Omit<_.Cache, 'get'>> {
   get<E extends Error, A>(

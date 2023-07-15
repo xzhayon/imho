@@ -1,5 +1,5 @@
-import { IoTsCodec } from '@nsr/codec-fp-ts-io-ts'
-import { VoidLog } from '@nsr/log-fp-ts'
+import { IoTsCodec } from '@imho/codec-fp-ts-io-ts'
+import { VoidLog } from '@imho/log-fp-ts'
 import { either, taskEither } from 'fp-ts'
 import {} from 'fp-ts/function'
 import * as t from 'io-ts'

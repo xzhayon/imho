@@ -1,4 +1,4 @@
-import { CodecError } from '@nsr/codec'
+import { CodecError } from '@imho/codec'
 import * as t from 'io-ts'
 import { IoTsCodec } from './IoTsCodec'
 

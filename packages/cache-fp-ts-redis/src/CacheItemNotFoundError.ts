@@ -1,4 +1,4 @@
-import { CacheError } from '@nsr/cache'
+import { CacheError } from '@imho/cache'
 
 export const CacheItemNotFoundErrorURI = Symbol()
 export class CacheItemNotFoundError extends CacheError {

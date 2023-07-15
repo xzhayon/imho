@@ -1,4 +1,4 @@
-import { Log } from '@nsr/log-fp-ts'
+import { Log } from '@imho/log-fp-ts'
 import { pino } from 'pino'
 import { PinoLog } from './PinoLog'
 

@@ -1,6 +1,6 @@
 import { Effect, pipe } from '@effect-ts/core'
 import * as Layer from '@effect-ts/core/Effect/Layer'
-import { HasLog, Log } from '@nsr/log-effect-ts'
+import { HasLog, Log } from '@imho/log-effect-ts'
 import { pino } from 'pino'
 import { PinoLog } from './PinoLog'
 

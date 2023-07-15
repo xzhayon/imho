@@ -1,5 +1,5 @@
-import * as fpTs from '@nsr/log-fp-ts-pino'
-import { FpTsToRawLog } from '@nsr/log-raw'
+import * as fpTs from '@imho/log-fp-ts-pino'
+import { FpTsToRawLog } from '@imho/log-raw'
 import * as pino from 'pino'
 
 export class PinoLog extends FpTsToRawLog {

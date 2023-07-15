@@ -1,5 +1,5 @@
 {
-  "name": "@nsr/codec-raw-io-ts",
+  "name": "@imho/codec-raw-io-ts",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
@@ -18,8 +18,8 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
-    "@nsr/codec-fp-ts-io-ts": "*",
-    "@nsr/codec-raw": "*"
+    "@imho/codec-fp-ts-io-ts": "*",
+    "@imho/codec-raw": "*"
   },
   "peerDependencies": {
     "io-ts": "^2.2.20"

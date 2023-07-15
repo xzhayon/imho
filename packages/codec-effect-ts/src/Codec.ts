@@ -1,6 +1,6 @@
 import { Either } from '@effect-ts/core/Either'
-import * as _ from '@nsr/codec'
-import { CodecError } from '@nsr/codec'
+import * as _ from '@imho/codec'
+import { CodecError } from '@imho/codec'
 
 export interface Decoder<A, I = unknown>
   extends Omit<_.Decoder<A, I>, 'decode'> {

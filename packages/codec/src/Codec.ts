@@ -1,4 +1,4 @@
-import { Either } from '@nsr/effect'
+import { Either } from '@imho/effect'
 import { CodecError } from './CodecError'
 
 export interface Decoder<A, I = unknown> {

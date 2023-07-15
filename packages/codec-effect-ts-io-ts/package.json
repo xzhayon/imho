@@ -1,5 +1,5 @@
 {
-  "name": "@nsr/codec-effect-ts-io-ts",
+  "name": "@imho/codec-effect-ts-io-ts",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
@@ -18,8 +18,8 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
-    "@nsr/codec-effect-ts": "*",
-    "@nsr/codec-fp-ts-io-ts": "*"
+    "@imho/codec-effect-ts": "*",
+    "@imho/codec-fp-ts-io-ts": "*"
   },
   "peerDependencies": {
     "io-ts": "^2.2.20"

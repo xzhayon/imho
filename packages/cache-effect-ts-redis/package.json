@@ -1,5 +1,5 @@
 {
-  "name": "@nsr/cache-effect-ts-redis",
+  "name": "@imho/cache-effect-ts-redis",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
@@ -18,12 +18,12 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
-    "@nsr/cache-effect-ts": "*",
-    "@nsr/cache-fp-ts-redis": "*"
+    "@imho/cache-effect-ts": "*",
+    "@imho/cache-fp-ts-redis": "*"
   },
   "peerDependencies": {
     "@effect-ts/core": "^0.60.5",
-    "@nsr/log-effect-ts": "*",
+    "@imho/log-effect-ts": "*",
     "@redis/client": "^1.5.8"
   },
   "publishConfig": {

@@ -1,5 +1,5 @@
 {
-  "name": "@nsr/log-effect-ts-pino",
+  "name": "@imho/log-effect-ts-pino",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
@@ -18,8 +18,8 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
-    "@nsr/log-effect-ts": "*",
-    "@nsr/log-fp-ts-pino": "*"
+    "@imho/log-effect-ts": "*",
+    "@imho/log-fp-ts-pino": "*"
   },
   "peerDependencies": {
     "@effect-ts/core": "^0.60.5",

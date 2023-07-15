@@ -1,7 +1,7 @@
 import { Effect, pipe } from '@effect-ts/core'
 import { IO } from '@effect-ts/core/Effect'
-import * as fpTs from '@nsr/cache-fp-ts'
-import { Decoder, EffectTsToFpTsDecoder } from '@nsr/codec-effect-ts'
+import * as fpTs from '@imho/cache-fp-ts'
+import { Decoder, EffectTsToFpTsDecoder } from '@imho/codec-effect-ts'
 import { either } from 'fp-ts'
 import { Cache } from './Cache'
 

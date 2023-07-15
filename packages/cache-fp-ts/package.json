@@ -1,5 +1,5 @@
 {
-  "name": "@nsr/cache-fp-ts",
+  "name": "@imho/cache-fp-ts",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
@@ -18,10 +18,10 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "peerDependencies": {
-    "@nsr/cache": "*",
-    "@nsr/codec": "*",
-    "@nsr/codec-fp-ts": "*",
-    "@nsr/log-fp-ts": "*",
+    "@imho/cache": "*",
+    "@imho/codec": "*",
+    "@imho/codec-fp-ts": "*",
+    "@imho/log-fp-ts": "*",
     "fp-ts": "^2.16.0"
   },
   "publishConfig": {

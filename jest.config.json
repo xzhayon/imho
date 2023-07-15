@@ -3,7 +3,7 @@
         "**.ts"
     ],
     "moduleNameMapper": {
-        "@nsr/(.+)": "<rootDir>/packages/$1/src"
+        "@imho/(.+)": "<rootDir>/packages/$1/src"
     },
     "transform": {
         "\\.tsx?$": "esbuild-jest"

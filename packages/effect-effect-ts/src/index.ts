@@ -1,7 +1,7 @@
 import { IO, UIO } from '@effect-ts/core/Effect'
 import { Either } from '@effect-ts/core/Either'
 import { Option } from '@effect-ts/core/Option'
-import * as _ from '@nsr/effect'
+import * as _ from '@imho/effect'
 
 export type EffectTs<A> = A extends _.Option<infer B>
   ? Option<EffectTs<B>>

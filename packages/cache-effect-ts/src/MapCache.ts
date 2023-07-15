@@ -1,6 +1,6 @@
 import { Effect } from '@effect-ts/core'
-import * as fpTs from '@nsr/cache-fp-ts'
-import { EffectTsToFpTsLog, HasLog, Log } from '@nsr/log-effect-ts'
+import * as fpTs from '@imho/cache-fp-ts'
+import { EffectTsToFpTsLog, HasLog, Log } from '@imho/log-effect-ts'
 import { Cache } from './Cache'
 import { FpTsToEffectTsCache } from './FpTsToEffectTsCache'
 

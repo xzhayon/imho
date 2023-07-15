@@ -1,9 +1,9 @@
-import { CacheError } from '@nsr/cache'
-import { Cache } from '@nsr/cache-fp-ts'
-import { CodecError } from '@nsr/codec'
-import { Decoder } from '@nsr/codec-fp-ts'
-import { IoTsCodec } from '@nsr/codec-fp-ts-io-ts'
-import { Log } from '@nsr/log-fp-ts'
+import { CacheError } from '@imho/cache'
+import { Cache } from '@imho/cache-fp-ts'
+import { CodecError } from '@imho/codec'
+import { Decoder } from '@imho/codec-fp-ts'
+import { IoTsCodec } from '@imho/codec-fp-ts-io-ts'
+import { Log } from '@imho/log-fp-ts'
 import {
   RedisClientType,
   RedisFlushModes,

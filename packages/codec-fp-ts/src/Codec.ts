@@ -1,5 +1,5 @@
-import * as _ from '@nsr/codec'
-import { CodecError } from '@nsr/codec'
+import * as _ from '@imho/codec'
+import { CodecError } from '@imho/codec'
 import { Either } from 'fp-ts/Either'
 
 export interface Decoder<A, I = unknown>

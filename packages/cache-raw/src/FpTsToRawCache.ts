@@ -1,5 +1,5 @@
-import * as fpTs from '@nsr/cache-fp-ts'
-import { Decoder, RawToFpTsDecoder } from '@nsr/codec-raw'
+import * as fpTs from '@imho/cache-fp-ts'
+import { Decoder, RawToFpTsDecoder } from '@imho/codec-raw'
 import { either, taskEither } from 'fp-ts'
 import { Cache } from './Cache'
 

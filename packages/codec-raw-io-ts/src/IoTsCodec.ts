@@ -1,5 +1,5 @@
-import * as fpTs from '@nsr/codec-fp-ts-io-ts'
-import { FpTsToRawCodec } from '@nsr/codec-raw'
+import * as fpTs from '@imho/codec-fp-ts-io-ts'
+import { FpTsToRawCodec } from '@imho/codec-raw'
 import * as t from 'io-ts'
 
 export class IoTsCodec<A, O = A, I = unknown> extends FpTsToRawCodec<A, O, I> {

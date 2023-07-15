@@ -1,6 +1,6 @@
-import { FpTs } from '@nsr/effect-fp-ts'
-import * as _ from '@nsr/log'
-import { Severity } from '@nsr/log'
+import { FpTs } from '@imho/effect-fp-ts'
+import * as _ from '@imho/log'
+import { Severity } from '@imho/log'
 import { readerTask } from 'fp-ts'
 import { pipe } from 'fp-ts/function'
 

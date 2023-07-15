@@ -1,5 +1,5 @@
-import { FpTsToEffectTsLog } from '@nsr/log-effect-ts'
-import * as fpTs from '@nsr/log-fp-ts-pino'
+import { FpTsToEffectTsLog } from '@imho/log-effect-ts'
+import * as fpTs from '@imho/log-fp-ts-pino'
 import pino from 'pino'
 
 export class PinoLog extends FpTsToEffectTsLog {

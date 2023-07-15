@@ -1,5 +1,5 @@
 {
-  "name": "@nsr/cache-raw-redis",
+  "name": "@imho/cache-raw-redis",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
@@ -18,11 +18,11 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
-    "@nsr/cache-fp-ts-redis": "*",
-    "@nsr/cache-raw": "*"
+    "@imho/cache-fp-ts-redis": "*",
+    "@imho/cache-raw": "*"
   },
   "peerDependencies": {
-    "@nsr/log-raw": "*",
+    "@imho/log-raw": "*",
     "@redis/client": "^1.5.8"
   },
   "publishConfig": {

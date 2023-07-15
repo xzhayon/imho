@@ -1,5 +1,5 @@
-import { IoTsCodec } from '@nsr/codec-raw-io-ts'
-import { VoidLog } from '@nsr/log-raw'
+import { IoTsCodec } from '@imho/codec-raw-io-ts'
+import { VoidLog } from '@imho/log-raw'
 import { RedisFlushModes, createClient } from '@redis/client'
 import * as t from 'io-ts'
 import { mapRedis } from '../../../test/redis'

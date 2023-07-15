@@ -1,5 +1,5 @@
-import { IoTsCodec } from '@nsr/codec-raw-io-ts'
-import { VoidLog } from '@nsr/log-raw'
+import { IoTsCodec } from '@imho/codec-raw-io-ts'
+import { VoidLog } from '@imho/log-raw'
 import * as t from 'io-ts'
 import { MapCache } from './MapCache'
 
