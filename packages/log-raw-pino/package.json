@@ -13,7 +13,6 @@
     "/dist"
   ],
   "scripts": {
-    "_prebild": "npm run clean",
     "build": "tsc -b",
     "clean": "rm -rf dist *.tsbuildinfo",
     "prepack": "npm run build"

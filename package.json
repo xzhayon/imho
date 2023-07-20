@@ -21,7 +21,8 @@
     "preclean": "rm -rf test/dist",
     "clean": "npm run clean -ws --if-present",
     "release": "lerna publish -y",
-    "test": "jest"
+    "test": "jest",
+    "version": "scripts/tag-workspaces.sh packages/*"
   },
   "devDependencies": {
     "@effect-ts/core": "^0.60.5",
