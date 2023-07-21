@@ -1,6 +1,6 @@
 {
   "name": "@imho/codec-fp-ts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -18,7 +18,7 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@imho/codec": "*",
+    "@imho/codec": "^0.2.0",
     "fp-ts": "^2.16.0"
   },
   "publishConfig": {

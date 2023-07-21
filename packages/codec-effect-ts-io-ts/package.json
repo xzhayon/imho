@@ -1,6 +1,6 @@
 {
   "name": "@imho/codec-effect-ts-io-ts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -18,8 +18,8 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@imho/codec-effect-ts": "*",
-    "@imho/codec-fp-ts-io-ts": "*"
+    "@imho/codec-effect-ts": "^0.2.0",
+    "@imho/codec-fp-ts-io-ts": "^0.2.0"
   },
   "peerDependencies": {
     "io-ts": "^2.2.20"

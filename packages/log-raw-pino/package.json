@@ -1,6 +1,6 @@
 {
   "name": "@imho/log-raw-pino",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -18,8 +18,8 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@imho/log-fp-ts-pino": "*",
-    "@imho/log-raw": "*"
+    "@imho/log-fp-ts-pino": "^0.2.0",
+    "@imho/log-raw": "^0.2.0"
   },
   "peerDependencies": {
     "pino": "^8.14.1"

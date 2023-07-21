@@ -1,6 +1,6 @@
 {
   "name": "@imho/cache-effect-ts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -19,11 +19,11 @@
   },
   "peerDependencies": {
     "@effect-ts/core": "^0.60.5",
-    "@imho/cache": "*",
-    "@imho/cache-fp-ts": "*",
-    "@imho/codec": "*",
-    "@imho/codec-effect-ts": "*",
-    "@imho/log-effect-ts": "*"
+    "@imho/cache": "^0.2.0",
+    "@imho/cache-fp-ts": "^0.2.0",
+    "@imho/codec": "^0.2.0",
+    "@imho/codec-effect-ts": "^0.2.0",
+    "@imho/log-effect-ts": "^0.2.0"
   },
   "publishConfig": {
     "access": "public"

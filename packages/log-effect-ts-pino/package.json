@@ -1,6 +1,6 @@
 {
   "name": "@imho/log-effect-ts-pino",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -18,8 +18,8 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@imho/log-effect-ts": "*",
-    "@imho/log-fp-ts-pino": "*"
+    "@imho/log-effect-ts": "^0.2.0",
+    "@imho/log-fp-ts-pino": "^0.2.0"
   },
   "peerDependencies": {
     "@effect-ts/core": "^0.60.5",

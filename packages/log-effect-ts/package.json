@@ -1,6 +1,6 @@
 {
   "name": "@imho/log-effect-ts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -19,7 +19,7 @@
   },
   "peerDependencies": {
     "@effect-ts/core": "^0.60.5",
-    "@imho/log-fp-ts": "*",
+    "@imho/log-fp-ts": "^0.2.0",
     "fp-ts": "^2.16.0"
   },
   "publishConfig": {
