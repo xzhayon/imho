@@ -18,8 +18,9 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@imho/log-fp-ts": "^0.2.0",
-    "fp-ts": "^2.16.0"
+    "@imho/effect-raw": "^0.2.0 || *",
+    "@imho/log": "^0.2.0 || *",
+    "@imho/log-fp-ts": "^0.2.0 || *"
   },
   "publishConfig": {
     "access": "public"

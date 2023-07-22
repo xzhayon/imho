@@ -18,10 +18,10 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@imho/codec-fp-ts-io-ts": "^0.2.0",
-    "@imho/codec-raw": "^0.2.0"
+    "@imho/codec-fp-ts-io-ts": "^0.2.0"
   },
   "peerDependencies": {
+    "@imho/codec-raw": "^0.2.0",
     "io-ts": "^2.2.20"
   },
   "publishConfig": {

@@ -18,11 +18,11 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@imho/cache-fp-ts-redis": "^0.2.0",
-    "@imho/cache-raw": "^0.2.0"
+    "@imho/cache-fp-ts-redis": "^0.2.0"
   },
   "peerDependencies": {
-    "@imho/log-raw": "^0.2.0",
+    "@imho/cache-raw": "^0.2.0 || *",
+    "@imho/log-raw": "^0.2.0 || *",
     "@redis/client": "^1.5.8"
   },
   "publishConfig": {

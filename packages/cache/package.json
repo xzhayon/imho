@@ -17,6 +17,10 @@
     "clean": "rm -rf dist *.tsbuildinfo",
     "prepack": "npm run build"
   },
+  "peerDependencies": {
+    "@imho/codec": "^0.2.0 || *",
+    "@imho/effect": "^0.2.0"
+  },
   "publishConfig": {
     "access": "public"
   }

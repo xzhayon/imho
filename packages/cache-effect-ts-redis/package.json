@@ -18,12 +18,13 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@imho/cache-effect-ts": "^0.2.0",
     "@imho/cache-fp-ts-redis": "^0.2.0"
   },
   "peerDependencies": {
     "@effect-ts/core": "^0.60.5",
-    "@imho/log-effect-ts": "^0.2.0",
+    "@imho/cache": "^0.2.0 || *",
+    "@imho/cache-effect-ts": "^0.2.0 || *",
+    "@imho/log-effect-ts": "^0.2.0 || *",
     "@redis/client": "^1.5.8"
   },
   "publishConfig": {

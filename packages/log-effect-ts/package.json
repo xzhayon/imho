@@ -19,8 +19,9 @@
   },
   "peerDependencies": {
     "@effect-ts/core": "^0.60.5",
-    "@imho/log-fp-ts": "^0.2.0",
-    "fp-ts": "^2.16.0"
+    "@imho/effect-effect-ts": "^0.2.0 || *",
+    "@imho/log": "^0.2.0 || *",
+    "@imho/log-fp-ts": "^0.2.0 || *"
   },
   "publishConfig": {
     "access": "public"

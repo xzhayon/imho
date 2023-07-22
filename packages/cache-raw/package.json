@@ -17,10 +17,15 @@
     "clean": "rm -rf dist *.tsbuildinfo",
     "prepack": "npm run build"
   },
+  "dependencies": {
+    "fp-ts": "^2.16.0"
+  },
   "peerDependencies": {
-    "@imho/cache-fp-ts": "^0.2.0",
+    "@imho/cache": "^0.2.0 || *",
+    "@imho/cache-fp-ts": "^0.2.0 || *",
     "@imho/codec-raw": "^0.2.0",
-    "@imho/log-raw": "^0.2.0"
+    "@imho/effect-raw": "^0.2.0 || *",
+    "@imho/log-raw": "^0.2.0 || *"
   },
   "publishConfig": {
     "access": "public"

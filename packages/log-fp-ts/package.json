@@ -18,6 +18,8 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
+    "@imho/effect-fp-ts": "^0.2.0 || *",
+    "@imho/log": "^0.2.0 || *",
     "fp-ts": "^2.16.0"
   },
   "publishConfig": {

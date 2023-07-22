@@ -18,10 +18,11 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@imho/cache": "^0.2.0",
-    "@imho/codec": "^0.2.0",
+    "@imho/cache": "^0.2.0 || *",
+    "@imho/codec": "^0.2.0 || *",
     "@imho/codec-fp-ts": "^0.2.0",
-    "@imho/log-fp-ts": "^0.2.0",
+    "@imho/effect-fp-ts": "^0.2.0 || *",
+    "@imho/log-fp-ts": "^0.2.0 || *",
     "fp-ts": "^2.16.0"
   },
   "publishConfig": {
