@@ -1,6 +1,7 @@
 #!/bin/sh
 
 : ${MANIFEST:=package.json}
+: ${LOCKFILE:=package-lock.json}
 
 while getopts nv option; do
     case "${option}" in
@@ -26,6 +27,6 @@ for workspace in ${WORKSPACES}; do
     test "${VERBOSE}" = "1" && echo "version: ${version}"
 
     test "${DRYRUN}" = "1" &&
-        echo sed -i "/\"$(echo ${name} | sed 's,/,\\/,g')\"/ s/\*/^${version}/" "${workspace}"/../*/"${MANIFEST}" ||
-        sed -i "/\"$(echo ${name} | sed 's,/,\\/,g')\"/ s/\*/^${version}/" "${workspace}"/../*/"${MANIFEST}"
+        echo sed -i "/\"$(echo ${name} | sed 's,/,\\/,g')\"/ s/\*/^${version}/" "${workspace}"/../*/"${MANIFEST}" "${LOCKFILE}" ||
+        sed -i "/\"$(echo ${name} | sed 's,/,\\/,g')\"/ s/\*/^${version}/" "${workspace}"/../*/"${MANIFEST}" "${LOCKFILE}"
 done
