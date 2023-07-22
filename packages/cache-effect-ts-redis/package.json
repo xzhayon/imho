@@ -1,6 +1,6 @@
 {
   "name": "@imho/cache-effect-ts-redis",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -18,13 +18,13 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@imho/cache-fp-ts-redis": "^0.2.0"
+    "@imho/cache-fp-ts-redis": "^0.3.0"
   },
   "peerDependencies": {
     "@effect-ts/core": "^0.60.5",
-    "@imho/cache": "^0.2.0 || *",
-    "@imho/cache-effect-ts": "^0.2.0 || *",
-    "@imho/log-effect-ts": "^0.2.0 || *",
+    "@imho/cache": "^0.2.0 || ^0.3.0",
+    "@imho/cache-effect-ts": "^0.2.0 || ^0.3.0",
+    "@imho/log-effect-ts": "^0.2.0 || ^0.3.0",
     "@redis/client": "^1.5.8"
   },
   "publishConfig": {
