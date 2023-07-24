@@ -19,6 +19,7 @@
   },
   "peerDependencies": {
     "@imho/clock": "*",
+    "@imho/clock-fp-ts": "*",
     "@imho/effect-raw": "^0.3.2"
   },
   "publishConfig": {

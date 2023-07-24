@@ -1,5 +1,9 @@
 {
   "extends": "../../tsconfig.build.json",
-  "references": [{ "path": "../clock" }, { "path": "../effect-raw" }],
+  "references": [
+    { "path": "../clock" },
+    { "path": "../clock-fp-ts" },
+    { "path": "../effect-raw" }
+  ],
   "compilerOptions": { "rootDir": "src", "outDir": "dist" }
 }
