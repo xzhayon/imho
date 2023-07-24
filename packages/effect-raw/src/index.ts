@@ -12,6 +12,6 @@ export type Raw<A> = A extends _.Option<infer B>
   ? A
   : A extends (...args: any) => any
   ? (...args: Raw<Parameters<A>>) => Raw<ReturnType<A>>
-  : A extends { readonly [K: string]: any }
-  ? { readonly [K in keyof A]: Raw<A[K]> }
+  : A extends { [K: string]: any }
+  ? { [K in keyof A]: Raw<A[K]> }
   : A

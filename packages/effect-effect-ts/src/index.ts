@@ -15,6 +15,6 @@ export type EffectTs<A> = A extends _.Option<infer B>
   ? A
   : A extends (...args: any) => any
   ? (...args: EffectTs<Parameters<A>>) => EffectTs<ReturnType<A>>
-  : A extends { readonly [K: string]: any }
-  ? { readonly [K in keyof A]: EffectTs<A[K]> }
+  : A extends { [K: string]: any }
+  ? { [K in keyof A]: EffectTs<A[K]> }
   : A
