@@ -1,15 +1,9 @@
 services:
-  devcontainer:
-    build:
-      context: .docker/nodejs
-      args:
-        NODEJS_VERSION: 18
-      target: development
-    env_file:
-      - .env.dist
-      - .env.local
+  nodejs:
+    extends:
+      file: docker-compose.yaml
+      service: nodejs
+    user: root
     volumes:
       - ${HOME}/.ssh:/root/.ssh:cached
-      - .:/devcontainer:cached
-    working_dir: /devcontainer
     command: /bin/sh -c 'while sleep 1000; do :; done'
