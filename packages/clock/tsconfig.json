@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "references": [{ "path": "../effect" }],
+  "compilerOptions": {
+    "rootDir": "src",
+    "emitDeclarationOnly": true,
+    "outDir": "dist"
+  }
+}
