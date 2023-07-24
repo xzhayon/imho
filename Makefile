@@ -1,4 +1,4 @@
-IND_MAKE=docker compose run --build --entrypoint /usr/bin/env --remove-orphans --rm nodejs18 make
+IND_MAKE=docker compose run --build --entrypoint /usr/bin/env --remove-orphans --rm nodejs make
 COMPOSE_DOWN=docker compose down --remove-orphans
 
 .PHONY: all envfile _envfile deps _deps build _build test _test clean _clean
@@ -6,28 +6,28 @@ COMPOSE_DOWN=docker compose down --remove-orphans
 all:
 
 envfile: _envfile
-_envfile:
+_envfile .env.local:
 	touch .env.local
 
-deps:
+deps: .env.local
 	${IND_MAKE} _deps
 	${COMPOSE_DOWN}
 _deps:
 	npm install --from-lock-file
 
-build:
+build: .env.local
 	${IND_MAKE} _build
 	${COMPOSE_DOWN}
 _build: _deps
 	npm run build
 
-test:
+test: .env.local
 	${IND_MAKE} _test
 	${COMPOSE_DOWN}
-_test: _envfile _deps
+_test: .env.local _deps
 	npm run test
 
-clean:
+clean: .env.local
 	${IND_MAKE} _clean
 	${COMPOSE_DOWN}
 _clean:
