@@ -8,6 +8,8 @@ export type Raw<A> = A extends _.Option<infer B>
   ? Raw<B>
   : A extends _.Task<infer B>
   ? Promise<Raw<B>>
+  : A extends Error
+  ? A
   : A extends (...args: any) => any
   ? (...args: Raw<Parameters<A>>) => Raw<ReturnType<A>>
   : A extends { readonly [K: string]: any }

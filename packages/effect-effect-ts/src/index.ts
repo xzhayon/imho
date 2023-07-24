@@ -11,6 +11,8 @@ export type EffectTs<A> = A extends _.Option<infer B>
   ? B extends _.Either<infer E, infer C>
     ? IO<EffectTs<E>, EffectTs<C>>
     : UIO<EffectTs<B>>
+  : A extends Error
+  ? A
   : A extends (...args: any) => any
   ? (...args: EffectTs<Parameters<A>>) => EffectTs<ReturnType<A>>
   : A extends { readonly [K: string]: any }
