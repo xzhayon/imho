@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/xzhavilla/imho/compare/@imho/effect-raw@0.3.1...@imho/effect-raw@0.3.2) (2023-07-24)
+
+
+### Bug Fixes
+
+* **effect:** avoid forcing `readonly` property ([#2](https://github.com/xzhavilla/imho/issues/2)) ([e4c96d8](https://github.com/xzhavilla/imho/commit/e4c96d8770e99ecc7d77c5da7d5b13bfe6127ea3))
+
+
+
+
+
 ## [0.3.1](https://github.com/xzhavilla/imho/compare/@imho/effect-raw@0.3.0...@imho/effect-raw@0.3.1) (2023-07-24)
 
 
