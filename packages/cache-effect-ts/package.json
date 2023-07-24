@@ -26,7 +26,7 @@
     "@imho/cache-fp-ts": "^0.2.0 || ^0.3.0",
     "@imho/codec": "^0.2.0 || ^0.3.0",
     "@imho/codec-effect-ts": "^0.2.0",
-    "@imho/effect-effect-ts": "^0.2.0 || ^0.3.0",
+    "@imho/effect-effect-ts": "^0.2.0 || ^0.3.0 || *",
     "@imho/log-effect-ts": "^0.2.0 || ^0.3.0"
   },
   "publishConfig": {
