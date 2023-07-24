@@ -12,17 +12,17 @@ export interface Http {
   options(url: Url, options?: Options): Task<Either<HttpError, Response>>
   patch(
     url: Url,
-    body?: Body,
+    body?: Body | null,
     options?: Options,
   ): Task<Either<HttpError, Response>>
   post(
     url: Url,
-    body?: Body,
+    body?: Body | null,
     options?: Options,
   ): Task<Either<HttpError, Response>>
   put(
     url: Url,
-    body?: Body,
+    body?: Body | null,
     options?: Options,
   ): Task<Either<HttpError, Response>>
 }
