@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/xzhavilla/imho/compare/@imho/effect-effect-ts@0.3.2...@imho/effect-effect-ts@0.4.0) (2023-07-24)
+
+
+### Features
+
+* **effect:** make Effect-TS `IO` synchronous ([#3](https://github.com/xzhavilla/imho/issues/3)) ([a7ab33e](https://github.com/xzhavilla/imho/commit/a7ab33ee4d42f0855128b1f6198207cfd239f417))
+
+
+### BREAKING CHANGES
+
+* **effect:** `IO`-derived effects need to be wrapped to be used in `Effect` ecosystem
+
+
+
+
+
 ## [0.3.2](https://github.com/xzhavilla/imho/compare/@imho/effect-effect-ts@0.3.1...@imho/effect-effect-ts@0.3.2) (2023-07-24)
 
 

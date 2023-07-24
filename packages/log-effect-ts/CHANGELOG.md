@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/xzhavilla/imho/compare/@imho/log-effect-ts@0.3.0...@imho/log-effect-ts@0.3.1) (2023-07-24)
+
+
+### Bug Fixes
+
+* update dependencies ([8153a62](https://github.com/xzhavilla/imho/commit/8153a62440343badf7cd715f276b7850b9fb4d32))
+
+
+
+
+
 # [0.3.0](https://github.com/xzhavilla/imho/compare/@imho/log-effect-ts@0.2.0...@imho/log-effect-ts@0.3.0) (2023-07-22)
 
 
