@@ -1,5 +1,5 @@
-import * as _ from '@imho/effect'
+import { IO } from '@imho/effect'
 
 export interface Clock {
-  now(): _.IO<number>
+  now(): IO<number>
 }
