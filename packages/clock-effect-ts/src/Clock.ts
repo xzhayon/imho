@@ -6,4 +6,7 @@ export interface Clock extends EffectTs<_.Clock> {}
 
 export const HasClock = Has.tag<Clock>()
 
-export const Clock = Effect.deriveLifted(HasClock)(['now'], [], [])
+export const Clock = {
+  now: () =>
+    Effect.accessServiceM(HasClock)((clock) => Effect.fromIO(clock.now())),
+}

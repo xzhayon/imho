@@ -21,7 +21,7 @@
     "@effect-ts/core": "^0.60.5",
     "@imho/clock": "*",
     "@imho/clock-fp-ts": "*",
-    "@imho/effect-effect-ts": "^0.3.2"
+    "@imho/effect-effect-ts": "^0.4.0"
   },
   "publishConfig": {
     "access": "public"
