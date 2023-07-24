@@ -1,3 +1,4 @@
+import * as _ from '@imho/effect'
 import { Either } from 'fp-ts/Either'
 import { IO } from 'fp-ts/IO'
 import { IOEither } from 'fp-ts/IOEither'
@@ -6,7 +7,6 @@ import { Option } from 'fp-ts/Option'
 import { Task } from 'fp-ts/Task'
 import { TaskEither } from 'fp-ts/TaskEither'
 import { TaskOption } from 'fp-ts/TaskOption'
-import * as _ from '@imho/effect'
 
 export type FpTs<A> = A extends _.Option<infer B>
   ? Option<FpTs<B>>
@@ -24,6 +24,8 @@ export type FpTs<A> = A extends _.Option<infer B>
     : B extends _.Either<infer E, infer C>
     ? TaskEither<FpTs<E>, FpTs<C>>
     : Task<FpTs<B>>
+  : A extends Error
+  ? A
   : A extends (...args: any) => any
   ? (...args: FpTs<Parameters<A>>) => FpTs<ReturnType<A>>
   : A extends { readonly [K: string]: any }
