@@ -28,6 +28,6 @@ export type FpTs<A> = A extends _.Option<infer B>
   ? A
   : A extends (...args: any) => any
   ? (...args: FpTs<Parameters<A>>) => FpTs<ReturnType<A>>
-  : A extends { readonly [K: string]: any }
-  ? { readonly [K in keyof A]: FpTs<A[K]> }
+  : A extends { [K: string]: any }
+  ? { [K in keyof A]: FpTs<A[K]> }
   : A
