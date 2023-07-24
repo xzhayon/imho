@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/xzhavilla/imho/compare/@imho/effect-effect-ts@0.3.0...@imho/effect-effect-ts@0.3.1) (2023-07-24)
+
+
+### Bug Fixes
+
+* **effect:** avoid transforming Error types ([#1](https://github.com/xzhavilla/imho/issues/1)) ([cabefc4](https://github.com/xzhavilla/imho/commit/cabefc438eaa31dc9da47ce7d5539f2e17606764))
+
+
+
+
+
 # [0.3.0](https://github.com/xzhavilla/imho/compare/@imho/effect-effect-ts@0.2.0...@imho/effect-effect-ts@0.3.0) (2023-07-22)
 
 
