@@ -15,8 +15,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: npm
-      - if: ${{ matrix.NODEJS_VERSION }} == 16
-        run: sudo chown -R 1001:123 /root/.npm
       - run: make build
         env:
           NODEJS_VERSION: ${{ matrix.NODEJS_VERSION }}
@@ -30,8 +28,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           cache: npm
-      - if: ${{ matrix.NODEJS_VERSION }} == 16
-        run: sudo chown -R 1001:123 /root/.npm
       - run: make test
         env:
           NODEJS_VERSION: ${{ matrix.NODEJS_VERSION }}
