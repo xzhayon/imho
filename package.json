@@ -20,7 +20,7 @@
     "build": "npm run build -ws --if-present",
     "preclean": "rm -rf test/dist",
     "clean": "npm run clean -ws --if-present",
-    "release": "lerna publish -y",
+    "release": "env GH_TOKEN=${GITHUB_TOKEN} NODE_AUTH_TOKEN=${NPM_TOKEN} lerna publish -y",
     "test": "jest",
     "version": "scripts/tag-workspaces.sh packages/*"
   },

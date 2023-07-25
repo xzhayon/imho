@@ -9,6 +9,9 @@ services:
     env_file:
       - .env.dist
       - .env.local
+    environment:
+      - GITHUB_TOKEN
+      - NPM_TOKEN
     links:
       - redis7
     volumes:

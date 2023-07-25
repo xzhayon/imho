@@ -3,7 +3,14 @@ COMPOSE_DOWN=${COMPOSE} down --remove-orphans
 COMPOSE_RUN=${COMPOSE} run --build --entrypoint /usr/bin/env --remove-orphans --rm
 _MAKE=${COMPOSE_RUN} nodejs make
 
-.PHONY: all envfile _envfile deps _deps build _build test _test clean _clean
+.PHONY: \
+	all \
+	envfile _envfile \
+	deps _deps \
+	build _build \
+	test _test \
+	release _release \
+	clean _clean
 
 all:
 
@@ -28,6 +35,11 @@ test: .env.local
 	${COMPOSE_DOWN}
 _test: .env.local _deps
 	npm run test
+
+release: .env.local
+	${_MAKE} _release
+_release: _deps
+	npm run release
 
 clean: .env.local
 	${_MAKE} _clean
