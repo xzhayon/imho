@@ -11,7 +11,7 @@
     }
   },
   "dockerComposeFile": ["../docker-compose.yaml", "docker-compose.yaml"],
-  "service": "nodejs",
+  "service": "devcontainer",
   "workspaceFolder": "/dist/${localWorkspaceFolderBasename}",
   "initializeCommand": ["make", "envfile"]
 }

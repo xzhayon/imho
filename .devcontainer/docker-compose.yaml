@@ -1,9 +1,8 @@
 services:
-  nodejs:
+  devcontainer:
     extends:
       file: docker-compose.yaml
       service: nodejs
-    user: root
     volumes:
       - ${HOME}/.ssh:/root/.ssh:cached
     command: /bin/sh -c 'while sleep 1000; do :; done'
