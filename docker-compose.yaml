@@ -1,23 +1,22 @@
-x-nodejs18: &nodejs18
-  build:
-    context: .docker/nodejs
-    args:
-      NODEJS_VERSION: 18
-    target: base
-  user: node
-
 services:
-  nodejs18:
-    <<: *nodejs18
+  nodejs:
+    build:
+      context: .docker/nodejs
+      args:
+        NODEJS_VERSION: ${NODEJS_VERSION:-18}
+      target: development
+    user: root
     env_file:
       - .env.dist
       - .env.local
+    environment:
+      - GITHUB_TOKEN
+      - NPM_TOKEN
     links:
       - redis7
     volumes:
-      - .:/compose:cached
-    working_dir: /compose
-    command: ['npm', 'install', '--from-lockfile']
+      - .:/dist/${COMPOSE_PROJECT_NAME}:cached
+    working_dir: /dist/${COMPOSE_PROJECT_NAME}
 
   redis7:
     image: redis:7-alpine

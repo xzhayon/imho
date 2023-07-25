@@ -1,0 +1,33 @@
+name: test
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        NODEJS_VERSION: [18, 20]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: npm
+      - run: make build
+        env:
+          NODEJS_VERSION: ${{ matrix.NODEJS_VERSION }}
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        NODEJS_VERSION: [16, 18, 20]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: npm
+      - run: make test
+        env:
+          NODEJS_VERSION: ${{ matrix.NODEJS_VERSION }}
