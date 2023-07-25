@@ -38,6 +38,7 @@ _test: .env.local _deps
 
 release: .env.local
 	${_MAKE} _release
+	${COMPOSE_DOWN}
 _release: _deps
 	npm run release
 
