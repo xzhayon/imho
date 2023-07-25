@@ -5,27 +5,29 @@ on:
     branches: [main]
   workflow_dispatch:
 jobs:
-  jest:
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 18.x, 20.x]
+        NODEJS_VERSION: [16, 18, 20]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: npm
-      - run: make test
-  typescript:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x, 20.x]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
           cache: npm
       - run: make build
+        env:
+          NODEJS_VERSION: ${{ matrix.NODEJS_VERSION }}
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        NODEJS_VERSION: [16, 18, 20]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: npm
+      - run: make test
+        env:
+          NODEJS_VERSION: ${{ matrix.NODEJS_VERSION }}
