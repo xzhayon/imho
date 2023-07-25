@@ -1,5 +1,6 @@
-IND_MAKE=docker compose run --build --entrypoint /usr/bin/env --remove-orphans --rm nodejs make
-COMPOSE_DOWN=docker compose down --remove-orphans
+COMPOSE=docker compose
+COMPOSE_DOWN=${COMPOSE} down --remove-orphans
+_MAKE=${COMPOSE} run --build --entrypoint /usr/bin/env --remove-orphans --rm nodejs make
 
 .PHONY: all envfile _envfile deps _deps build _build test _test clean _clean
 
@@ -10,25 +11,25 @@ _envfile .env.local:
 	touch .env.local
 
 deps: .env.local
-	${IND_MAKE} _deps
+	${_MAKE} _deps
 	${COMPOSE_DOWN}
 _deps:
 	npm install --from-lock-file
 
 build: .env.local
-	${IND_MAKE} _build
+	${_MAKE} _build
 	${COMPOSE_DOWN}
 _build: _deps
 	npm run build
 
 test: .env.local
-	${IND_MAKE} _test
+	${_MAKE} _test
 	${COMPOSE_DOWN}
 _test: .env.local _deps
 	npm run test
 
 clean: .env.local
-	${IND_MAKE} _clean
+	${_MAKE} _clean
 	${COMPOSE_DOWN}
 _clean:
 	npm run clean
