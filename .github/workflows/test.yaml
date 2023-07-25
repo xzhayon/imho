@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        NODEJS_VERSION: [16, 18, 20]
+        NODEJS_VERSION: [18, 20]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
