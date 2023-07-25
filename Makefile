@@ -21,7 +21,7 @@ build: .env.local
 	${_MAKE} _build
 	${COMPOSE_DOWN}
 _build: _deps
-	chmod -R 777 "${HOME}/.npm"
+	chown -R "$$(whoami)" "${HOME}/.npm"
 	npm run build
 
 test: .env.local
