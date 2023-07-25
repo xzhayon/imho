@@ -1,3 +1,7 @@
+export * from './Body'
 export * from './Http'
 export * from './HttpError'
 export * from './HttpResponseError'
+export * from './Options'
+export * from './Response'
+export * from './Url'
