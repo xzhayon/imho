@@ -15,9 +15,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           registry-url: https://registry.npmjs.org
+          cache: npm
       - run: git config user.name "${{ github.actor }}"
       - run: git config user.email "${{ github.actor }}@users.noreply.github.com"
-      - run: make release
+      - run: make _release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
