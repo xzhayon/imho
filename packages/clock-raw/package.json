@@ -1,6 +1,6 @@
 {
   "name": "@imho/clock-raw",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -18,8 +18,8 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@imho/clock": "*",
-    "@imho/clock-fp-ts": "*",
+    "@imho/clock": "^0.1.0",
+    "@imho/clock-fp-ts": "^0.1.0",
     "@imho/effect-raw": "^0.3.2"
   },
   "publishConfig": {
