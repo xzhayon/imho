@@ -1,0 +1,26 @@
+{
+  "name": "@imho/clock",
+  "version": "0.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "Alberto Villa <villa.alberto@gmail.com>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "!**/*.map",
+    "!**/*.test.*",
+    "/*.md",
+    "/dist"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "@imho/effect": "^0.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
