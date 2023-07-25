@@ -1,6 +1,7 @@
 COMPOSE=docker compose
 COMPOSE_DOWN=${COMPOSE} down --remove-orphans
-_MAKE=${COMPOSE} run --build --entrypoint /usr/bin/env --remove-orphans --rm nodejs make
+COMPOSE_RUN=${COMPOSE} run --build --entrypoint /usr/bin/env --remove-orphans --rm
+_MAKE=${COMPOSE_RUN} nodejs make
 
 .PHONY: all envfile _envfile deps _deps build _build test _test clean _clean
 
