@@ -22,7 +22,8 @@
     "@imho/http": "*",
     "@imho/http-fp-ts": "*",
     "@imho/log-fp-ts": "^0.3.0",
-    "axios": "^1.4.0"
+    "axios": "^1.4.0",
+    "fp-ts": "^2.16.1"
   },
   "publishConfig": {
     "access": "public"
