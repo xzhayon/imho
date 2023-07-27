@@ -65,12 +65,12 @@ export const AxiosHttp = (axios: AxiosStatic) =>
             return pipe(
               taskEither.Do,
               taskEither.bind('startTime', () =>
-                taskEither.fromIO(clock.now()),
+                taskEither.fromIO(this.clock.now()),
               ),
               taskEither.bind('response', () =>
                 taskEither.tryCatch(
-                  async () =>
-                    await this.axios.request({
+                  () =>
+                    this.axios.request({
                       url: url.toString(),
                       method,
                       headers: options?.headers,
@@ -85,7 +85,9 @@ export const AxiosHttp = (axios: AxiosStatic) =>
                       : new HttpError('', { cause }),
                 ),
               ),
-              taskEither.bind('endTime', () => taskEither.fromIO(clock.now())),
+              taskEither.bind('endTime', () =>
+                taskEither.fromIO(this.clock.now()),
+              ),
               taskEither.tapTask(({ response, startTime, endTime }) =>
                 this.log.debug('HTTP request succeded', {
                   channel,
