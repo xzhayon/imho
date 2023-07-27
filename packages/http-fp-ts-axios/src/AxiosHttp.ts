@@ -9,21 +9,21 @@ import {
 } from '@imho/http'
 import { Http } from '@imho/http-fp-ts'
 import { Log } from '@imho/log-fp-ts'
-import { AxiosResponse, AxiosStatic } from 'axios'
+import { Axios, AxiosResponse, isAxiosError } from 'axios'
 import { reader, taskEither } from 'fp-ts'
 import { pipe } from 'fp-ts/function'
-import { TaskEither } from 'fp-ts/lib/TaskEither'
+import { TaskEither } from 'fp-ts/TaskEither'
 
 const channel = 'AxiosHttp'
 
-export const AxiosHttp = (axios: AxiosStatic) =>
+export const AxiosHttp = (axios: Axios) =>
   pipe(
     reader.ask<{ clock: Clock; log: Log }>(),
     reader.map(
       ({ clock, log }): Http =>
         new (class AxiosHttp implements Http {
           constructor(
-            private readonly axios: AxiosStatic,
+            private readonly axios: Axios,
             private readonly clock: Clock,
             private readonly log: Log,
           ) {}
@@ -78,7 +78,7 @@ export const AxiosHttp = (axios: AxiosStatic) =>
                       data: body,
                     }),
                   (cause) =>
-                    axios.isAxiosError(cause) && cause.response !== undefined
+                    isAxiosError(cause) && cause.response !== undefined
                       ? new HttpResponseError(response(cause.response), '', {
                           cause,
                         })
