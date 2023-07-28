@@ -17,9 +17,13 @@
     "clean": "rm -rf dist *.tsbuildinfo",
     "prepack": "npm run build"
   },
+  "dependencies": {
+    "fp-ts": "^2.16.1"
+  },
   "peerDependencies": {
     "@imho/effect-raw": "^0.3.2",
-    "@imho/http": "*"
+    "@imho/http": "*",
+    "@imho/http-fp-ts": "*"
   },
   "publishConfig": {
     "access": "public"

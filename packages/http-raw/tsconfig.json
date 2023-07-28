@@ -1,5 +1,9 @@
 {
   "extends": "../../tsconfig.build.json",
-  "references": [{ "path": "../effect-raw" }, { "path": "../http" }],
+  "references": [
+    { "path": "../effect-raw" },
+    { "path": "../http" },
+    { "path": "../http-fp-ts" }
+  ],
   "compilerOptions": { "rootDir": "src", "outDir": "dist" }
 }
