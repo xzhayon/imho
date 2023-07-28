@@ -1,6 +1,6 @@
 {
   "name": "@imho/http-raw-axios",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -18,7 +18,7 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@imho/http-fp-ts-axios": "^0.1.0"
+    "@imho/http-fp-ts-axios": "^0.1.1"
   },
   "peerDependencies": {
     "@imho/clock-raw": "^0.1.1",

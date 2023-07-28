@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/xzhavilla/imho/compare/@imho/codec-effect-ts@0.2.1...@imho/codec-effect-ts@0.2.2) (2023-07-28)
+
+**Note:** Version bump only for package @imho/codec-effect-ts
+
+
+
+
+
 ## [0.2.1](https://github.com/xzhavilla/imho/compare/@imho/codec-effect-ts@0.2.0...@imho/codec-effect-ts@0.2.1) (2023-07-22)
 
 
