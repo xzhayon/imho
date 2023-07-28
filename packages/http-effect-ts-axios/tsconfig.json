@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.build.json",
   "references": [
     { "path": "../clock-effect-ts" },
+    { "path": "../http" },
     { "path": "../http-effect-ts" },
     { "path": "../http-fp-ts-axios" },
     { "path": "../log-effect-ts" }
