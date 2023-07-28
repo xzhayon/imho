@@ -1,6 +1,6 @@
 {
   "name": "@imho/http-fp-ts-axios",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -19,8 +19,8 @@
   },
   "peerDependencies": {
     "@imho/clock-fp-ts": "^0.1.0",
-    "@imho/http": "*",
-    "@imho/http-fp-ts": "*",
+    "@imho/http": "^0.1.0",
+    "@imho/http-fp-ts": "^0.1.0",
     "@imho/log-fp-ts": "^0.3.0",
     "axios": "^1.4.0",
     "fp-ts": "^2.16.1"
