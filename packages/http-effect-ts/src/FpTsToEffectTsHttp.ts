@@ -1,9 +1,10 @@
+import { Effect, pipe } from '@effect-ts/core'
 import { Body, Options, Url } from '@imho/http'
 import * as fpTs from '@imho/http-fp-ts'
 import { either } from 'fp-ts'
 import { Http } from './Http'
 
-export class FpTsToRawHttp implements Http {
+export class FpTsToEffectTsHttp implements Http {
   constructor(private readonly http: fpTs.Http) {}
 
   delete(url: Url, options?: Options) {
@@ -34,15 +35,17 @@ export class FpTsToRawHttp implements Http {
     return this.request('put', url, body, options)
   }
 
-  private async request<A extends keyof Http>(
+  private request<A extends keyof Http>(
     method: A,
     ...args: Parameters<Http[A]>
   ) {
-    const response = await this.http[method](...(args as [any]))()
-    if (either.isLeft(response)) {
-      throw response.left
-    }
-
-    return response.right
+    return pipe(
+      Effect.promise(this.http[method](...(args as [any]))),
+      Effect.chain((response) =>
+        either.isLeft(response)
+          ? Effect.fail(response.left)
+          : Effect.succeed(response.right),
+      ),
+    )
   }
 }
