@@ -27,7 +27,7 @@ describe('AxiosHttp', () => {
       ['JSON', 'json', 'application/json', { foo: 'bar' }],
       ['text', 'text', 'text/plain', 'foobar'],
       ['XML', 'xml', 'application/xml', '<foo>bar</foo>'],
-    ])('receiving %s response', async (_type, path, mimeType, body) => {
+    ])('forwarding %s response', async (_type, path, mimeType, body) => {
       await expect(
         Http.get(`${process.env.NGINX_URL}/${path}`)(http)(),
       ).resolves.toMatchObject(
