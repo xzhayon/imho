@@ -79,10 +79,14 @@ export const AxiosHttp = (axios: Axios) =>
                     }),
                   (cause) =>
                     isAxiosError(cause) && cause.response !== undefined
-                      ? new HttpResponseError(response(cause.response), '', {
+                      ? new HttpResponseError(
+                          response(cause.response),
+                          `HTTP ${cause.response.status} ${cause.response.statusText}`,
+                          { cause },
+                        )
+                      : new HttpError('Cannot get response from server', {
                           cause,
-                        })
-                      : new HttpError('', { cause }),
+                        }),
                 ),
               ),
               taskEither.bind('endTime', () =>
