@@ -30,3 +30,6 @@ jobs:
       - run: make test
         env:
           NODEJS_VERSION: ${{ matrix.NODEJS_VERSION }}
+      - uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
