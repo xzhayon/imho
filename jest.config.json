@@ -6,6 +6,6 @@
         "@imho/(.+)": "<rootDir>/packages/$1/src"
     },
     "transform": {
-        "\\.tsx?$": "esbuild-jest"
+        "\\.tsx?$": "@swc/jest"
     }
 }
