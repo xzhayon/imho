@@ -1,9 +1,9 @@
 services:
-  nodejs:
+  workspace:
     build:
-      context: .docker/nodejs
+      context: .docker/workspace
       args:
-        NODEJS_VERSION: ${NODEJS_VERSION:-18}
+        NODEJS_VERSION: ${NODEJS_VERSION:-20}
       target: development
     user: root
     env_file:
@@ -12,12 +12,12 @@ services:
     environment:
       - GITHUB_TOKEN
       - NPM_TOKEN
-    links:
-      - nginx
-      - redis
+    # links:
+    #   - nginx
+    #   - redis
     volumes:
-      - .:/dist/${COMPOSE_PROJECT_NAME}:cached
-    working_dir: /dist/${COMPOSE_PROJECT_NAME}
+      - .:/opt/${COMPOSE_PROJECT_NAME}:cached
+    working_dir: /opt/${COMPOSE_PROJECT_NAME}
 
   nginx:
     image: nginx:1-alpine

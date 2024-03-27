@@ -5,14 +5,13 @@
         "esbenp.prettier-vscode",
         "foxundermoon.shell-format",
         "ms-azuretools.vscode-docker",
-        "ms-vscode.makefile-tools",
         "Orta.vscode-jest",
         "unional.vscode-sort-package-json"
       ]
     }
   },
   "dockerComposeFile": ["../docker-compose.yaml", "docker-compose.yaml"],
-  "service": "devcontainer",
-  "workspaceFolder": "/dist/${localWorkspaceFolderBasename}",
+  "service": "workspace",
+  "workspaceFolder": "/opt/${localWorkspaceFolderBasename}",
   "initializeCommand": ["make", "envfile"]
 }
