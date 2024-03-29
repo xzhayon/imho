@@ -1,16 +1,15 @@
 {
-  "name": "@imho/codec-effect-ts",
-  "version": "0.2.2",
+  "name": "@imho/codec-io-ts",
+  "version": "0.3.1",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "!**/*.map",
-    "!**/*.test.*",
     "/*.md",
-    "/dist"
+    "/dist",
+    "!**/*.test.*"
   ],
   "scripts": {
     "build": "tsc -b",
@@ -18,10 +17,9 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@effect-ts/core": "^0.60.5",
     "@imho/codec": "^0.2.0 || ^0.3.0",
-    "@imho/codec-fp-ts": "^0.2.0",
-    "fp-ts": "^2.16.0"
+    "fp-ts": "^2.16.0",
+    "io-ts": "^2.2.20"
   },
   "publishConfig": {
     "access": "public"

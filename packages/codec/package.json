@@ -7,18 +7,14 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "!**/*.map",
-    "!**/*.test.*",
     "/*.md",
-    "/dist"
+    "/dist",
+    "!**/*.test.*"
   ],
   "scripts": {
     "build": "tsc -b",
     "clean": "rm -rf dist *.tsbuildinfo",
     "prepack": "npm run build"
-  },
-  "peerDependencies": {
-    "@imho/effect": "^0.2.0"
   },
   "publishConfig": {
     "access": "public"

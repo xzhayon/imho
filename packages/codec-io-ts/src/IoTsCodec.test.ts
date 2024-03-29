@@ -24,9 +24,7 @@ describe('IoTsCodec', () => {
 
   describe('decode', () => {
     test('failing with a CodecError', () => {
-      expect(
-        (new IoTsCodec(t.never).decode(undefined) as any).left,
-      ).toBeInstanceOf(CodecError)
+      expect(() => new IoTsCodec(t.never).decode(undefined)).toThrow(CodecError)
     })
 
     test.each([
@@ -47,10 +45,10 @@ describe('IoTsCodec', () => {
         input: { boolean: false, number: 0, string: '' },
       },
     ])(
-      'forwarding codec result ($type.name)',
+      'forwarding decoder result ($type.name)',
       ({ type, input }: { type: t.Any; input: unknown }) => {
         expect(new IoTsCodec(type).decode(input)).toStrictEqual(
-          type.decode(input),
+          (type.decode(input) as any).right,
         )
       },
     )

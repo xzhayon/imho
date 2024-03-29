@@ -1,5 +1,4 @@
-import { CodecError } from '@imho/codec'
-import { Codec } from '@imho/codec-fp-ts'
+import { Codec, CodecError } from '@imho/codec'
 import { either } from 'fp-ts'
 import { pipe } from 'fp-ts/function'
 import * as t from 'io-ts'
@@ -17,16 +16,22 @@ export class IoTsCodec<A, O = A, I = unknown> implements Codec<A, O, I> {
   }
 
   decode(i: I) {
-    return pipe(
+    const a = pipe(
       this.type.decode(i),
       either.mapLeft(
-        (errors) =>
+        (cause) =>
           new CodecError(
-            errors.map((error) => new Error(failure([error])[0])),
+            cause.map((error) => new Error(failure([error])[0])),
             `Cannot decode input with codec "${this.name}"`,
+            { cause },
           ),
       ),
     )
+    if (either.isLeft(a)) {
+      throw a.left
+    }
+
+    return a.right
   }
 
   encode(a: A) {
