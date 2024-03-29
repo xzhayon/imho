@@ -1,5 +1,5 @@
 {
-  "name": "@imho/http-raw",
+  "name": "@imho/http-axios",
   "version": "0.1.1",
   "description": "",
   "license": "MIT",
@@ -7,23 +7,21 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "!**/*.map",
-    "!**/*.test.*",
     "/*.md",
-    "/dist"
+    "/dist",
+    "!**/*.test.*"
   ],
   "scripts": {
     "build": "tsc -b",
     "clean": "rm -rf dist *.tsbuildinfo",
     "prepack": "npm run build"
   },
-  "dependencies": {
-    "fp-ts": "^2.16.1"
-  },
   "peerDependencies": {
-    "@imho/effect-raw": "^0.3.2",
+    "@imho/clock": "^0.1.1",
     "@imho/http": "^0.1.0",
-    "@imho/http-fp-ts": "^0.1.0"
+    "@imho/log": "^0.3.1",
+    "@xzhayon/fx": "^0.3.0",
+    "axios": "^1.4.0"
   },
   "publishConfig": {
     "access": "public"
