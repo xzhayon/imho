@@ -7,10 +7,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "!**/*.map",
-    "!**/*.test.*",
     "/*.md",
-    "/dist"
+    "/dist",
+    "!**/*.test.*"
   ],
   "scripts": {
     "build": "tsc -b",
@@ -18,7 +17,7 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@imho/effect": "^0.2.0"
+    "@xzhayon/fx": "^0.2.1"
   },
   "publishConfig": {
     "access": "public"

@@ -1,5 +1,5 @@
 {
-  "name": "@imho/log-raw-pino",
+  "name": "@imho/log-pino",
   "version": "0.3.1",
   "description": "",
   "license": "MIT",
@@ -7,21 +7,18 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "!**/*.map",
-    "!**/*.test.*",
     "/*.md",
-    "/dist"
+    "/dist",
+    "!**/*.test.*"
   ],
   "scripts": {
     "build": "tsc -b",
     "clean": "rm -rf dist *.tsbuildinfo",
     "prepack": "npm run build"
   },
-  "dependencies": {
-    "@imho/log-fp-ts-pino": "^0.3.1"
-  },
   "peerDependencies": {
-    "@imho/log-raw": "^0.2.0 || ^0.3.0",
+    "@imho/log": "^0.3.1",
+    "@xzhayon/fx": "^0.2.3",
     "pino": "^8.14.1"
   },
   "publishConfig": {

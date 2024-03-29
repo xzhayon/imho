@@ -1,9 +1,11 @@
+import { Log } from '@imho/log'
+import { layer, perform, run } from '@xzhayon/fx'
 import { pino } from 'pino'
-import { PinoLog } from './PinoLog'
+import { FxPinoLog } from './FxPinoLog'
 
-describe('PinoLog', () => {
+describe('FxPinoLog', () => {
   let buffer: string | null
-  const log = new PinoLog(
+  const log = FxPinoLog(
     pino(
       { level: 'debug' },
       {
@@ -18,7 +20,7 @@ describe('PinoLog', () => {
     buffer = null
   })
 
-  test.each([
+  describe.each([
     ['debug', 'debug', 20],
     ['info', 'info', 30],
     ['notice', 'info', 30],
@@ -27,11 +29,14 @@ describe('PinoLog', () => {
     ['alert', 'fatal', 60],
     ['critical', 'fatal', 60],
     ['emergency', 'fatal', 60],
-  ] as const)(
-    'hadling severity "%s" with level "%s" (%d)',
-    async (severity, _level, level) => {
-      await log[severity]('foo')
+  ] as const)('%s', (severity, _level, level) => {
+    test(`using level "${_level}" (${level})`, async () => {
+      function* f() {
+        yield* perform(Log[severity]('foo'))
+      }
+      await run(f(), layer().with(Log, log))
+
       expect(JSON.parse(buffer ?? '')).toMatchObject({ level, msg: 'foo' })
-    },
-  )
+    })
+  })
 })
