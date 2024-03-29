@@ -1,5 +1,10 @@
-import { IO } from '@imho/effect'
+import * as fx from '@xzhayon/fx'
 
 export interface Clock {
-  now(): IO<number>
+  readonly [fx.URI]?: unique symbol
+  now(): Date
 }
+
+export const tag = fx.tag<Clock>('Clock')
+
+export const Clock = { tag, ...fx.struct(tag)('now') }
