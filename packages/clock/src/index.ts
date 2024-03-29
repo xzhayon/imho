@@ -1,3 +1,5 @@
 export * from './Clock'
-export * from './DateClock'
-export * from './PerformanceClock'
+export * from './date/DateClock'
+export * from './date/FxDateClock'
+export * from './performance/FxPerformanceClock'
+export * from './performance/PerformanceClock'

@@ -1,8 +1,8 @@
 import { layer, perform, run } from '@xzhayon/fx'
-import { Clock } from './Clock'
-import { FxPerformanceClock } from './PerformanceClock'
+import { Clock } from '../Clock'
+import { FxPerformanceClock } from './FxPerformanceClock'
 
-describe('PerformanceClock', () => {
+describe('FxPerformanceClock', () => {
   describe('now', () => {
     test('returning current timestamp', async () => {
       function* f() {
@@ -10,7 +10,7 @@ describe('PerformanceClock', () => {
       }
 
       await expect(
-        run(f(), layer().with(Clock, FxPerformanceClock)),
+        run(f(), layer().with(Clock, FxPerformanceClock())),
       ).resolves.toBeCloseTo(performance.timeOrigin + performance.now(), -1)
     })
   })

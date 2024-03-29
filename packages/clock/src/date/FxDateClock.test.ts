@@ -1,8 +1,8 @@
 import { layer, perform, run } from '@xzhayon/fx'
-import { Clock } from './Clock'
-import { FxDateClock } from './DateClock'
+import { Clock } from '../Clock'
+import { FxDateClock } from './FxDateClock'
 
-describe('DateClock', () => {
+describe('FxDateClock', () => {
   describe('now', () => {
     test('returning current timestamp', async () => {
       function* f() {
@@ -10,7 +10,7 @@ describe('DateClock', () => {
       }
 
       await expect(
-        run(f(), layer().with(Clock, FxDateClock)),
+        run(f(), layer().with(Clock, FxDateClock())),
       ).resolves.toBeCloseTo(Date.now(), -1)
     })
   })
