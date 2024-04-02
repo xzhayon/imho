@@ -1,6 +1,6 @@
 {
   "name": "@imho/cache-redis",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -17,14 +17,14 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@imho/codec-io-ts": "*",
+    "@imho/codec-io-ts": "^0.4.0",
     "io-ts": "^2.2.20",
     "io-ts-types": "^0.5.19"
   },
   "peerDependencies": {
-    "@imho/cache": "*",
-    "@imho/codec": "*",
-    "@imho/log": "*",
+    "@imho/cache": "^0.4.0",
+    "@imho/codec": "^0.4.0",
+    "@imho/log": "^0.4.0",
     "@redis/client": "^1.5.8",
     "@xzhayon/fx": "^0.4.0"
   },

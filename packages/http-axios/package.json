@@ -1,6 +1,6 @@
 {
   "name": "@imho/http-axios",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -17,9 +17,9 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@imho/clock": "*",
-    "@imho/http": "*",
-    "@imho/log": "*",
+    "@imho/clock": "^0.2.0",
+    "@imho/http": "^0.2.0",
+    "@imho/log": "^0.4.0",
     "@xzhayon/fx": "^0.3.0 || ^0.4.0",
     "axios": "^1.4.0"
   },
