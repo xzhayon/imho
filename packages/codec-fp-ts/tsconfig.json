@@ -1,9 +1,0 @@
-{
-  "extends": "../../tsconfig.build.json",
-  "references": [{ "path": "../codec" }],
-  "compilerOptions": {
-    "rootDir": "src",
-    "emitDeclarationOnly": true,
-    "outDir": "dist"
-  }
-}

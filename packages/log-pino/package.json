@@ -1,0 +1,27 @@
+{
+  "name": "@imho/log-pino",
+  "version": "0.3.1",
+  "description": "",
+  "license": "MIT",
+  "author": "Alberto Villa <villa.alberto@gmail.com>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/*.md",
+    "/dist",
+    "!**/*.test.*"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "@imho/log": "*",
+    "@xzhayon/fx": "^0.2.3 || ^0.3.0 || ^0.4.0",
+    "pino": "^8.14.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

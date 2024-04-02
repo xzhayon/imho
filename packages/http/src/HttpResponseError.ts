@@ -3,7 +3,7 @@ import { Response } from './Response'
 
 export const HttpResponseErrorURI = Symbol()
 export class HttpResponseError extends HttpError {
-  private readonly [HttpResponseErrorURI]!: typeof HttpResponseErrorURI
+  readonly [HttpResponseErrorURI]!: typeof HttpResponseErrorURI
   readonly name: string = 'HttpResponseError'
 
   constructor(

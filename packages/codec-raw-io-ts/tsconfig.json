@@ -1,9 +1,0 @@
-{
-  "extends": "../../tsconfig.build.json",
-  "references": [
-    { "path": "../codec" },
-    { "path": "../codec-fp-ts-io-ts" },
-    { "path": "../codec-raw" }
-  ],
-  "compilerOptions": { "rootDir": "src", "outDir": "dist" }
-}
