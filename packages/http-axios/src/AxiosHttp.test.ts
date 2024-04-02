@@ -27,11 +27,13 @@ describe('AxiosHttp', () => {
       await expect(response).rejects.toThrow(HttpError)
       await expect(response).rejects.not.toThrow(HttpResponseError)
     })
+
     test('returning `HttpResponseError` on HTTP error', async () => {
       await expect(http.get(`http://foobar/404`)).rejects.toThrow(
         HttpResponseError,
       )
     })
+
     test.each([
       ['JSON', 'json', 'application/json', { foo: 'bar' }],
       ['text', 'text', 'text/plain', 'foobar'],
