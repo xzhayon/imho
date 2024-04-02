@@ -4,6 +4,6 @@ export type Severity =
   | 'notice'
   | 'warning'
   | 'error'
-  | 'alert'
   | 'critical'
+  | 'alert'
   | 'emergency'

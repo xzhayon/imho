@@ -15,8 +15,8 @@ export const Log = {
     'notice',
     'warning',
     'error',
-    'alert',
     'critical',
+    'alert',
     'emergency',
   ),
 }

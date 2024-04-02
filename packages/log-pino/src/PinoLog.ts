@@ -24,11 +24,11 @@ export class PinoLog implements Log {
     return this.log('error', message, context)
   }
 
-  alert(message: string, context?: object) {
+  critical(message: string, context?: object) {
     return this.log('fatal', message, context)
   }
 
-  critical(message: string, context?: object) {
+  alert(message: string, context?: object) {
     return this.log('fatal', message, context)
   }
 

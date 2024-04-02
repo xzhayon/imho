@@ -26,8 +26,8 @@ describe('FxPinoLog', () => {
     ['notice', 'info', 30],
     ['warning', 'warn', 40],
     ['error', 'error', 50],
-    ['alert', 'fatal', 60],
     ['critical', 'fatal', 60],
+    ['alert', 'fatal', 60],
     ['emergency', 'fatal', 60],
   ] as const)('%s', (severity, _level, level) => {
     test(`using level "${_level}" (${level})`, async () => {

@@ -11,9 +11,9 @@ export class VoidLog implements Log {
 
   async error() {}
 
-  async alert() {}
-
   async critical() {}
+
+  async alert() {}
 
   async emergency() {}
 }
