@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        NODEJS_VERSION: [16, 18, 20]
+        NODEJS_VERSION: [16, 18, 20, 21]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -21,15 +21,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        NODEJS_VERSION: [16, 18, 20]
+        NODEJS_VERSION: [16, 18, 20, 21]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
+          node-version: ${{ matrix.NODEJS_VERSION }}
           cache: npm
-      - run: make test
-        env:
-          NODEJS_VERSION: ${{ matrix.NODEJS_VERSION }}
+      - run: make _test
       - uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
