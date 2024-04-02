@@ -5,7 +5,7 @@ import {
   RedisScripts,
 } from '@redis/client'
 
-export const mapRedis = async <
+export async function use<
   M extends RedisModules,
   F extends RedisFunctions,
   S extends RedisScripts,
@@ -13,7 +13,7 @@ export const mapRedis = async <
 >(
   redis: RedisClientType<M, F, S>,
   f: (redis: RedisClientType<M, F, S>) => Promise<A>,
-) => {
+) {
   if (!redis.isReady) {
     await redis.connect()
   }

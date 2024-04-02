@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "references": [
+    { "path": "../cache" },
+    { "path": "../codec" },
+    { "path": "../codec-io-ts" },
+    { "path": "../log" }
+  ],
+  "compilerOptions": { "outDir": "dist" }
+}

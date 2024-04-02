@@ -20,7 +20,7 @@
     "@imho/clock": "^0.1.1",
     "@imho/http": "^0.1.0",
     "@imho/log": "^0.3.1",
-    "@xzhayon/fx": "^0.3.0",
+    "@xzhayon/fx": "^0.3.0 || ^0.4.0",
     "axios": "^1.4.0"
   },
   "publishConfig": {

@@ -12,13 +12,6 @@ services:
     environment:
       - GITHUB_TOKEN
       - NPM_TOKEN
-    # links:
-    #   - redis
     volumes:
       - .:/opt/${COMPOSE_PROJECT_NAME}:cached
     working_dir: /opt/${COMPOSE_PROJECT_NAME}
-
-  redis:
-    image: redis:7-alpine
-    expose:
-      - 6379

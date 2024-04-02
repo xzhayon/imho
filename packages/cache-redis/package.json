@@ -1,16 +1,15 @@
 {
-  "name": "@imho/cache-raw",
+  "name": "@imho/cache-redis",
   "version": "0.3.1",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "files": [
-    "!**/*.map",
-    "!**/*.test.*",
     "/*.md",
-    "/dist"
+    "/dist/src",
+    "!**/*.test.*"
   ],
   "scripts": {
     "build": "tsc -b",
@@ -18,14 +17,16 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "fp-ts": "^2.16.0"
+    "@imho/codec-io-ts": "^0.3.1",
+    "io-ts": "^2.2.20",
+    "io-ts-types": "^0.5.19"
   },
   "peerDependencies": {
     "@imho/cache": "^0.2.0 || ^0.3.0",
-    "@imho/cache-fp-ts": "^0.2.0 || ^0.3.0",
-    "@imho/codec-raw": "^0.2.0",
-    "@imho/effect-raw": "^0.2.0 || ^0.3.0",
-    "@imho/log-raw": "^0.2.0 || ^0.3.0"
+    "@imho/codec": "^0.2.0 || ^0.3.0",
+    "@imho/log": "^0.3.1",
+    "@redis/client": "^1.5.8",
+    "@xzhayon/fx": "^0.4.0"
   },
   "publishConfig": {
     "access": "public"
