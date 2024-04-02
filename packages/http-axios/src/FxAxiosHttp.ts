@@ -33,10 +33,10 @@ export function FxAxiosHttp(axios: Axios) {
       const endTime = yield* perform(Clock.now())
       yield* perform(
         Log.debug('HTTP request succeded', {
-          channel,
           url: response.config.url ?? url.toString(),
           method,
           duration: endTime.valueOf() - startTime.valueOf(),
+          channel,
         }),
       )
 
@@ -52,10 +52,10 @@ export function FxAxiosHttp(axios: Axios) {
           : new HttpError('Cannot get response from server', { cause })
       yield* perform(
         Log.error('HTTP request failed', {
-          channel,
           error,
           url: url.toString(),
           method,
+          channel,
         }),
       )
 

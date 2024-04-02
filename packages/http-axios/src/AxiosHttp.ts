@@ -65,10 +65,10 @@ export class AxiosHttp implements Http {
       })
       const endTime = this.clock.now()
       await this.log.debug('HTTP request succeded', {
-        channel,
         url: response.config.url ?? url.toString(),
         method,
         duration: endTime.valueOf() - startTime.valueOf(),
+        channel,
       })
 
       return fromAxiosResponse(response)
@@ -82,10 +82,10 @@ export class AxiosHttp implements Http {
             )
           : new HttpError('Cannot get response from server', { cause })
       await this.log.error('HTTP request failed', {
-        channel,
         error,
         url: url.toString(),
         method,
+        channel,
       })
 
       throw error
