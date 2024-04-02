@@ -11,7 +11,7 @@ import { Log } from '@imho/log'
 import { Axios, isAxiosError } from 'axios'
 import { fromAxiosResponse } from './Response'
 
-const channel = 'AxiosHttp'
+const source = 'AxiosHttp'
 
 export class AxiosHttp implements Http {
   constructor(
@@ -68,7 +68,7 @@ export class AxiosHttp implements Http {
         url: response.config.url ?? url.toString(),
         method,
         duration: endTime.valueOf() - startTime.valueOf(),
-        channel,
+        source,
       })
 
       return fromAxiosResponse(response)
@@ -85,7 +85,7 @@ export class AxiosHttp implements Http {
         error,
         url: url.toString(),
         method,
-        channel,
+        source,
       })
 
       throw error

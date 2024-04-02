@@ -14,7 +14,7 @@ import * as t from 'io-ts'
 import * as tt from 'io-ts-types'
 import { CacheItemNotFoundError } from './CacheItemNotFoundError'
 
-const channel = 'RedisCache'
+const source = 'FxRedisCache'
 
 export function FxRedisCache<
   M extends RedisModules = Record<string, never>,
@@ -28,12 +28,12 @@ export function FxRedisCache<
 
     try {
       await redis.connect()
-      yield* perform(Log.debug('Connection opened', { channel }))
+      yield* perform(Log.debug('Connection opened', { source }))
 
       return
     } catch (cause) {
       const error = new CacheError('Cannot connect to Redis', { cause })
-      yield* perform(Log.error('Connection failed', { error, channel }))
+      yield* perform(Log.error('Connection failed', { error, source }))
 
       throw error
     }
@@ -48,7 +48,7 @@ export function FxRedisCache<
       const error = new CacheError(`Cannot check for item "${key}" on Redis`, {
         cause,
       })
-      yield* perform(Log.error('Cache item not found', { error, key, channel }))
+      yield* perform(Log.error('Cache item not found', { error, key, source }))
 
       throw error
     }
@@ -71,19 +71,19 @@ export function FxRedisCache<
             await redis.get(key),
           ),
         )
-        yield* perform(Log.debug('Cache item retrieved', { key, channel }))
+        yield* perform(Log.debug('Cache item retrieved', { key, source }))
 
         return value
       } catch (error) {
         if (error instanceof CacheItemNotFoundError) {
-          yield* perform(Log.debug('Cache item not found', { channel }))
+          yield* perform(Log.debug('Cache item not found', { source }))
         } else if (error instanceof CodecError) {
           yield* perform(
             Log.error('Cache item decoding failed', {
               error,
               key,
               codec: decoder.name,
-              channel,
+              source,
             }),
           )
         } else {
@@ -93,7 +93,7 @@ export function FxRedisCache<
                 cause: error,
               }),
               key,
-              channel,
+              source,
             }),
           )
         }
@@ -103,7 +103,7 @@ export function FxRedisCache<
 
       try {
         await redis.set(key, JSON.stringify(value))
-        yield* perform(Log.debug('Cache item saved', { key, channel }))
+        yield* perform(Log.debug('Cache item saved', { key, source }))
 
         return value
       } catch (cause) {
@@ -111,7 +111,7 @@ export function FxRedisCache<
           cause,
         })
         yield* perform(
-          Log.error('Cache item not saved', { error, key, channel }),
+          Log.error('Cache item not saved', { error, key, source }),
         )
 
         throw error
@@ -125,7 +125,7 @@ export function FxRedisCache<
         yield* perform(
           Log.debug(
             found ? 'Cache item deleted' : 'Cache item not found for deletion',
-            { key, channel },
+            { key, source },
           ),
         )
 
@@ -135,7 +135,7 @@ export function FxRedisCache<
           cause,
         })
         yield* perform(
-          Log.error('Cache item not deleted', { error, key, channel }),
+          Log.error('Cache item not deleted', { error, key, source }),
         )
 
         throw error
@@ -146,12 +146,12 @@ export function FxRedisCache<
 
       try {
         await redis.flushDb(RedisFlushModes.ASYNC)
-        yield* perform(Log.debug('Cache cleared', { channel }))
+        yield* perform(Log.debug('Cache cleared', { source }))
 
         return
       } catch (cause) {
         const error = new CacheError('Cannot flush Redis database', { cause })
-        yield* perform(Log.error('Cache not cleared', { error, channel }))
+        yield* perform(Log.error('Cache not cleared', { error, source }))
 
         throw error
       }

@@ -12,7 +12,7 @@ import { Handler, perform } from '@xzhayon/fx'
 import { Axios, isAxiosError } from 'axios'
 import { fromAxiosResponse } from './Response'
 
-const channel = 'FxAxiosHttp'
+const source = 'FxAxiosHttp'
 
 export function FxAxiosHttp(axios: Axios) {
   async function* request(
@@ -36,7 +36,7 @@ export function FxAxiosHttp(axios: Axios) {
           url: response.config.url ?? url.toString(),
           method,
           duration: endTime.valueOf() - startTime.valueOf(),
-          channel,
+          source,
         }),
       )
 
@@ -55,7 +55,7 @@ export function FxAxiosHttp(axios: Axios) {
           error,
           url: url.toString(),
           method,
-          channel,
+          source,
         }),
       )
 
