@@ -23,7 +23,7 @@
   },
   "peerDependencies": {
     "@imho/cache": "^0.4.0",
-    "@imho/codec": "^0.4.0",
+    "@imho/codec": "^0.4.0 || *",
     "@imho/log": "^0.4.0",
     "@redis/client": "^1.5.8",
     "@xzhayon/fx": "^0.4.0"
