@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/xzhavilla/imho/compare/@imho/codec-io-ts@0.4.0...@imho/codec-io-ts@0.5.0) (2024-04-09)
+
+
+### Features
+
+* **codec:** remove `name` property ([#26](https://github.com/xzhavilla/imho/issues/26)) ([1bb201a](https://github.com/xzhavilla/imho/commit/1bb201ab0a1855c3964ce0da224fe74c2708a42a))
+
+
+### BREAKING CHANGES
+
+* **codec:** codec name is specific to io-ts
+
+
+
+
+
 # 0.4.0 (2024-04-02)
 
 

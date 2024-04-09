@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/xzhavilla/imho/compare/@imho/cache-redis@0.4.0...@imho/cache-redis@0.4.1) (2024-04-09)
+
+
+### Bug Fixes
+
+* **cache:** update codec dependency ([#28](https://github.com/xzhavilla/imho/issues/28)) ([92777b7](https://github.com/xzhavilla/imho/commit/92777b758047f77fe870d553eea653e5cf066b24))
+
+
+
+
+
 # 0.4.0 (2024-04-02)
 
 

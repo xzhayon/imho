@@ -1,6 +1,6 @@
 {
   "name": "@imho/codec-io-ts",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -17,7 +17,7 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@imho/codec": "*",
+    "@imho/codec": "^0.5.0",
     "fp-ts": "^2.16.0",
     "io-ts": "^2.2.20"
   },
