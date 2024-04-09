@@ -3,25 +3,6 @@ import * as t from 'io-ts'
 import { IoTsCodec } from './IoTsCodec'
 
 describe('IoTsCodec', () => {
-  describe('name', () => {
-    test.each([
-      { type: t.boolean },
-      { type: t.array(t.boolean) },
-      { type: t.record(t.string, t.number) },
-      { type: t.tuple([t.number, t.string]) },
-      { type: t.type({ number: t.number, string: t.string }) },
-      { type: t.union([t.number, t.string]) },
-      {
-        type: t.intersection([
-          t.type({ boolean: t.boolean, number: t.number }),
-          t.type({ number: t.number, string: t.string }),
-        ]),
-      },
-    ])('forwarding codec name ($type.name)', ({ type }: { type: t.Any }) => {
-      expect(new IoTsCodec(type).name).toStrictEqual(type.name)
-    })
-  })
-
   describe('decode', () => {
     test('failing with a CodecError', () => {
       expect(() => new IoTsCodec(t.never).decode(undefined)).toThrow(CodecError)

@@ -6,10 +6,6 @@ import { failure } from 'io-ts/PathReporter'
 export class IoTsCodec<A, O = A, I = unknown> implements Codec<A, O, I> {
   constructor(private readonly type: t.Type<A, O, I>) {}
 
-  get name() {
-    return this.type.name
-  }
-
   is(u: unknown): u is A {
     return this.type.is(u)
   }
@@ -19,7 +15,7 @@ export class IoTsCodec<A, O = A, I = unknown> implements Codec<A, O, I> {
     if (either.isLeft(a)) {
       throw new CodecError(
         a.left.map((error) => new Error(failure([error])[0])),
-        `Cannot decode input with codec "${this.name}"`,
+        `Cannot decode input with codec "${this.type.name}"`,
         { cause: a.left },
       )
     }
