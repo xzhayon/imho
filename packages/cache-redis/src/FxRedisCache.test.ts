@@ -1,9 +1,9 @@
 import { Cache } from '@imho/cache'
-import { IoTsCodec } from '@imho/codec-io-ts'
+import { ZodDecoder } from '@imho/codec-zod'
 import { FxVoidLog, Log } from '@imho/log'
 import { RedisClientType, RedisFlushModes } from '@redis/client'
 import { layer, perform, run } from '@xzhayon/fx'
-import * as t from 'io-ts'
+import { z } from 'zod'
 import { use } from '../test/Redis'
 import { RedisMock } from '../test/RedisMock'
 import { FxRedisCache } from './FxRedisCache'
@@ -67,7 +67,7 @@ describe('FxRedisCache', () => {
 
       function* f() {
         return yield* perform(
-          Cache.get('foo', new IoTsCodec(t.any), () => {
+          Cache.get('foo', new ZodDecoder(z.any()), () => {
             throw new FooError()
           }),
         )
@@ -79,7 +79,7 @@ describe('FxRedisCache', () => {
     test('fetching data on missing item', async () => {
       function* f() {
         return yield* perform(
-          Cache.get('foo', new IoTsCodec(t.any), function* () {
+          Cache.get('foo', new ZodDecoder(z.any()), function* () {
             return 'bar'
           }),
         )
@@ -92,7 +92,7 @@ describe('FxRedisCache', () => {
       await use(redis, (redis) => redis.set('foo', JSON.stringify(42)))
       function* f() {
         return yield* perform(
-          Cache.get('foo', new IoTsCodec(t.string), function* () {
+          Cache.get('foo', new ZodDecoder(z.string()), function* () {
             return 'bar'
           }),
         )
@@ -105,7 +105,7 @@ describe('FxRedisCache', () => {
       await use(redis, (redis) => redis.set('foo', JSON.stringify('qux')))
       function* f() {
         return yield* perform(
-          Cache.get('foo', new IoTsCodec(t.any), function* () {
+          Cache.get('foo', new ZodDecoder(z.any()), function* () {
             return 'bar'
           }),
         )

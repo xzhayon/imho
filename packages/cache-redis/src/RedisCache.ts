@@ -1,6 +1,6 @@
 import { Cache, CacheError } from '@imho/cache'
 import { CodecError, Decoder } from '@imho/codec'
-import { IoTsCodec } from '@imho/codec-io-ts'
+import { ZodDecoder } from '@imho/codec-zod'
 import { Log } from '@imho/log'
 import {
   RedisClientType,
@@ -9,8 +9,7 @@ import {
   RedisModules,
   RedisScripts,
 } from '@redis/client'
-import * as t from 'io-ts'
-import * as tt from 'io-ts-types'
+import { z } from 'zod'
 import { CacheItemNotFoundError } from './CacheItemNotFoundError'
 
 const source = 'RedisCache'
@@ -48,7 +47,7 @@ export class RedisCache<
       }
 
       const value = decoder.decode(
-        new IoTsCodec(t.string.pipe(tt.JsonFromString)).decode(
+        new ZodDecoder(z.string().transform((s) => JSON.parse(s))).decode(
           await this.redis.get(key),
         ),
       )

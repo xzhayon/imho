@@ -1,7 +1,7 @@
-import { IoTsCodec } from '@imho/codec-io-ts'
+import { ZodDecoder } from '@imho/codec-zod'
 import { VoidLog } from '@imho/log'
 import { RedisClientType, RedisFlushModes } from '@redis/client'
-import * as t from 'io-ts'
+import { z } from 'zod'
 import { use } from '../test/Redis'
 import { RedisMock } from '../test/RedisMock'
 import { RedisCache } from './RedisCache'
@@ -46,7 +46,7 @@ describe('RedisCache', () => {
       class FooError extends Error {}
 
       await expect(
-        cache.get('foo', new IoTsCodec(t.any), () => {
+        cache.get('foo', new ZodDecoder(z.any()), () => {
           throw new FooError()
         }),
       ).rejects.toBeInstanceOf(FooError)
@@ -54,7 +54,7 @@ describe('RedisCache', () => {
 
     test('fetching data on missing item', async () => {
       await expect(
-        cache.get('foo', new IoTsCodec(t.any), async () => 'bar'),
+        cache.get('foo', new ZodDecoder(z.any()), async () => 'bar'),
       ).resolves.toStrictEqual('bar')
     })
 
@@ -62,7 +62,7 @@ describe('RedisCache', () => {
       await use(redis, (redis) => redis.set('foo', JSON.stringify('qux')))
 
       await expect(
-        cache.get('foo', new IoTsCodec(t.never), async () => 'bar'),
+        cache.get('foo', new ZodDecoder(z.never()), async () => 'bar'),
       ).resolves.toStrictEqual('bar')
     })
 
@@ -70,7 +70,7 @@ describe('RedisCache', () => {
       await use(redis, (redis) => redis.set('foo', JSON.stringify('qux')))
 
       await expect(
-        cache.get('foo', new IoTsCodec(t.any), async () => 'bar'),
+        cache.get('foo', new ZodDecoder(z.any()), async () => 'bar'),
       ).resolves.toStrictEqual('qux')
     })
   })

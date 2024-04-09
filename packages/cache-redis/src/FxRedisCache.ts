@@ -1,6 +1,6 @@
 import { CacheError, FxCache } from '@imho/cache'
 import { CodecError, Decoder } from '@imho/codec'
-import { IoTsCodec } from '@imho/codec-io-ts'
+import { ZodDecoder } from '@imho/codec-zod'
 import { Log } from '@imho/log'
 import {
   RedisClientType,
@@ -10,8 +10,7 @@ import {
   RedisScripts,
 } from '@redis/client'
 import { Handler, perform } from '@xzhayon/fx'
-import * as t from 'io-ts'
-import * as tt from 'io-ts-types'
+import { z } from 'zod'
 import { CacheItemNotFoundError } from './CacheItemNotFoundError'
 
 const source = 'FxRedisCache'
@@ -67,7 +66,7 @@ export function FxRedisCache<
         }
 
         const value = decoder.decode(
-          new IoTsCodec(t.string.pipe(tt.JsonFromString)).decode(
+          new ZodDecoder(z.string().transform((s) => JSON.parse(s))).decode(
             await redis.get(key),
           ),
         )
