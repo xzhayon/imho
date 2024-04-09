@@ -79,12 +79,7 @@ export function FxRedisCache<
           yield* perform(Log.debug('Cache item not found', { source }))
         } else if (error instanceof CodecError) {
           yield* perform(
-            Log.error('Cache item decoding failed', {
-              error,
-              key,
-              codec: decoder.name,
-              source,
-            }),
+            Log.error('Cache item decoding failed', { error, key, source }),
           )
         } else {
           yield* perform(

@@ -62,7 +62,6 @@ export class RedisCache<
         await this.log.error('Cache item decoding failed', {
           error,
           key,
-          codec: decoder.name,
           source,
         })
       } else {
