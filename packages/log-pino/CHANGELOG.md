@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/xzhavilla/imho/compare/@imho/log-pino@0.4.0...@imho/log-pino@0.4.1) (2024-04-11)
+
+
+### Bug Fixes
+
+* update Fx dependency ([#29](https://github.com/xzhavilla/imho/issues/29)) ([f9122bd](https://github.com/xzhavilla/imho/commit/f9122bd0d179cb2fa84c33612d0704c789b7f4b5))
+
+
+
+
+
 # 0.4.0 (2024-04-02)
 
 
