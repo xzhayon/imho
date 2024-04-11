@@ -29,7 +29,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### BREAKING CHANGES
 
-* support for fp-ts and Effect-TS was dropped, and there is now a single file per module/dependency
+* support for fp-ts and Effect-TS was dropped, and there is now a single package per module/dependency
 
 
 
