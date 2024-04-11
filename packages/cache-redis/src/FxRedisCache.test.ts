@@ -25,39 +25,40 @@ describe('FxRedisCache', () => {
   })
 
   test('connecting to Redis', async () => {
-    function* f() {
-      return yield* perform(Cache.has('foo'))
-    }
-
-    await expect(run(f(), _layer)).resolves.not.toThrow()
+    await expect(
+      run(function* () {
+        return yield* perform(Cache.has('foo'))
+      }, _layer),
+    ).resolves.not.toThrow()
   })
 
   test('using an already open connection', async () => {
-    function* f() {
-      yield* perform(Cache.clear())
+    await expect(
+      run(function* () {
+        yield* perform(Cache.clear())
 
-      return yield* perform(Cache.has('foo'))
-    }
-
-    await expect(run(f(), _layer)).resolves.not.toThrow()
+        return yield* perform(Cache.has('foo'))
+      }, _layer),
+    ).resolves.not.toThrow()
   })
 
   describe('has', () => {
     test('checking for missing item', async () => {
-      function* f() {
-        return yield* perform(Cache.has('foo'))
-      }
-
-      await expect(run(f(), _layer)).resolves.toStrictEqual(false)
+      await expect(
+        run(function* () {
+          return yield* perform(Cache.has('foo'))
+        }, _layer),
+      ).resolves.toStrictEqual(false)
     })
 
     test('checking for existing item', async () => {
       await use(redis, (redis) => redis.set('foo', JSON.stringify('bar')))
-      function* f() {
-        return yield* perform(Cache.has('foo'))
-      }
 
-      await expect(run(f(), _layer)).resolves.toStrictEqual(true)
+      await expect(
+        run(function* () {
+          return yield* perform(Cache.has('foo'))
+        }, _layer),
+      ).resolves.toStrictEqual(true)
     })
   })
 
@@ -65,72 +66,75 @@ describe('FxRedisCache', () => {
     test('failing to fetch data', async () => {
       class FooError extends Error {}
 
-      function* f() {
-        return yield* perform(
-          Cache.get('foo', new ZodDecoder(z.any()), () => {
-            throw new FooError()
-          }),
-        )
-      }
-
-      await expect(run(f(), _layer)).rejects.toBeInstanceOf(FooError)
+      await expect(
+        run(function* () {
+          return yield* perform(
+            Cache.get('foo', new ZodDecoder(z.any()), () => {
+              throw new FooError()
+            }),
+          )
+        }, _layer),
+      ).rejects.toBeInstanceOf(FooError)
     })
 
     test('fetching data on missing item', async () => {
-      function* f() {
-        return yield* perform(
-          Cache.get('foo', new ZodDecoder(z.any()), function* () {
-            return 'bar'
-          }),
-        )
-      }
-
-      await expect(run(f(), _layer)).resolves.toStrictEqual('bar')
+      await expect(
+        run(function* () {
+          return yield* perform(
+            Cache.get('foo', new ZodDecoder(z.any()), function* () {
+              return 'bar'
+            }),
+          )
+        }, _layer),
+      ).resolves.toStrictEqual('bar')
     })
 
     test('fetching data on invalid codec', async () => {
       await use(redis, (redis) => redis.set('foo', JSON.stringify(42)))
-      function* f() {
-        return yield* perform(
-          Cache.get('foo', new ZodDecoder(z.string()), function* () {
-            return 'bar'
-          }),
-        )
-      }
 
-      await expect(run(f(), _layer)).resolves.toStrictEqual('bar')
+      await expect(
+        run(function* () {
+          return yield* perform(
+            Cache.get('foo', new ZodDecoder(z.string()), function* () {
+              return 'bar'
+            }),
+          )
+        }, _layer),
+      ).resolves.toStrictEqual('bar')
     })
 
     test('getting existing item', async () => {
       await use(redis, (redis) => redis.set('foo', JSON.stringify('qux')))
-      function* f() {
-        return yield* perform(
-          Cache.get('foo', new ZodDecoder(z.any()), function* () {
-            return 'bar'
-          }),
-        )
-      }
 
-      await expect(run(f(), _layer)).resolves.toStrictEqual('qux')
+      await expect(
+        run(function* () {
+          return yield* perform(
+            Cache.get('foo', new ZodDecoder(z.any()), function* () {
+              return 'bar'
+            }),
+          )
+        }, _layer),
+      ).resolves.toStrictEqual('qux')
     })
   })
 
   describe('delete', () => {
     test('deleting missing item', async () => {
-      function* f() {
-        return yield* perform(Cache.delete('foo'))
-      }
-
-      await expect(run(f(), _layer)).resolves.toStrictEqual(false)
+      await expect(
+        run(function* () {
+          return yield* perform(Cache.delete('foo'))
+        }, _layer),
+      ).resolves.toStrictEqual(false)
     })
 
     test('deleting existing item', async () => {
       await use(redis, (redis) => redis.set('foo', JSON.stringify('qux')))
-      function* f() {
-        return yield* perform(Cache.delete('foo'))
-      }
 
-      await expect(run(f(), _layer)).resolves.toStrictEqual(true)
+      await expect(
+        run(function* () {
+          return yield* perform(Cache.delete('foo'))
+        }, _layer),
+      ).resolves.toStrictEqual(true)
       await expect(
         use(redis, (redis) => redis.exists('foo')),
       ).resolves.toStrictEqual(0)
@@ -140,11 +144,12 @@ describe('FxRedisCache', () => {
   describe('clear', () => {
     test('clearing cache', async () => {
       await use(redis, (redis) => redis.set('foo', JSON.stringify('bar')))
-      function* f() {
-        return yield* perform(Cache.clear())
-      }
 
-      await expect(run(f(), _layer)).resolves.toBeUndefined()
+      await expect(
+        run(function* () {
+          return yield* perform(Cache.clear())
+        }, _layer),
+      ).resolves.toBeUndefined()
       await expect(
         use(redis, (redis) => redis.dbSize()),
       ).resolves.toStrictEqual(0)

@@ -27,21 +27,20 @@ describe('FxAxiosHttp', () => {
 
   describe('get', () => {
     test('returning `HttpError` on invalid request', async () => {
-      function* f() {
+      const response = run(function* () {
         return yield* perform(Http.get(`foo://bar`))
-      }
-      const response = run(f(), _layer)
+      }, _layer)
 
       await expect(response).rejects.toThrow(HttpError)
       await expect(response).rejects.not.toThrow(HttpResponseError)
     })
 
     test('returning `HttpResponseError` on HTTP error', async () => {
-      function* f() {
-        return yield* perform(Http.get(`http://foobar/404`))
-      }
-
-      await expect(run(f(), _layer)).rejects.toThrow(HttpResponseError)
+      await expect(
+        run(function* () {
+          return yield* perform(Http.get(`http://foobar/404`))
+        }, _layer),
+      ).rejects.toThrow(HttpResponseError)
     })
 
     test.each([
@@ -49,11 +48,11 @@ describe('FxAxiosHttp', () => {
       ['text', 'text', 'text/plain', 'foobar'],
       ['XML', 'xml', 'application/xml', '<foo>bar</foo>'],
     ])('forwarding %s response', async (_type, path, mimeType, body) => {
-      function* f() {
-        return yield* perform(Http.get(`http://foobar/${path}`))
-      }
-
-      await expect(run(f(), _layer)).resolves.toMatchObject({
+      await expect(
+        run(function* () {
+          return yield* perform(Http.get(`http://foobar/${path}`))
+        }, _layer),
+      ).resolves.toMatchObject({
         status: 200,
         headers: { 'content-type': mimeType },
         body,
