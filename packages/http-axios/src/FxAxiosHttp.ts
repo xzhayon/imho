@@ -6,9 +6,10 @@ import {
   HttpResponseError,
   Options,
   Url,
+  tag,
 } from '@imho/http'
 import { Log } from '@imho/log'
-import { Handler, perform } from '@xzhayon/fx'
+import { fx } from '@xzhayon/fx'
 import { Axios, isAxiosError } from 'axios'
 import { fromAxiosResponse } from './Response'
 
@@ -22,7 +23,7 @@ export function FxAxiosHttp(axios: Axios) {
     options?: Options,
   ) {
     try {
-      const startTime = yield* perform(Clock.now())
+      const startTime = yield* Clock.now()
       const response = await axios.request({
         url: url.toString(),
         method,
@@ -30,15 +31,13 @@ export function FxAxiosHttp(axios: Axios) {
         params: options?.query,
         data: body,
       })
-      const endTime = yield* perform(Clock.now())
-      yield* perform(
-        Log.debug('HTTP request succeded', {
-          url: response.config.url ?? url.toString(),
-          method,
-          duration: endTime.valueOf() - startTime.valueOf(),
-          source,
-        }),
-      )
+      const endTime = yield* Clock.now()
+      yield* Log.debug('HTTP request succeded', {
+        url: response.config.url ?? url.toString(),
+        method,
+        duration: endTime.valueOf() - startTime.valueOf(),
+        source,
+      })
 
       return fromAxiosResponse(response)
     } catch (cause) {
@@ -50,20 +49,18 @@ export function FxAxiosHttp(axios: Axios) {
               { cause },
             )
           : new HttpError('Cannot get response from server', { cause })
-      yield* perform(
-        Log.error('HTTP request failed', {
-          error,
-          url: url.toString(),
-          method,
-          source,
-        }),
-      )
+      yield* Log.error('HTTP request failed', {
+        error,
+        url: url.toString(),
+        method,
+        source,
+      })
 
       throw error
     }
   }
 
-  return {
+  return fx.layer().with(tag, {
     delete: (url, options) => request('delete', url, null, options),
     get: (url, options) => request('get', url, null, options),
     head: (url, options) => request('head', url, null, options),
@@ -71,5 +68,5 @@ export function FxAxiosHttp(axios: Axios) {
     patch: (url, body, options) => request('patch', url, body, options),
     post: (url, body, options) => request('post', url, body, options),
     put: (url, body, options) => request('put', url, body, options),
-  } satisfies Handler<Http>
+  })
 }

@@ -1,11 +1,11 @@
 import { Log } from '@imho/log'
-import { layer, perform, run } from '@xzhayon/fx'
+import { fx } from '@xzhayon/fx'
 import { pino } from 'pino'
 import { FxPinoLog } from './FxPinoLog'
 
 describe('FxPinoLog', () => {
   let buffer: string | null
-  const log = FxPinoLog(
+  const layer = FxPinoLog(
     pino(
       { level: 'debug' },
       {
@@ -31,9 +31,7 @@ describe('FxPinoLog', () => {
     ['emergency', 'fatal', 60],
   ] as const)('%s', (severity, _level, level) => {
     test(`using level "${_level}" (${level})`, async () => {
-      await run(function* () {
-        yield* perform(Log[severity]('foo'))
-      }, layer().with(Log, log))
+      await fx.run(Log[severity]('foo'), layer)
 
       expect(JSON.parse(buffer ?? '')).toMatchObject({ level, msg: 'foo' })
     })

@@ -1,4 +1,4 @@
-import * as fx from '@xzhayon/fx'
+import { fx } from '@xzhayon/fx'
 
 export interface Clock {
   readonly [fx.URI]?: unique symbol
@@ -7,4 +7,4 @@ export interface Clock {
 
 export const tag = fx.tag<Clock>('Clock')
 
-export const Clock = { tag, ...fx.struct(tag)('now') }
+export const Clock = fx.struct(tag)('now')
