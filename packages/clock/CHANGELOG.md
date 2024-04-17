@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/xzhavilla/imho/compare/@imho/clock@0.2.2...@imho/clock@0.3.0) (2024-04-17)
+
+
+### Features
+
+* update Fx and simplify code ([#32](https://github.com/xzhavilla/imho/issues/32)) ([188ff94](https://github.com/xzhavilla/imho/commit/188ff94fd351eff643c9a119ce1ba017f8ad3dc5))
+
+
+### BREAKING CHANGES
+
+* the new Fx produces effectors instead of effects, and encourages exporting layers instead of handlers
+
+
+
+
+
 ## [0.2.2](https://github.com/xzhavilla/imho/compare/@imho/clock@0.2.1...@imho/clock@0.2.2) (2024-04-11)
 
 **Note:** Version bump only for package @imho/clock

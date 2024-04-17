@@ -1,6 +1,6 @@
 {
   "name": "@imho/log-pino",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -17,7 +17,7 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@imho/log": "*",
+    "@imho/log": "^0.5.0",
     "@xzhayon/fx": "^0.6.0",
     "pino": "^8.14.1"
   },
