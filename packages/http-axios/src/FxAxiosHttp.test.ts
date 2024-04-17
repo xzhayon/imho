@@ -1,7 +1,7 @@
-import { Clock, FxDateClock } from '@imho/clock'
+import { FxDateClock } from '@imho/clock'
 import { Http, HttpError, HttpResponseError } from '@imho/http'
-import { FxVoidLog, Log } from '@imho/log'
-import { layer, perform, run } from '@xzhayon/fx'
+import { FxVoidLog } from '@imho/log'
+import { fx } from '@xzhayon/fx'
 import axios from 'axios'
 import nock from 'nock'
 import { FxAxiosHttp } from './FxAxiosHttp'
@@ -19,17 +19,16 @@ describe('FxAxiosHttp', () => {
     .get('/xml')
     .reply(200, '<foo>bar</foo>', { 'content-type': 'application/xml' })
 
-  const _layer = layer()
-    .with(Http, FxAxiosHttp(axios))
-    .with(Clock, FxDateClock())
-    .with(Log, FxVoidLog())
+  const layer = fx
+    .layer()
+    .with(FxAxiosHttp(axios))
+    .with(FxDateClock())
+    .with(FxVoidLog())
     .do()
 
   describe('get', () => {
     test('returning `HttpError` on invalid request', async () => {
-      const response = run(function* () {
-        return yield* perform(Http.get(`foo://bar`))
-      }, _layer)
+      const response = fx.run(Http.get(`foo://bar`), layer)
 
       await expect(response).rejects.toThrow(HttpError)
       await expect(response).rejects.not.toThrow(HttpResponseError)
@@ -37,9 +36,7 @@ describe('FxAxiosHttp', () => {
 
     test('returning `HttpResponseError` on HTTP error', async () => {
       await expect(
-        run(function* () {
-          return yield* perform(Http.get(`http://foobar/404`))
-        }, _layer),
+        fx.run(Http.get(`http://foobar/404`), layer),
       ).rejects.toThrow(HttpResponseError)
     })
 
@@ -49,9 +46,7 @@ describe('FxAxiosHttp', () => {
       ['XML', 'xml', 'application/xml', '<foo>bar</foo>'],
     ])('forwarding %s response', async (_type, path, mimeType, body) => {
       await expect(
-        run(function* () {
-          return yield* perform(Http.get(`http://foobar/${path}`))
-        }, _layer),
+        fx.run(Http.get(`http://foobar/${path}`), layer),
       ).resolves.toMatchObject({
         status: 200,
         headers: { 'content-type': mimeType },

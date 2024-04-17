@@ -17,10 +17,10 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@imho/clock": "^0.2.0",
-    "@imho/http": "^0.2.0",
-    "@imho/log": "^0.4.0",
-    "@xzhayon/fx": "^0.3.0 || ^0.4.0 || ^0.5.0",
+    "@imho/clock": "*",
+    "@imho/http": "*",
+    "@imho/log": "*",
+    "@xzhayon/fx": "^0.6.0",
     "axios": "^1.4.0"
   },
   "publishConfig": {

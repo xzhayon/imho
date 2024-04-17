@@ -1,4 +1,4 @@
-import * as fx from '@xzhayon/fx'
+import { fx } from '@xzhayon/fx'
 import { Body } from './Body'
 import { Options } from './Options'
 import { Response } from './Response'
@@ -17,7 +17,12 @@ export interface Http {
 
 export const tag = fx.tag<Http>('Http')
 
-export const Http = {
-  tag,
-  ...fx.struct(tag)('delete', 'get', 'head', 'options', 'patch', 'post', 'put'),
-}
+export const Http = fx.struct(tag)(
+  'delete',
+  'get',
+  'head',
+  'options',
+  'patch',
+  'post',
+  'put',
+)

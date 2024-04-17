@@ -21,7 +21,6 @@ export const tag = fx.tag<FxCache>('Cache')
 const { get } = fx.structA(tag)('get')
 
 export const Cache = {
-  tag,
   get: <A, G extends Generator<unknown, A>>(
     key: string,
     decoder: Decoder<A>,

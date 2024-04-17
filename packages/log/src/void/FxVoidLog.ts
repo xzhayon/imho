@@ -1,7 +1,7 @@
-import { Handler } from '@xzhayon/fx'
-import { Log } from '../Log'
+import { fx } from '@xzhayon/fx'
+import { tag } from '../Log'
 import { VoidLog } from './VoidLog'
 
 export function FxVoidLog() {
-  return new VoidLog() satisfies Handler<Log>
+  return fx.layer().with(tag, new VoidLog())
 }

@@ -1,7 +1,7 @@
-import { Handler } from '@xzhayon/fx'
-import { Clock } from '../Clock'
+import { fx } from '@xzhayon/fx'
+import { tag } from '../Clock'
 import { DateClock } from './DateClock'
 
 export function FxDateClock() {
-  return new DateClock() satisfies Handler<Clock>
+  return fx.layer().with(tag, new DateClock())
 }

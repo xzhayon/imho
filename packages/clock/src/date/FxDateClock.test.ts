@@ -1,4 +1,4 @@
-import { layer, perform, run } from '@xzhayon/fx'
+import { fx } from '@xzhayon/fx'
 import { Clock } from '../Clock'
 import { FxDateClock } from './FxDateClock'
 
@@ -6,9 +6,9 @@ describe('FxDateClock', () => {
   describe('now', () => {
     test('returning current timestamp', async () => {
       await expect(
-        run(function* () {
-          return (yield* perform(Clock.now())).valueOf()
-        }, layer().with(Clock, FxDateClock())),
+        fx.run(function* () {
+          return (yield* Clock.now()).valueOf()
+        }, FxDateClock()),
       ).resolves.toBeCloseTo(Date.now(), -1)
     })
   })
