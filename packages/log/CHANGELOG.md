@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/xzhavilla/imho/compare/@imho/log@0.5.0...@imho/log@0.6.0) (2024-04-23)
+
+
+### Features
+
+* **log:** rename VoidLog to NullLog ([0fad470](https://github.com/xzhavilla/imho/commit/0fad4708e51c8b7ed87de110b6ce4b7482ec44d4))
+* support Fx 0.7 ([d41d682](https://github.com/xzhavilla/imho/commit/d41d6825478b88edbdca9ce0bb28d8539fc45ac2))
+
+
+### BREAKING CHANGES
+
+* **log:** VoidLog was replaced by NullLog
+
+
+
+
+
 # [0.5.0](https://github.com/xzhavilla/imho/compare/@imho/log@0.4.2...@imho/log@0.5.0) (2024-04-17)
 
 

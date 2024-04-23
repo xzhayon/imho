@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/xzhavilla/imho/compare/@imho/cache-redis@0.5.0...@imho/cache-redis@0.6.0) (2024-04-23)
+
+
+### chore
+
+* **cache:** update dependencies ([e972aea](https://github.com/xzhavilla/imho/commit/e972aea43e84284d59edc6c4a31ee84f5113edb9))
+
+
+### Features
+
+* support Fx 0.7 ([d41d682](https://github.com/xzhavilla/imho/commit/d41d6825478b88edbdca9ce0bb28d8539fc45ac2))
+* use Fx typed errors ([05ed840](https://github.com/xzhavilla/imho/commit/05ed840d4b554a872900f366feed74dd1fe0e484))
+
+
+### BREAKING CHANGES
+
+* **cache:** drop support for @imho/cache 0.5
+* drop support for Fx 0.6
+
+
+
+
+
 # [0.5.0](https://github.com/xzhavilla/imho/compare/@imho/cache-redis@0.4.3...@imho/cache-redis@0.5.0) (2024-04-17)
 
 
