@@ -1,6 +1,6 @@
 import { FxDateClock } from '@imho/clock'
 import { Http, HttpError, HttpResponseError } from '@imho/http'
-import { FxVoidLog } from '@imho/log'
+import { FxNullLog } from '@imho/log'
 import { fx } from '@xzhayon/fx'
 import axios from 'axios'
 import nock from 'nock'
@@ -23,7 +23,7 @@ describe('FxAxiosHttp', () => {
     .layer()
     .with(FxAxiosHttp(axios))
     .with(FxDateClock())
-    .with(FxVoidLog())
+    .with(FxNullLog())
     .do()
 
   describe('get', () => {

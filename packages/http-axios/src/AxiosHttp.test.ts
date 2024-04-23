@@ -1,6 +1,6 @@
 import { DateClock } from '@imho/clock'
 import { HttpError, HttpResponseError } from '@imho/http'
-import { VoidLog } from '@imho/log'
+import { NullLog } from '@imho/log'
 import axios from 'axios'
 import nock from 'nock'
 import { AxiosHttp } from './AxiosHttp'
@@ -18,7 +18,7 @@ describe('AxiosHttp', () => {
     .get('/xml')
     .reply(200, '<foo>bar</foo>', { 'content-type': 'application/xml' })
 
-  const http = new AxiosHttp(axios, new DateClock(), new VoidLog())
+  const http = new AxiosHttp(axios, new DateClock(), new NullLog())
 
   describe('get', () => {
     test('returning `HttpError` on invalid request', async () => {
