@@ -1,7 +1,7 @@
 import { fx } from '@xzhayon/fx'
 
 export interface Clock {
-  readonly [fx.URI]?: unique symbol
+  readonly [fx.uri]?: unique symbol
   now(): Date
 }
 

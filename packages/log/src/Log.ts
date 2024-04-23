@@ -1,7 +1,7 @@
 import { fx } from '@xzhayon/fx'
 import { Severity } from './Severity'
 
-export type Log = { readonly [fx.URI]?: unique symbol } & {
+export type Log = { readonly [fx.uri]?: unique symbol } & {
   readonly [K in Severity]: (message: string, context?: object) => Promise<void>
 }
 

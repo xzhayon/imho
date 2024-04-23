@@ -34,7 +34,7 @@ export function FxRedisCache<
       const error = new CacheError('Cannot connect to Redis', { cause })
       yield* Log.error('Connection failed', { error, source })
 
-      throw error
+      return yield* fx.raise(error)
     }
   }
 
@@ -49,7 +49,7 @@ export function FxRedisCache<
       })
       yield* Log.error('Cache item not found', { error, key, source })
 
-      throw error
+      return yield* fx.raise(error)
     }
   }
 
@@ -62,7 +62,9 @@ export function FxRedisCache<
     ) {
       try {
         if (!(yield* has(key))) {
-          throw new CacheItemNotFoundError(`Cannot find cache item "${key}"`)
+          return yield* fx.raise(
+            new CacheItemNotFoundError(`Cannot find cache item "${key}"`),
+          )
         }
 
         const value = decoder.decode(
@@ -102,7 +104,7 @@ export function FxRedisCache<
         })
         yield* Log.error('Cache item not saved', { error, key, source })
 
-        throw error
+        return yield* fx.raise(error)
       }
     },
     async *delete(key: string) {
@@ -122,7 +124,7 @@ export function FxRedisCache<
         })
         yield* Log.error('Cache item not deleted', { error, key, source })
 
-        throw error
+        return yield* fx.raise(error)
       }
     },
     async *clear() {
@@ -137,7 +139,7 @@ export function FxRedisCache<
         const error = new CacheError('Cannot flush Redis database', { cause })
         yield* Log.error('Cache not cleared', { error, source })
 
-        throw error
+        return yield* fx.raise(error)
       }
     },
   })

@@ -1,19 +1,22 @@
 import { Decoder } from '@imho/codec'
-import * as fx from '@xzhayon/fx'
+import { fx } from '@xzhayon/fx'
+import { CacheError } from './CacheError'
 
 export interface Cache {
-  has(key: string): Promise<boolean>
+  readonly [fx.uri]?: unique symbol
+  has(key: string): Promise<fx.Result<boolean, CacheError>>
   get<A>(key: string, decoder: Decoder<A>, onMiss: () => Promise<A>): Promise<A>
-  delete(key: string): Promise<boolean>
+  delete(key: string): Promise<fx.Result<boolean, CacheError>>
   clear(): Promise<void>
 }
 
-export interface FxCache extends Omit<Cache, 'get'> {
+export interface FxCache extends Omit<Cache, 'get' | 'clear'> {
   get<A, G extends Generator<unknown, A>>(
     key: string,
     decoder: Decoder<A>,
     onMiss: () => G,
-  ): Generator<fx.YOf<G>, A>
+  ): Generator<fx.YOf<G>, fx.Result<A, CacheError>, fx.NOf<G>>
+  clear(): Promise<fx.Result<void, CacheError>>
 }
 
 export const tag = fx.tag<FxCache>('Cache')

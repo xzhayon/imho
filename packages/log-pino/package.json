@@ -17,8 +17,8 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@imho/log": "^0.5.0",
-    "@xzhayon/fx": "^0.6.0",
+    "@imho/log": "^0.5.0 || *",
+    "@xzhayon/fx": "^0.6.0 || ^0.7.0",
     "pino": "^8.14.1"
   },
   "publishConfig": {
