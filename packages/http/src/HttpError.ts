@@ -1,5 +1,5 @@
-export const HttpErrorURI = Symbol()
+export const HttpErrorUri = Symbol('HttpError')
 export class HttpError extends Error {
-  readonly [HttpErrorURI]!: typeof HttpErrorURI
+  readonly [HttpErrorUri]!: typeof HttpErrorUri
   readonly name: string = 'HttpError'
 }

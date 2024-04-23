@@ -1,5 +1,5 @@
-export const CacheErrorURI = Symbol()
+export const CacheErrorUri = Symbol('CacheError')
 export class CacheError extends Error {
-  readonly [CacheErrorURI]!: typeof CacheErrorURI
+  readonly [CacheErrorUri]!: typeof CacheErrorUri
   readonly name: string = 'CacheError'
 }

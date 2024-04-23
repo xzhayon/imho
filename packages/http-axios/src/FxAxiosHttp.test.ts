@@ -28,16 +28,22 @@ describe('FxAxiosHttp', () => {
 
   describe('get', () => {
     test('returning `HttpError` on invalid request', async () => {
-      const response = fx.runPromise(Http.get(`foo://bar`), layer)
+      const response = await fx.runExit(Http.get(`foo://bar`), layer)
 
-      await expect(response).rejects.toThrow(HttpError)
-      await expect(response).rejects.not.toThrow(HttpResponseError)
+      expect(response).toMatchObject(
+        fx.Exit.failure(fx.Cause.fail({ ...new HttpError() })),
+      )
+      expect(response).not.toMatchObject(
+        fx.Exit.failure(fx.Cause.fail({ ...new HttpResponseError({} as any) })),
+      )
     })
 
     test('returning `HttpResponseError` on HTTP error', async () => {
       await expect(
-        fx.runPromise(Http.get(`http://foobar/404`), layer),
-      ).rejects.toThrow(HttpResponseError)
+        fx.runExit(Http.get(`http://foobar/404`), layer),
+      ).resolves.toMatchObject(
+        fx.Exit.failure(fx.Cause.fail({ ...new HttpResponseError({} as any) })),
+      )
     })
 
     test.each([

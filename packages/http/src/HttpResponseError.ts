@@ -1,9 +1,9 @@
 import { HttpError } from './HttpError'
 import { Response } from './Response'
 
-export const HttpResponseErrorURI = Symbol()
+export const HttpResponseErrorUri = Symbol('HttpResponseError')
 export class HttpResponseError extends HttpError {
-  readonly [HttpResponseErrorURI]!: typeof HttpResponseErrorURI
+  readonly [HttpResponseErrorUri]!: typeof HttpResponseErrorUri
   readonly name: string = 'HttpResponseError'
 
   constructor(
