@@ -16,6 +16,9 @@
     "clean": "rm -rf dist *.tsbuildinfo",
     "prepack": "npm run build"
   },
+  "peerDependencies": {
+    "@xzhayon/fx": "^0.7.0"
+  },
   "publishConfig": {
     "access": "public"
   }
