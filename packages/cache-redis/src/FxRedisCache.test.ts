@@ -56,13 +56,13 @@ describe('FxRedisCache', () => {
       class FooError extends Error {}
 
       await expect(
-        fx.runPromise(
-          Cache.get('foo', new ZodDecoder(z.any()), () => {
-            throw new FooError()
+        fx.runExit(
+          Cache.get('foo', new ZodDecoder(z.any()), function* () {
+            return yield* fx.raise(new FooError())
           }),
           layer,
         ),
-      ).rejects.toBeInstanceOf(FooError)
+      ).resolves.toMatchObject(fx.Exit.failure(fx.Cause.fail(new FooError())))
     })
 
     test('fetching data on missing item', async () => {
