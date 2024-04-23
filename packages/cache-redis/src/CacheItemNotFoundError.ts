@@ -1,7 +1,7 @@
 import { CacheError } from '@imho/cache'
 
-export const CacheItemNotFoundErrorURI = Symbol()
+export const CacheItemNotFoundErrorUri = Symbol('CacheItemNotFoundError')
 export class CacheItemNotFoundError extends CacheError {
-  readonly [CacheItemNotFoundErrorURI]!: typeof CacheItemNotFoundErrorURI
+  readonly [CacheItemNotFoundErrorUri]!: typeof CacheItemNotFoundErrorUri
   readonly name: string = 'CacheItemNotFoundError'
 }

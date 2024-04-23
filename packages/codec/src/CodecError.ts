@@ -1,5 +1,5 @@
-export const CodecErrorURI = Symbol()
+export const CodecErrorUri = Symbol('CodecError')
 export class CodecError extends AggregateError {
-  readonly [CodecErrorURI]!: typeof CodecErrorURI
+  readonly [CodecErrorUri]!: typeof CodecErrorUri
   readonly name: string = 'CodecError'
 }
