@@ -56,7 +56,7 @@ export function FxAxiosHttp(axios: Axios) {
         source,
       })
 
-      throw error
+      return yield* fx.raise(error)
     }
   }
 

@@ -17,7 +17,7 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@xzhayon/fx": "^0.6.0 || ^0.7.0"
+    "@xzhayon/fx": "^0.7.1"
   },
   "publishConfig": {
     "access": "public"
