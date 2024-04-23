@@ -5,7 +5,7 @@ import { Response } from './Response'
 import { Url } from './Url'
 
 export interface Http {
-  readonly [fx.URI]?: unique symbol
+  readonly [fx.uri]?: unique symbol
   delete(url: Url, options?: Options): Promise<Response>
   get(url: Url, options?: Options): Promise<Response>
   head(url: Url, options?: Options): Promise<Response>

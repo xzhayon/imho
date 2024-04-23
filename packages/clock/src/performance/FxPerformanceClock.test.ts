@@ -6,7 +6,7 @@ describe('FxPerformanceClock', () => {
   describe('now', () => {
     test('returning current timestamp', async () => {
       await expect(
-        fx.run(function* () {
+        fx.runPromise(function* () {
           return (yield* Clock.now()).valueOf()
         }, FxPerformanceClock()),
       ).resolves.toBeCloseTo(performance.timeOrigin + performance.now(), -1)

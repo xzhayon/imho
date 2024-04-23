@@ -6,7 +6,7 @@ describe('FxDateClock', () => {
   describe('now', () => {
     test('returning current timestamp', async () => {
       await expect(
-        fx.run(function* () {
+        fx.runPromise(function* () {
           return (yield* Clock.now()).valueOf()
         }, FxDateClock()),
       ).resolves.toBeCloseTo(Date.now(), -1)

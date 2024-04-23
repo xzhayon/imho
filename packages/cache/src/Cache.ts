@@ -2,6 +2,7 @@ import { Decoder } from '@imho/codec'
 import * as fx from '@xzhayon/fx'
 
 export interface Cache {
+  readonly [fx.uri]?: unique symbol
   has(key: string): Promise<boolean>
   get<A>(key: string, decoder: Decoder<A>, onMiss: () => Promise<A>): Promise<A>
   delete(key: string): Promise<boolean>

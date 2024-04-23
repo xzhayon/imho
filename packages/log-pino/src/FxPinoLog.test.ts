@@ -31,7 +31,7 @@ describe('FxPinoLog', () => {
     ['emergency', 'fatal', 60],
   ] as const)('%s', (severity, _level, level) => {
     test(`using level "${_level}" (${level})`, async () => {
-      await fx.run(Log[severity]('foo'), layer)
+      await fx.runPromise(Log[severity]('foo'), layer)
 
       expect(JSON.parse(buffer ?? '')).toMatchObject({ level, msg: 'foo' })
     })

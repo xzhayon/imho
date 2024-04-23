@@ -28,7 +28,7 @@ describe('FxAxiosHttp', () => {
 
   describe('get', () => {
     test('returning `HttpError` on invalid request', async () => {
-      const response = fx.run(Http.get(`foo://bar`), layer)
+      const response = fx.runPromise(Http.get(`foo://bar`), layer)
 
       await expect(response).rejects.toThrow(HttpError)
       await expect(response).rejects.not.toThrow(HttpResponseError)
@@ -36,7 +36,7 @@ describe('FxAxiosHttp', () => {
 
     test('returning `HttpResponseError` on HTTP error', async () => {
       await expect(
-        fx.run(Http.get(`http://foobar/404`), layer),
+        fx.runPromise(Http.get(`http://foobar/404`), layer),
       ).rejects.toThrow(HttpResponseError)
     })
 
@@ -46,7 +46,7 @@ describe('FxAxiosHttp', () => {
       ['XML', 'xml', 'application/xml', '<foo>bar</foo>'],
     ])('forwarding %s response', async (_type, path, mimeType, body) => {
       await expect(
-        fx.run(Http.get(`http://foobar/${path}`), layer),
+        fx.runPromise(Http.get(`http://foobar/${path}`), layer),
       ).resolves.toMatchObject({
         status: 200,
         headers: { 'content-type': mimeType },
