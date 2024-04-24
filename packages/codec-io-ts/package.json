@@ -18,7 +18,7 @@
   },
   "peerDependencies": {
     "@imho/codec": "*",
-    "@xzhayon/fx": "^0.7.0",
+    "@xzhayon/fx": "^0.7.0 || ^0.8.0",
     "fp-ts": "^2.16.0",
     "io-ts": "^2.2.20"
   },
