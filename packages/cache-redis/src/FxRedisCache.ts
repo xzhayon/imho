@@ -1,6 +1,6 @@
 import { CacheError, tag } from '@imho/cache'
-import { CodecError, Decoder } from '@imho/codec'
-import { ZodDecoder } from '@imho/codec-zod'
+import { CodecError } from '@imho/codec'
+import { FxZodDecoder } from '@imho/codec-zod'
 import { Log } from '@imho/log'
 import {
   RedisClientType,
@@ -25,122 +25,151 @@ export function FxRedisCache<
       return
     }
 
-    try {
-      await redis.connect()
-      yield* Log.debug('Connection opened', { source })
+    return yield* fx.tryCatch(
+      async function* () {
+        yield* fx.async(
+          () => redis.connect(),
+          (cause) => new CacheError('Cannot connect to Redis', { cause }),
+        )
+        yield* Log.debug('Connection opened', { source })
+      },
+      function* (error) {
+        yield* Log.error('Connection failed', { error, source })
 
-      return
-    } catch (cause) {
-      const error = new CacheError('Cannot connect to Redis', { cause })
-      yield* Log.error('Connection failed', { error, source })
-
-      return yield* fx.raise(error)
-    }
+        return yield* fx.raise(error)
+      },
+    )
   }
 
   async function* has(key: string) {
     yield* connect()
 
-    try {
-      return (await redis.exists(key)) === 1
-    } catch (cause) {
-      const error = new CacheError(`Cannot check for item "${key}" on Redis`, {
-        cause,
-      })
-      yield* Log.error('Cache item not found', { error, key, source })
+    return yield* fx.tryCatch(
+      fx.async(
+        async () => (await redis.exists(key)) === 1,
+        (cause) =>
+          new CacheError(`Cannot check for item "${key}" on Redis`, { cause }),
+      ),
+      function* (error) {
+        yield* Log.error('Cache item not found', { error, key, source })
 
-      return yield* fx.raise(error)
-    }
+        return yield* fx.raise(error)
+      },
+    )
   }
 
   return fx.layer().with(tag, {
     has,
-    async *get<A, G extends Generator<unknown, A>>(
-      key: string,
-      decoder: Decoder<A>,
-      onMiss: () => G,
-    ) {
-      try {
-        if (!(yield* has(key))) {
-          return yield* fx.raise(
-            new CacheItemNotFoundError(`Cannot find cache item "${key}"`),
+    async *get(key, decoder, onMiss) {
+      return yield* fx.tryCatch(
+        async function* () {
+          if (!(yield* has(key))) {
+            return yield* fx.raise(
+              new CacheItemNotFoundError(`Cannot find cache item "${key}"`),
+            )
+          }
+
+          const value = yield* decoder.decode(
+            yield* new FxZodDecoder(
+              z.string().transform((s) => JSON.parse(s)),
+            ).decode(
+              yield* fx.async(
+                () => redis.get(key),
+                (cause) =>
+                  new CacheError(`Cannot get item "${key}" from Redis`, {
+                    cause,
+                  }),
+              ),
+            ),
           )
-        }
+          yield* Log.debug('Cache item retrieved', { key, source })
 
-        const value = decoder.decode(
-          new ZodDecoder(z.string().transform((s) => JSON.parse(s))).decode(
-            await redis.get(key),
-          ),
-        )
-        yield* Log.debug('Cache item retrieved', { key, source })
+          return value
+        },
+        async function* (error) {
+          if (error instanceof CacheItemNotFoundError) {
+            yield* Log.debug('Cache item not found', { source })
+          } else if (error instanceof CodecError) {
+            yield* Log.error('Cache item decoding failed', {
+              error,
+              key,
+              source,
+            })
+          } else {
+            yield* Log.error('Cache item not found', {
+              error,
+              key,
+              source,
+            })
+          }
 
-        return value
-      } catch (error) {
-        if (error instanceof CacheItemNotFoundError) {
-          yield* Log.debug('Cache item not found', { source })
-        } else if (error instanceof CodecError) {
-          yield* Log.error('Cache item decoding failed', { error, key, source })
-        } else {
-          yield* Log.error('Cache item not found', {
-            error: new CacheError(`Cannot get item "${key}" from Redis`, {
-              cause: error,
-            }),
-            key,
-            source,
-          })
-        }
-      }
+          const value = yield* onMiss()
 
-      const value = yield* onMiss()
+          return yield* fx.tryCatch(
+            async function* () {
+              yield* fx.async(
+                () => redis.set(key, JSON.stringify(value)),
+                (cause) =>
+                  new CacheError(`Cannot save item "${key}" to Redis`, {
+                    cause,
+                  }),
+              )
+              yield* Log.debug('Cache item saved', { key, source })
 
-      try {
-        await redis.set(key, JSON.stringify(value))
-        yield* Log.debug('Cache item saved', { key, source })
+              return value
+            },
+            function* (error) {
+              yield* Log.error('Cache item not saved', { error, key, source })
 
-        return value
-      } catch (cause) {
-        const error = new CacheError(`Cannot save item "${key}" to Redis`, {
-          cause,
-        })
-        yield* Log.error('Cache item not saved', { error, key, source })
-
-        return yield* fx.raise(error)
-      }
+              return yield* fx.raise(error)
+            },
+          )
+        },
+      )
     },
     async *delete(key: string) {
       yield* connect()
 
-      try {
-        const found = (await redis.del(key)) === 1
-        yield* Log.debug(
-          found ? 'Cache item deleted' : 'Cache item not found for deletion',
-          { key, source },
-        )
+      return yield* fx.tryCatch(
+        async function* () {
+          const found = yield* fx.async(
+            async () => (await redis.del(key)) === 1,
+            (cause) =>
+              new CacheError(`Cannot delete item "${key}" from Redis`, {
+                cause,
+              }),
+          )
+          yield* Log.debug(
+            found ? 'Cache item deleted' : 'Cache item not found for deletion',
+            { key, source },
+          )
 
-        return found
-      } catch (cause) {
-        const error = new CacheError(`Cannot delete item "${key}" from Redis`, {
-          cause,
-        })
-        yield* Log.error('Cache item not deleted', { error, key, source })
+          return found
+        },
+        function* (error) {
+          yield* Log.error('Cache item not deleted', { error, key, source })
 
-        return yield* fx.raise(error)
-      }
+          return yield* fx.raise(error)
+        },
+      )
     },
     async *clear() {
       yield* connect()
 
-      try {
-        await redis.flushDb(RedisFlushModes.ASYNC)
-        yield* Log.debug('Cache cleared', { source })
+      return yield* fx.tryCatch(
+        async function* () {
+          yield* fx.async(
+            () => redis.flushDb(RedisFlushModes.ASYNC),
+            (cause) => new CacheError('Cannot flush Redis database', { cause }),
+          )
+          yield* Log.debug('Cache cleared', { source })
+        },
+        function* (error) {
+          yield* Log.error('Cache not cleared', { error, source })
 
-        return
-      } catch (cause) {
-        const error = new CacheError('Cannot flush Redis database', { cause })
-        yield* Log.error('Cache not cleared', { error, source })
-
-        return yield* fx.raise(error)
-      }
+          return yield* fx.raise(error)
+        },
+      )
     },
   })
 }

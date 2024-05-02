@@ -1,5 +1,5 @@
 import { Cache } from '@imho/cache'
-import { ZodDecoder } from '@imho/codec-zod'
+import { FxZodDecoder, ZodDecoder } from '@imho/codec-zod'
 import { FxNullLog } from '@imho/log'
 import { RedisClientType, RedisFlushModes } from '@redis/client'
 import { fx } from '@xzhayon/fx'
@@ -81,7 +81,7 @@ describe('FxRedisCache', () => {
 
       await expect(
         fx.runPromise(
-          Cache.get('foo', new ZodDecoder(z.string()), function* () {
+          Cache.get('foo', new FxZodDecoder(z.string()), function* () {
             return 'bar'
           }),
           layer,
@@ -94,7 +94,7 @@ describe('FxRedisCache', () => {
 
       await expect(
         fx.runPromise(
-          Cache.get('foo', new ZodDecoder(z.any()), function* () {
+          Cache.get('foo', new FxZodDecoder(z.any()), function* () {
             return 'bar'
           }),
           layer,
