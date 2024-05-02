@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/xzhavilla/imho/compare/@imho/cache-redis@0.6.1...@imho/cache-redis@0.7.0) (2024-05-02)
+
+
+### Features
+
+* **cache:** use Fx 0.9 ([3d2971c](https://github.com/xzhavilla/imho/commit/3d2971c7f6387d6a6e6038bc21f542e5bb9757cb))
+
+
+### BREAKING CHANGES
+
+* **cache:** drop support for Fx 0.7
+
+
+
+
+
 ## [0.6.1](https://github.com/xzhavilla/imho/compare/@imho/cache-redis@0.6.0...@imho/cache-redis@0.6.1) (2024-04-23)
 
 **Note:** Version bump only for package @imho/cache-redis

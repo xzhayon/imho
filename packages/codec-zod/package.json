@@ -1,6 +1,6 @@
 {
   "name": "@imho/codec-zod",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -17,7 +17,7 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@imho/codec": "*",
+    "@imho/codec": "^0.6.0",
     "@xzhayon/fx": "^0.9.0",
     "zod": "^3.22.4"
   },

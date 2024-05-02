@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/xzhavilla/imho/compare/@imho/http-axios@0.4.1...@imho/http-axios@0.5.0) (2024-05-02)
+
+
+### Features
+
+* **http:** use Fx 0.9 ([6c2aeb7](https://github.com/xzhavilla/imho/commit/6c2aeb73fad7f540907dbddec6e6317aea3d20c2))
+
+
+### BREAKING CHANGES
+
+* **http:** drop support for Fx 0.7
+
+
+
+
+
 ## [0.4.1](https://github.com/xzhavilla/imho/compare/@imho/http-axios@0.4.0...@imho/http-axios@0.4.1) (2024-04-23)
 
 **Note:** Version bump only for package @imho/http-axios

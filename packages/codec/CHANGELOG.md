@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/xzhavilla/imho/compare/@imho/codec@0.5.2...@imho/codec@0.6.0) (2024-05-02)
+
+
+### Features
+
+* **codec:** add Fx decoder ([80a0087](https://github.com/xzhavilla/imho/commit/80a0087fd7961f5c0564622d7ccac7e73466c918))
+* **codec:** use Fx 0.9 ([4f9d920](https://github.com/xzhavilla/imho/commit/4f9d92065aa912d72c3e83da17b538c6c73235d3))
+
+
+### BREAKING CHANGES
+
+* **codec:** drop support for FX 0.7
+
+
+
+
+
 ## [0.5.2](https://github.com/xzhavilla/imho/compare/@imho/codec@0.5.1...@imho/codec@0.5.2) (2024-04-23)
 
 **Note:** Version bump only for package @imho/codec
