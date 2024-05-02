@@ -22,42 +22,48 @@ export function FxAxiosHttp(axios: Axios) {
     body?: Body | null,
     options?: Options,
   ) {
-    try {
-      const startTime = yield* Clock.now()
-      const response = await axios.request({
-        url: url.toString(),
-        method,
-        headers: options?.headers,
-        params: options?.query,
-        data: body,
-      })
-      const endTime = yield* Clock.now()
-      yield* Log.debug('HTTP request succeded', {
-        url: response.config.url ?? url.toString(),
-        method,
-        duration: endTime.valueOf() - startTime.valueOf(),
-        source,
-      })
+    return yield* fx.tryCatch(
+      async function* () {
+        const startTime = yield* Clock.now()
+        const response = yield* fx.async(
+          () =>
+            axios.request({
+              url: url.toString(),
+              method,
+              headers: options?.headers,
+              params: options?.query,
+              data: body,
+            }),
+          (cause) =>
+            isAxiosError(cause) && cause.response !== undefined
+              ? new HttpResponseError(
+                  fromAxiosResponse(cause.response),
+                  `HTTP ${cause.response.status} ${cause.response.statusText}`,
+                  { cause },
+                )
+              : new HttpError('Cannot get response from server', { cause }),
+        )
+        const endTime = yield* Clock.now()
+        yield* Log.debug('HTTP request succeded', {
+          url: response.config.url ?? url.toString(),
+          method,
+          duration: endTime.valueOf() - startTime.valueOf(),
+          source,
+        })
 
-      return fromAxiosResponse(response)
-    } catch (cause) {
-      const error =
-        isAxiosError(cause) && cause.response !== undefined
-          ? new HttpResponseError(
-              fromAxiosResponse(cause.response),
-              `HTTP ${cause.response.status} ${cause.response.statusText}`,
-              { cause },
-            )
-          : new HttpError('Cannot get response from server', { cause })
-      yield* Log.error('HTTP request failed', {
-        error,
-        url: url.toString(),
-        method,
-        source,
-      })
+        return fromAxiosResponse(response)
+      },
+      function* (error) {
+        yield* Log.error('HTTP request failed', {
+          error,
+          url: url.toString(),
+          method,
+          source,
+        })
 
-      return yield* fx.raise(error)
-    }
+        return yield* fx.raise(error)
+      },
+    )
   }
 
   return fx.layer().with(tag, {

@@ -1,4 +1,4 @@
-import { Decoder } from '@imho/codec'
+import { Decoder, FxDecoder } from '@imho/codec'
 import { fx } from '@xzhayon/fx'
 import { CacheError } from './CacheError'
 
@@ -11,11 +11,11 @@ export interface Cache {
 }
 
 export interface FxCache extends Omit<Cache, 'get' | 'clear'> {
-  get<A, G extends Generator<unknown, A>>(
+  get<A, G extends fx.AnyEffector<A, any, any>>(
     key: string,
-    decoder: Decoder<A>,
+    decoder: FxDecoder<A>,
     onMiss: () => G,
-  ): Generator<fx.YOf<G>, fx.Result<A, CacheError>, fx.NOf<G>>
+  ): fx.AnyGenerator<fx.YieldOf<G>, fx.Result<A, CacheError>>
   clear(): Promise<fx.Result<void, CacheError>>
 }
 
@@ -24,10 +24,10 @@ export const tag = fx.tag<FxCache>('Cache')
 const { get } = fx.structA(tag)('get')
 
 export const Cache = {
-  get: <A, G extends Generator<unknown, A>>(
+  ...fx.struct(tag)('has', 'delete', 'clear'),
+  get: <A, G extends fx.AnyEffector<A, any, any>>(
     key: string,
-    decoder: Decoder<A>,
+    decoder: FxDecoder<A>,
     onMiss: () => G,
   ) => get((f) => f(key, decoder, onMiss)),
-  ...fx.struct(tag)('has', 'delete', 'clear'),
 }
