@@ -15,15 +15,16 @@ export class FxIoTsCodec<A, O = A, I = unknown> implements FxCodec<A, O, I> {
   }
 
   *decode(i: I) {
-    try {
-      return this.codec.decode(i)
-    } catch (error) {
-      if (!(error instanceof CodecError)) {
-        throw error
-      }
+    return yield* fx.sync(
+      () => this.codec.decode(i),
+      (error) => {
+        if (!(error instanceof CodecError)) {
+          throw error
+        }
 
-      return yield* fx.raise(error)
-    }
+        return error
+      },
+    )
   }
 
   encode(a: A) {

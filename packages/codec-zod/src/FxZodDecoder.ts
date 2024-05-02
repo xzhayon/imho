@@ -11,14 +11,15 @@ export class FxZodDecoder<A> implements FxDecoder<A> {
   }
 
   *decode(u: unknown) {
-    try {
-      return this.decoder.decode(u)
-    } catch (error) {
-      if (!(error instanceof CodecError)) {
-        throw error
-      }
+    return yield* fx.sync(
+      () => this.decoder.decode(u),
+      (error) => {
+        if (!(error instanceof CodecError)) {
+          throw error
+        }
 
-      return yield* fx.raise(error)
-    }
+        return error
+      },
+    )
   }
 }
