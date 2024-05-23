@@ -1,5 +1,5 @@
 import { CodecError, Decoder, FxDecoder } from '@imho/codec'
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 import { z } from 'zod'
 import { ZodDecoder } from './ZodDecoder'
 

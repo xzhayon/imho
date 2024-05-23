@@ -9,7 +9,7 @@ import {
   RedisModules,
   RedisScripts,
 } from '@redis/client'
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 import { z } from 'zod'
 import { CacheItemNotFoundError } from './CacheItemNotFoundError'
 
@@ -58,7 +58,7 @@ export function FxRedisCache<
     )
   }
 
-  return fx.layer().with(tag, {
+  return fx.layer(tag, {
     has,
     async *get(key, decoder, onMiss) {
       return yield* fx.tryCatch(

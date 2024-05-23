@@ -1,4 +1,4 @@
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 import { CodecError } from './CodecError'
 
 export interface Decoder<A, I = unknown> {
@@ -6,5 +6,5 @@ export interface Decoder<A, I = unknown> {
 }
 
 export interface FxDecoder<A, I = unknown> {
-  decode(i: I): fx.Effector<A, CodecError, never>
+  decode(i: I): fx.Effector<A, CodecError>
 }

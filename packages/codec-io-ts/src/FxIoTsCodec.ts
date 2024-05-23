@@ -1,5 +1,5 @@
 import { Codec, CodecError, FxCodec } from '@imho/codec'
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 import * as t from 'io-ts'
 import { IoTsCodec } from './IoTsCodec'
 

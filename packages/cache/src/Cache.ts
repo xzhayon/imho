@@ -1,5 +1,5 @@
 import { Decoder, FxDecoder } from '@imho/codec'
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 import { CacheError } from './CacheError'
 
 export interface Cache {

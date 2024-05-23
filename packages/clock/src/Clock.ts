@@ -1,4 +1,4 @@
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 
 export interface Clock {
   readonly [fx.uri]?: unique symbol
