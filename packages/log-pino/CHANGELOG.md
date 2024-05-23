@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/xzhayon/imho/compare/@imho/log-pino@0.6.1...@imho/log-pino@0.7.0) (2024-05-23)
+
+
+### Features
+
+* migrate to affex ([#48](https://github.com/xzhayon/imho/issues/48)) ([e5696e8](https://github.com/xzhayon/imho/commit/e5696e80877e81122fa385a92a23a59383b422f7))
+
+
+### BREAKING CHANGES
+
+* drop support for @xzhayon/fx
+
+
+
+
+
 ## [0.6.1](https://github.com/xzhavilla/imho/compare/@imho/log-pino@0.6.0...@imho/log-pino@0.6.1) (2024-05-02)
 
 **Note:** Version bump only for package @imho/log-pino

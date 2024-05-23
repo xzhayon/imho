@@ -1,6 +1,6 @@
 {
   "name": "@imho/cache",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -17,7 +17,7 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@imho/codec": "*",
+    "@imho/codec": "^0.7.0",
     "affex": "^0.10.0"
   },
   "publishConfig": {
