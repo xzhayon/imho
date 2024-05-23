@@ -9,7 +9,7 @@ import {
   tag,
 } from '@imho/http'
 import { Log } from '@imho/log'
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 import { Axios, isAxiosError } from 'axios'
 import { fromAxiosResponse } from './Response'
 
@@ -66,7 +66,7 @@ export function FxAxiosHttp(axios: Axios) {
     )
   }
 
-  return fx.layer().with(tag, {
+  return fx.layer(tag, {
     delete: (url, options) => request('delete', url, null, options),
     get: (url, options) => request('get', url, null, options),
     head: (url, options) => request('head', url, null, options),

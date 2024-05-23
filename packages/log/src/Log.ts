@@ -1,4 +1,4 @@
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 import { Severity } from './Severity'
 
 export type Log = { readonly [fx.uri]?: unique symbol } & {

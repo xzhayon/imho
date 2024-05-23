@@ -1,4 +1,4 @@
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 import { Clock } from '../Clock'
 import { FxDateClock } from './FxDateClock'
 
@@ -8,7 +8,7 @@ describe('FxDateClock', () => {
       await expect(
         fx.runPromise(function* () {
           return (yield* Clock.now()).valueOf()
-        }, FxDateClock()),
+        }, fx.context().with(FxDateClock())),
       ).resolves.toBeCloseTo(Date.now(), -1)
     })
   })

@@ -1,7 +1,7 @@
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 import { tag } from '../Log'
 import { NullLog } from './NullLog'
 
 export function FxNullLog() {
-  return fx.layer().with(tag, new NullLog())
+  return fx.layer(tag, new NullLog())
 }

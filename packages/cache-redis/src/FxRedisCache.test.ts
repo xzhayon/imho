@@ -2,7 +2,7 @@ import { Cache } from '@imho/cache'
 import { FxZodDecoder, ZodDecoder } from '@imho/codec-zod'
 import { FxNullLog } from '@imho/log'
 import { RedisClientType, RedisFlushModes } from '@redis/client'
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 import { z } from 'zod'
 import { use } from '../test/Redis'
 import { RedisMock } from '../test/RedisMock'
@@ -10,7 +10,7 @@ import { FxRedisCache } from './FxRedisCache'
 
 describe('FxRedisCache', () => {
   const redis = new RedisMock() as any as RedisClientType
-  const layer = fx.layer().with(FxRedisCache(redis)).with(FxNullLog()).do()
+  const context = fx.context().with(FxRedisCache(redis)).with(FxNullLog()).do()
 
   beforeEach(async () => {
     await use(redis, (redis) => redis.flushDb(RedisFlushModes.ASYNC))
@@ -22,7 +22,9 @@ describe('FxRedisCache', () => {
   })
 
   test('connecting to Redis', async () => {
-    await expect(fx.runPromise(Cache.has('foo'), layer)).resolves.not.toThrow()
+    await expect(
+      fx.runPromise(Cache.has('foo'), context),
+    ).resolves.not.toThrow()
   })
 
   test('using an already open connection', async () => {
@@ -31,14 +33,14 @@ describe('FxRedisCache', () => {
         yield* Cache.clear()
 
         return yield* Cache.has('foo')
-      }, layer),
+      }, context),
     ).resolves.not.toThrow()
   })
 
   describe('has', () => {
     test('checking for missing item', async () => {
       await expect(
-        fx.runPromise(Cache.has('foo'), layer),
+        fx.runPromise(Cache.has('foo'), context),
       ).resolves.toStrictEqual(false)
     })
 
@@ -46,7 +48,7 @@ describe('FxRedisCache', () => {
       await use(redis, (redis) => redis.set('foo', JSON.stringify('bar')))
 
       await expect(
-        fx.runPromise(Cache.has('foo'), layer),
+        fx.runPromise(Cache.has('foo'), context),
       ).resolves.toStrictEqual(true)
     })
   })
@@ -60,9 +62,11 @@ describe('FxRedisCache', () => {
           Cache.get('foo', new ZodDecoder(z.any()), function* () {
             return yield* fx.raise(new FooError())
           }),
-          layer,
+          context,
         ),
-      ).resolves.toMatchObject(fx.Exit.failure(fx.Cause.fail(new FooError())))
+      ).resolves.toMatchObject(
+        fx.Exit.failure(fx.Cause.fail(new FooError(), {} as any)),
+      )
     })
 
     test('fetching data on missing item', async () => {
@@ -71,7 +75,7 @@ describe('FxRedisCache', () => {
           Cache.get('foo', new ZodDecoder(z.any()), function* () {
             return 'bar'
           }),
-          layer,
+          context,
         ),
       ).resolves.toStrictEqual('bar')
     })
@@ -84,7 +88,7 @@ describe('FxRedisCache', () => {
           Cache.get('foo', new FxZodDecoder(z.string()), function* () {
             return 'bar'
           }),
-          layer,
+          context,
         ),
       ).resolves.toStrictEqual('bar')
     })
@@ -97,7 +101,7 @@ describe('FxRedisCache', () => {
           Cache.get('foo', new FxZodDecoder(z.any()), function* () {
             return 'bar'
           }),
-          layer,
+          context,
         ),
       ).resolves.toStrictEqual('qux')
     })
@@ -106,7 +110,7 @@ describe('FxRedisCache', () => {
   describe('delete', () => {
     test('deleting missing item', async () => {
       await expect(
-        fx.runPromise(Cache.delete('foo'), layer),
+        fx.runPromise(Cache.delete('foo'), context),
       ).resolves.toStrictEqual(false)
     })
 
@@ -114,7 +118,7 @@ describe('FxRedisCache', () => {
       await use(redis, (redis) => redis.set('foo', JSON.stringify('qux')))
 
       await expect(
-        fx.runPromise(Cache.delete('foo'), layer),
+        fx.runPromise(Cache.delete('foo'), context),
       ).resolves.toStrictEqual(true)
       await expect(
         use(redis, (redis) => redis.exists('foo')),
@@ -126,7 +130,9 @@ describe('FxRedisCache', () => {
     test('clearing cache', async () => {
       await use(redis, (redis) => redis.set('foo', JSON.stringify('bar')))
 
-      await expect(fx.runPromise(Cache.clear(), layer)).resolves.toBeUndefined()
+      await expect(
+        fx.runPromise(Cache.clear(), context),
+      ).resolves.toBeUndefined()
       await expect(
         use(redis, (redis) => redis.dbSize()),
       ).resolves.toStrictEqual(0)

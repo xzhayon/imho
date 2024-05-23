@@ -1,4 +1,4 @@
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 import { Body } from './Body'
 import { HttpError } from './HttpError'
 import { Options } from './Options'

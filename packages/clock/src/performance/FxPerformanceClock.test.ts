@@ -1,4 +1,4 @@
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 import { Clock } from '../Clock'
 import { FxPerformanceClock } from './FxPerformanceClock'
 
@@ -8,7 +8,7 @@ describe('FxPerformanceClock', () => {
       await expect(
         fx.runPromise(function* () {
           return (yield* Clock.now()).valueOf()
-        }, FxPerformanceClock()),
+        }, fx.context().with(FxPerformanceClock())),
       ).resolves.toBeCloseTo(performance.timeOrigin + performance.now(), -1)
     })
   })

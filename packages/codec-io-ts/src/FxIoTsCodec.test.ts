@@ -1,5 +1,5 @@
 import { CodecError } from '@imho/codec'
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 import * as t from 'io-ts'
 import { FxIoTsCodec } from './FxIoTsCodec'
 
@@ -7,9 +7,9 @@ describe('FxIoTsCodec', () => {
   describe('decode', () => {
     test('failing with a CodecError', async () => {
       await expect(
-        fx.runExit(new FxIoTsCodec(t.never).decode(undefined), fx.layer()),
+        fx.runExit(new FxIoTsCodec(t.never).decode(undefined), fx.context()),
       ).resolves.toMatchObject(
-        fx.Exit.failure(fx.Cause.fail({ ...new CodecError([]) })),
+        fx.Exit.failure(fx.Cause.fail({ ...new CodecError([]) }, {} as any)),
       )
     })
 
@@ -34,7 +34,7 @@ describe('FxIoTsCodec', () => {
       'forwarding decoder result ($type.name)',
       async ({ type, input }: { type: t.Any; input: unknown }) => {
         await expect(
-          fx.runPromise(new FxIoTsCodec(type).decode(input), fx.layer()),
+          fx.runPromise(new FxIoTsCodec(type).decode(input), fx.context()),
         ).resolves.toStrictEqual((type.decode(input) as any).right)
       },
     )

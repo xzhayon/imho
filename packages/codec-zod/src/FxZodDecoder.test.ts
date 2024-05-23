@@ -1,5 +1,5 @@
 import { CodecError } from '@imho/codec'
-import { fx } from '@xzhayon/fx'
+import { fx } from 'affex'
 import { z } from 'zod'
 import { FxZodDecoder } from './FxZodDecoder'
 
@@ -7,9 +7,9 @@ describe('FxZodDecoder', () => {
   describe('decode', () => {
     test('failing with a CodecError', async () => {
       await expect(
-        fx.runExit(new FxZodDecoder(z.never()).decode(undefined), fx.layer()),
+        fx.runExit(new FxZodDecoder(z.never()).decode(undefined), fx.context()),
       ).resolves.toMatchObject(
-        fx.Exit.failure(fx.Cause.fail({ ...new CodecError([]) })),
+        fx.Exit.failure(fx.Cause.fail({ ...new CodecError([]) }, {} as any)),
       )
     })
 
@@ -34,7 +34,7 @@ describe('FxZodDecoder', () => {
       'forwarding decoder result ($type.description)',
       async ({ type, input }: { type: z.ZodType<any>; input: unknown }) => {
         await expect(
-          fx.runPromise(new FxZodDecoder(type).decode(input), fx.layer()),
+          fx.runPromise(new FxZodDecoder(type).decode(input), fx.context()),
         ).resolves.toStrictEqual(type.parse(input))
       },
     )
