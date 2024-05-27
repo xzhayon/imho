@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/xzhayon/imho/compare/@imho/codec@0.7.0...@imho/codec@0.7.1) (2024-05-27)
+
+**Note:** Version bump only for package @imho/codec
+
+
+
+
+
 # [0.7.0](https://github.com/xzhayon/imho/compare/@imho/codec@0.6.0...@imho/codec@0.7.0) (2024-05-23)
 
 

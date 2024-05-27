@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/xzhayon/imho/compare/@imho/cache-redis@0.8.0...@imho/cache-redis@0.8.1) (2024-05-27)
+
+**Note:** Version bump only for package @imho/cache-redis
+
+
+
+
+
 # [0.8.0](https://github.com/xzhayon/imho/compare/@imho/cache-redis@0.7.0...@imho/cache-redis@0.8.0) (2024-05-23)
 
 

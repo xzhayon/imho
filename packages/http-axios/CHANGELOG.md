@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/xzhayon/imho/compare/@imho/http-axios@0.6.0...@imho/http-axios@0.6.1) (2024-05-27)
+
+**Note:** Version bump only for package @imho/http-axios
+
+
+
+
+
 # [0.6.0](https://github.com/xzhayon/imho/compare/@imho/http-axios@0.5.0...@imho/http-axios@0.6.0) (2024-05-23)
 
 

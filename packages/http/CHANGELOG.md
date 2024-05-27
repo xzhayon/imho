@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/xzhayon/imho/compare/@imho/http@0.5.0...@imho/http@0.5.1) (2024-05-27)
+
+**Note:** Version bump only for package @imho/http
+
+
+
+
+
 # [0.5.0](https://github.com/xzhayon/imho/compare/@imho/http@0.4.2...@imho/http@0.5.0) (2024-05-23)
 
 
