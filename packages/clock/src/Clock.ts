@@ -7,4 +7,4 @@ export interface Clock {
 
 export const tag = fx.tag<Clock>('Clock')
 
-export const Clock = fx.struct(tag)('now')
+export const Clock = fx.service(tag, 'now')

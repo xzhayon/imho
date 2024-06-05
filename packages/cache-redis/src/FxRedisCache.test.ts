@@ -64,9 +64,7 @@ describe('FxRedisCache', () => {
           }),
           context,
         ),
-      ).resolves.toMatchObject(
-        fx.Exit.failure(fx.Cause.fail(new FooError(), {} as any)),
-      )
+      ).resolves.toMatchObject(fx.Exit.failure(fx.Cause.fail(new FooError())))
     })
 
     test('fetching data on missing item', async () => {
