@@ -9,7 +9,7 @@ describe('FxIoTsCodec', () => {
       await expect(
         fx.runExit(new FxIoTsCodec(t.never).decode(undefined), fx.context()),
       ).resolves.toMatchObject(
-        fx.Exit.failure(fx.Cause.fail({ ...new CodecError([]) }, {} as any)),
+        fx.Exit.failure(fx.Cause.fail({ ...new CodecError([]) })),
       )
     })
 

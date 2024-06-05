@@ -31,12 +31,10 @@ describe('FxAxiosHttp', () => {
       const response = await fx.runExit(Http.get(`foo://bar`), context)
 
       expect(response).toMatchObject(
-        fx.Exit.failure(fx.Cause.fail({ ...new HttpError() }, {} as any)),
+        fx.Exit.failure(fx.Cause.fail({ ...new HttpError() })),
       )
       expect(response).not.toMatchObject(
-        fx.Exit.failure(
-          fx.Cause.fail({ ...new HttpResponseError({} as any) }, {} as any),
-        ),
+        fx.Exit.failure(fx.Cause.fail({ ...new HttpResponseError({} as any) })),
       )
     })
 
@@ -44,9 +42,7 @@ describe('FxAxiosHttp', () => {
       await expect(
         fx.runExit(Http.get(`http://foobar/404`), context),
       ).resolves.toMatchObject(
-        fx.Exit.failure(
-          fx.Cause.fail({ ...new HttpResponseError({} as any) }, {} as any),
-        ),
+        fx.Exit.failure(fx.Cause.fail({ ...new HttpResponseError({} as any) })),
       )
     })
 

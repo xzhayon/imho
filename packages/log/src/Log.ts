@@ -7,7 +7,8 @@ export type Log = { readonly [fx.uri]?: unique symbol } & {
 
 export const tag = fx.tag<Log>('Log')
 
-export const Log = fx.struct(tag)(
+export const Log = fx.service(
+  tag,
   'debug',
   'info',
   'notice',

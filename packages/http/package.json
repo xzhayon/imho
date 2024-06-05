@@ -17,7 +17,7 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "affex": "^0.10.0 || ^0.11.0"
+    "affex": "^0.12.0"
   },
   "publishConfig": {
     "access": "public"
