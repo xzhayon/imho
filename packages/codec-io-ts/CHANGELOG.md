@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/xzhayon/imho/compare/@imho/codec-io-ts@0.7.1...@imho/codec-io-ts@0.8.0) (2024-06-05)
+
+
+### Features
+
+* support affex 0.12 ([f014779](https://github.com/xzhayon/imho/commit/f014779007abf2cb82a35170cd57d25ef35ed06f))
+
+
+### BREAKING CHANGES
+
+* drop support for affex 0.11
+
+
+
+
+
 ## [0.7.1](https://github.com/xzhayon/imho/compare/@imho/codec-io-ts@0.7.0...@imho/codec-io-ts@0.7.1) (2024-05-27)
 
 **Note:** Version bump only for package @imho/codec-io-ts
