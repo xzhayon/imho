@@ -33,6 +33,7 @@ export function FxAxiosHttp(axios: Axios) {
               headers: options?.headers,
               params: options?.query,
               data: body,
+              signal: options?.abortSignal,
             }),
           (cause) =>
             isAxiosError(cause) && cause.response !== undefined

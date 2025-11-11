@@ -2,7 +2,7 @@ import { FxDateClock } from '@imho/clock'
 import { Http, HttpError, HttpResponseError } from '@imho/http'
 import { FxNullLog } from '@imho/log'
 import { fx } from 'affex'
-import axios from 'axios'
+import axios, { CanceledError } from 'axios'
 import nock from 'nock'
 import { FxAxiosHttp } from './FxAxiosHttp'
 
@@ -58,6 +58,17 @@ describe('FxAxiosHttp', () => {
         headers: { 'content-type': mimeType },
         body,
       })
+    })
+
+    test('aborting request', async () => {
+      try {
+        await fx.runPromise(
+          Http.get('http://foobar/json', { abortSignal: AbortSignal.abort() }),
+          context,
+        )
+      } catch (error) {
+        expect(error).toMatchObject({ cause: new CanceledError() })
+      }
     })
   })
 })
