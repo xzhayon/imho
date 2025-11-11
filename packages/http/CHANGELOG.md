@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/xzhayon/imho/compare/@imho/http@0.6.0...@imho/http@0.7.0) (2025-11-11)
+
+
+### Features
+
+* **http:** support abort signal in HTTP requests ([#168](https://github.com/xzhayon/imho/issues/168)) ([56b697b](https://github.com/xzhayon/imho/commit/56b697b00bc24abf76dc7d2291ff0aae91a2d97e))
+
+
+
+
+
 # [0.6.0](https://github.com/xzhayon/imho/compare/@imho/http@0.5.1...@imho/http@0.6.0) (2024-06-05)
 
 
