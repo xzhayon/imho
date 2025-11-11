@@ -1,7 +1,7 @@
 import { DateClock } from '@imho/clock'
 import { HttpError, HttpResponseError } from '@imho/http'
 import { NullLog } from '@imho/log'
-import axios from 'axios'
+import axios, { CanceledError } from 'axios'
 import nock from 'nock'
 import { AxiosHttp } from './AxiosHttp'
 
@@ -44,6 +44,16 @@ describe('AxiosHttp', () => {
         headers: { 'content-type': mimeType },
         body,
       })
+    })
+
+    test('aborting request', async () => {
+      try {
+        await http.get('http://foobar/json', {
+          abortSignal: AbortSignal.abort(),
+        })
+      } catch (error) {
+        expect(error).toMatchObject({ cause: new CanceledError() })
+      }
     })
   })
 })

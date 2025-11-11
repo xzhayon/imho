@@ -62,6 +62,7 @@ export class AxiosHttp implements Http {
         headers: options?.headers,
         params: options?.query,
         data: body,
+        signal: options?.abortSignal,
       })
       const endTime = this.clock.now()
       await this.log.debug('HTTP request succeded', {
