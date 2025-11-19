@@ -8,7 +8,7 @@ import {
   Url,
   tag,
 } from '@imho/http'
-import { Log } from '@imho/log'
+import { Logger } from '@imho/logger'
 import { fx } from 'affex'
 import { Axios, isAxiosError } from 'axios'
 import { fromAxiosResponse } from './Response'
@@ -45,7 +45,7 @@ export function FxAxiosHttp(axios: Axios) {
               : new HttpError('Cannot get response from server', { cause }),
         )
         const endTime = yield* Clock.now()
-        yield* Log.debug('HTTP request succeded', {
+        yield* Logger.debug('HTTP request succeded', {
           url: response.config.url ?? url.toString(),
           method,
           duration: endTime.valueOf() - startTime.valueOf(),
@@ -55,7 +55,7 @@ export function FxAxiosHttp(axios: Axios) {
         return fromAxiosResponse(response)
       },
       function* (error) {
-        yield* Log.error('HTTP request failed', {
+        yield* Logger.error('HTTP request failed', {
           error,
           url: url.toString(),
           method,

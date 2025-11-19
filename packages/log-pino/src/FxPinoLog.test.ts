@@ -1,4 +1,4 @@
-import { Log } from '@imho/log'
+import { Logger } from '@imho/logger'
 import { fx } from 'affex'
 import { pino } from 'pino'
 import { FxPinoLog } from './FxPinoLog'
@@ -33,7 +33,7 @@ describe('FxPinoLog', () => {
     ['emergency', 'fatal', 60],
   ] as const)('%s', (severity, _level, level) => {
     test(`using level "${_level}" (${level})`, async () => {
-      await fx.runPromise(Log[severity]('foo'), context)
+      await fx.runPromise(Logger[severity]('foo'), context)
 
       expect(JSON.parse(buffer ?? '')).toMatchObject({ level, msg: 'foo' })
     })

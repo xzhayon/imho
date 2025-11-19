@@ -1,6 +1,6 @@
-import { Log } from '../Log'
+import { Logger } from '../Logger'
 
-export class NullLog implements Log {
+export class NullLogger implements Logger {
   async debug() {}
 
   async info() {}

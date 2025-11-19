@@ -3,7 +3,7 @@
   "references": [
     { "path": "../clock" },
     { "path": "../http" },
-    { "path": "../log" }
+    { "path": "../logger" }
   ],
   "compilerOptions": { "rootDir": "src", "outDir": "dist" }
 }

@@ -1,6 +1,6 @@
 import { FxDateClock } from '@imho/clock'
 import { Http, HttpError, HttpResponseError } from '@imho/http'
-import { FxNullLog } from '@imho/log'
+import { FxNullLogger } from '@imho/logger'
 import { fx } from 'affex'
 import axios, { CanceledError } from 'axios'
 import nock from 'nock'
@@ -23,7 +23,7 @@ describe('FxAxiosHttp', () => {
     .context()
     .with(FxAxiosHttp(axios))
     .with(FxDateClock())
-    .with(FxNullLog())
+    .with(FxNullLogger())
     .do()
 
   describe('get', () => {

@@ -1,4 +1,4 @@
-import { tag } from '@imho/log'
+import { tag } from '@imho/logger'
 import { fx } from 'affex'
 import pino from 'pino'
 import { PinoLog } from './PinoLog'

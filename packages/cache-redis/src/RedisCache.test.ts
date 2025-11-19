@@ -1,5 +1,5 @@
 import { ZodDecoder } from '@imho/codec-zod'
-import { NullLog } from '@imho/log'
+import { NullLogger } from '@imho/logger'
 import { RedisClientType, RedisFlushModes } from '@redis/client'
 import { z } from 'zod'
 import { use } from '../test/Redis'
@@ -8,7 +8,7 @@ import { RedisCache } from './RedisCache'
 
 describe('RedisCache', () => {
   const redis = new RedisMock() as any as RedisClientType
-  const cache = new RedisCache(redis, new NullLog())
+  const cache = new RedisCache(redis, new NullLogger())
 
   beforeEach(async () => {
     await use(redis, (redis) => redis.flushDb(RedisFlushModes.ASYNC))

@@ -1,13 +1,13 @@
 import { fx } from 'affex'
 import { Severity } from './Severity'
 
-export type Log = { readonly [fx.uri]?: unique symbol } & {
+export type Logger = { readonly [fx.uri]?: unique symbol } & {
   readonly [K in Severity]: (message: string, context?: object) => Promise<void>
 }
 
-export const tag = fx.tag<Log>('Log')
+export const tag = fx.tag<Logger>('Log')
 
-export const Log = fx.service(
+export const Logger = fx.service(
   tag,
   'debug',
   'info',
