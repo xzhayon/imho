@@ -1,7 +1,7 @@
 import { Logger } from '@imho/logger'
 import pino from 'pino'
 
-export class PinoLog implements Logger {
+export class PinoLogger implements Logger {
   constructor(private readonly pino: pino.Logger) {}
 
   debug(message: string, context?: object) {

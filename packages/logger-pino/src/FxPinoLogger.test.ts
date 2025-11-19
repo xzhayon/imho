@@ -1,12 +1,12 @@
 import { Logger } from '@imho/logger'
 import { fx } from 'affex'
 import { pino } from 'pino'
-import { FxPinoLog } from './FxPinoLog'
+import { FxPinoLogger } from './FxPinoLogger'
 
-describe('FxPinoLog', () => {
+describe('FxPinoLogger', () => {
   let buffer: string | null
   const context = fx.context().with(
-    FxPinoLog(
+    FxPinoLogger(
       pino(
         { level: 'debug' },
         {

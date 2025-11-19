@@ -1,5 +1,5 @@
 {
-  "name": "@imho/log-pino",
+  "name": "@imho/logger-pino",
   "version": "0.7.2",
   "description": "",
   "license": "MIT",
