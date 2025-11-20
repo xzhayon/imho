@@ -11,7 +11,11 @@ export abstract class AbstractLogger implements Logger {
     error?: Error,
   ) =>
     typeof messageOrAttributes === 'string'
-      ? this._log(severity, messageOrAttributes, attributesOrError, error)
+      ? attributesOrError instanceof Error
+        ? this._log(severity, messageOrAttributes, undefined, attributesOrError)
+        : this._log(severity, messageOrAttributes, attributesOrError, error)
+      : messageOrAttributes instanceof Error
+      ? this._log(severity, undefined, undefined, messageOrAttributes)
       : this._log(severity, undefined, messageOrAttributes, attributesOrError)
 
   readonly debug: LogFunctionWithoutSeverity = (
