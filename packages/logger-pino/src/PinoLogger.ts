@@ -1,42 +1,30 @@
-import { Logger } from '@imho/logger'
+import { AbstractLogger, type Attributes, type Severity } from '@imho/logger'
 import pino from 'pino'
 
-export class PinoLogger implements Logger {
-  constructor(private readonly pino: pino.Logger) {}
+const LEVELS: Record<Severity, pino.Level> = {
+  debug: 'debug',
+  info: 'info',
+  notice: 'info',
+  warning: 'warn',
+  error: 'error',
+  critical: 'fatal',
+  alert: 'fatal',
+  emergency: 'fatal',
+}
 
-  debug(message: string, context?: object) {
-    return this.log('debug', message, context)
+export class PinoLogger extends AbstractLogger {
+  constructor(private readonly pino: pino.Logger) {
+    super()
   }
 
-  info(message: string, context?: object) {
-    return this.log('info', message, context)
-  }
-
-  notice(message: string, context?: object) {
-    return this.log('info', message, context)
-  }
-
-  warning(message: string, context?: object) {
-    return this.log('warn', message, context)
-  }
-
-  error(message: string, context?: object) {
-    return this.log('error', message, context)
-  }
-
-  critical(message: string, context?: object) {
-    return this.log('fatal', message, context)
-  }
-
-  alert(message: string, context?: object) {
-    return this.log('fatal', message, context)
-  }
-
-  emergency(message: string, context?: object) {
-    return this.log('fatal', message, context)
-  }
-
-  private async log(level: pino.Level, message: string, context?: object) {
-    return this.pino[level](context, message)
+  protected readonly _log = async (
+    severity: Severity,
+    message?: string,
+    attributes?: Attributes,
+    error?: Error,
+  ) => {
+    try {
+      this.pino[LEVELS[severity]]({ err: error, ...attributes }, message)
+    } catch {}
   }
 }

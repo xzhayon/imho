@@ -1,19 +1,5 @@
-import { Logger } from '../Logger'
+import { AbstractLogger } from '../AbstractLogger'
 
-export class NullLogger implements Logger {
-  async debug() {}
-
-  async info() {}
-
-  async notice() {}
-
-  async warning() {}
-
-  async error() {}
-
-  async critical() {}
-
-  async alert() {}
-
-  async emergency() {}
+export class NullLogger extends AbstractLogger {
+  protected readonly _log = async () => {}
 }
