@@ -34,7 +34,10 @@ export class RedisCache<
       const error = new CacheError(`Cannot check for item "${key}" on Redis`, {
         cause,
       })
-      await this.logger.error('Cache item not found', { error, key, source })
+      await this.logger.error('Cache item not found', {
+        attributes: { key, source },
+        error,
+      })
 
       throw error
     }
@@ -51,25 +54,27 @@ export class RedisCache<
           await this.redis.get(key),
         ),
       )
-      await this.logger.debug('Cache item retrieved', { key, source })
+      await this.logger.debug('Cache item retrieved', {
+        attributes: { key, source },
+      })
 
       return value
     } catch (error) {
       if (error instanceof CacheItemNotFoundError) {
-        await this.logger.debug('Cache item not found', { source })
+        await this.logger.debug('Cache item not found', {
+          attributes: { key, source },
+        })
       } else if (error instanceof CodecError) {
         await this.logger.error('Cache item decoding failed', {
+          attributes: { key, source },
           error,
-          key,
-          source,
         })
       } else {
         await this.logger.error('Cache item not found', {
+          attributes: { key, source },
           error: new CacheError(`Cannot get item "${key}" from Redis`, {
             cause: error,
           }),
-          key,
-          source,
         })
       }
     }
@@ -78,14 +83,19 @@ export class RedisCache<
 
     try {
       await this.redis.set(key, JSON.stringify(value))
-      await this.logger.debug('Cache item saved', { key, source })
+      await this.logger.debug('Cache item saved', {
+        attributes: { key, source },
+      })
 
       return value
     } catch (cause) {
       const error = new CacheError(`Cannot save item "${key}" to Redis`, {
         cause,
       })
-      await this.logger.error('Cache item not saved', { error, key, source })
+      await this.logger.error('Cache item not saved', {
+        attributes: { key, source },
+        error,
+      })
 
       throw error
     }
@@ -98,7 +108,7 @@ export class RedisCache<
       const found = (await this.redis.del(key)) === 1
       await this.logger.debug(
         found ? 'Cache item deleted' : 'Cache item not found for deletion',
-        { key, source },
+        { attributes: { key, source } },
       )
 
       return found
@@ -106,7 +116,10 @@ export class RedisCache<
       const error = new CacheError(`Cannot delete item "${key}" from Redis`, {
         cause,
       })
-      await this.logger.error('Cache item not deleted', { error, key, source })
+      await this.logger.error('Cache item not deleted', {
+        attributes: { key, source },
+        error,
+      })
 
       throw error
     }
@@ -117,12 +130,15 @@ export class RedisCache<
 
     try {
       await this.redis.flushDb(RedisFlushModes.ASYNC)
-      await this.logger.debug('Cache cleared', { source })
+      await this.logger.debug('Cache cleared', { attributes: { source } })
 
       return
     } catch (cause) {
       const error = new CacheError('Cannot flush Redis database', { cause })
-      await this.logger.error('Cache not cleared', { error, source })
+      await this.logger.error('Cache not cleared', {
+        attributes: { source },
+        error,
+      })
 
       throw error
     }
@@ -135,12 +151,15 @@ export class RedisCache<
 
     try {
       await this.redis.connect()
-      await this.logger.debug('Connection opened', { source })
+      await this.logger.debug('Connection opened', { attributes: { source } })
 
       return
     } catch (cause) {
       const error = new CacheError('Cannot connect to Redis', { cause })
-      await this.logger.error('Connection failed', { error, source })
+      await this.logger.error('Connection failed', {
+        attributes: { source },
+        error,
+      })
 
       throw error
     }

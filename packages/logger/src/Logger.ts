@@ -1,29 +1,28 @@
 import { fx } from 'affex'
 import type {
-  FxLogFunction,
-  FxLogFunctionWithContext,
   FxLogFunctionWithoutSeverity,
   FxLogFunctionWithoutSeverityWithContext,
   LogFunction,
   LogFunctionWithoutSeverity,
 } from './LogFunction'
-import { Severity } from './Severity'
+import { LogSeverity } from './LogSeverity'
 
 export type Logger = {
   readonly [fx.uri]?: unique symbol
   readonly log: LogFunction
 } & {
-  readonly [K in Severity]: LogFunctionWithoutSeverity
+  readonly [K in LogSeverity]: LogFunctionWithoutSeverity
 }
 
-export type FxLogger = Pick<Logger, typeof fx.uri> & {
-  readonly log: FxLogFunction
-} & { readonly [K in Severity]: FxLogFunctionWithoutSeverity }
+export type FxLogger = Pick<Logger, typeof fx.uri | 'log'> & {
+  readonly [K in LogSeverity]: FxLogFunctionWithoutSeverity
+}
 
 export const tag = fx.tag<FxLogger>('Logger')
 
+const { log } = fx.service(tag, 'log')
+
 const {
-  log,
   debug,
   info,
   notice,
@@ -34,7 +33,6 @@ const {
   emergency,
 } = fx.access(
   tag,
-  'log',
   'debug',
   'info',
   'notice',
@@ -45,25 +43,24 @@ const {
   'emergency',
 )
 
-export const Logger: { readonly log: FxLogFunctionWithContext } & {
-  readonly [K in Severity]: FxLogFunctionWithoutSeverityWithContext
+export const Logger: { readonly log: typeof log } & {
+  readonly [K in LogSeverity]: FxLogFunctionWithoutSeverityWithContext
 } = {
-  log: (severity, arg1: any, arg2?: any, error?: Error) =>
-    log((f) => f(severity, arg1, arg2, error)),
-  debug: (arg0: any, arg1?: any, error?: Error) =>
-    debug((f) => f(arg0, arg1, error)),
-  info: (arg0: any, arg1?: any, error?: Error) =>
-    info((f) => f(arg0, arg1, error)),
-  notice: (arg0: any, arg1?: any, error?: Error) =>
-    notice((f) => f(arg0, arg1, error)),
-  warning: (arg0: any, arg1?: any, error?: Error) =>
-    warning((f) => f(arg0, arg1, error)),
-  error: (arg0: any, arg1?: any, error?: Error) =>
-    _error((f) => f(arg0, arg1, error)),
-  critical: (arg0: any, arg1?: any, error?: Error) =>
-    critical((f) => f(arg0, arg1, error)),
-  alert: (arg0: any, arg1?: any, error?: Error) =>
-    alert((f) => f(arg0, arg1, error)),
-  emergency: (arg0: any, arg1?: any, error?: Error) =>
-    emergency((f) => f(arg0, arg1, error)),
+  log,
+  debug: (messageOrErrorOrRecord: any, options?: any) =>
+    debug((f) => f(messageOrErrorOrRecord, options)),
+  info: (messageOrErrorOrRecord: any, options?: any) =>
+    info((f) => f(messageOrErrorOrRecord, options)),
+  notice: (messageOrErrorOrRecord: any, options?: any) =>
+    notice((f) => f(messageOrErrorOrRecord, options)),
+  warning: (messageOrErrorOrRecord: any, options?: any) =>
+    warning((f) => f(messageOrErrorOrRecord, options)),
+  error: (messageOrErrorOrRecord: any, options?: any) =>
+    _error((f) => f(messageOrErrorOrRecord, options)),
+  critical: (messageOrErrorOrRecord: any, options?: any) =>
+    critical((f) => f(messageOrErrorOrRecord, options)),
+  alert: (messageOrErrorOrRecord: any, options?: any) =>
+    alert((f) => f(messageOrErrorOrRecord, options)),
+  emergency: (messageOrErrorOrRecord: any, options?: any) =>
+    emergency((f) => f(messageOrErrorOrRecord, options)),
 }

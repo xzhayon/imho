@@ -1,7 +1,11 @@
-import { AbstractLogger, type Attributes, type Severity } from '@imho/logger'
+import {
+  AbstractLogger,
+  type LogFunction,
+  type LogSeverity,
+} from '@imho/logger'
 import pino from 'pino'
 
-const LEVELS: Record<Severity, pino.Level> = {
+const LEVELS: Record<LogSeverity, pino.Level> = {
   debug: 'debug',
   info: 'info',
   notice: 'info',
@@ -17,14 +21,18 @@ export class PinoLogger extends AbstractLogger {
     super()
   }
 
-  protected readonly _log = async (
-    severity: Severity,
-    message?: string,
-    attributes?: Attributes,
-    error?: Error,
-  ) => {
+  readonly log: LogFunction = async (record) => {
     try {
-      this.pino[LEVELS[severity]]({ err: error, ...attributes }, message)
+      this.pino[LEVELS[record.severity]](
+        {
+          ...(record.timestamp !== undefined
+            ? { time: record.timestamp.getTime() }
+            : undefined),
+          err: record.error,
+          ...record.attributes,
+        },
+        record.message,
+      )
     } catch {}
   }
 }

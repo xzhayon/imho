@@ -1,34 +1,20 @@
 import type { Clock } from '@imho/clock'
 import { AbstractLogger } from '../AbstractLogger'
-import type { Attributes } from '../Attributes'
-import type { Severity } from '../Severity'
+import type { LogFunction } from '../LogFunction'
+import type { LogRecord } from '../LogRecord'
 
 export class InMemoryLogger extends AbstractLogger {
   constructor(
-    private readonly records: Array<{
-      readonly timestamp?: Date
-      readonly severity?: Severity
-      readonly message?: string
-      readonly attributes?: Attributes
-      readonly error?: Error
-    }>,
+    private readonly records: Array<LogRecord>,
     private readonly clock?: Clock,
   ) {
     super()
   }
 
-  protected readonly _log = async (
-    severity: Severity,
-    message?: string,
-    attributes?: Attributes,
-    error?: Error,
-  ) => {
+  readonly log: LogFunction = async (record) => {
     this.records.push({
-      timestamp: this.clock?.now(),
-      severity,
-      message,
-      attributes,
-      error,
+      ...record,
+      timestamp: record.timestamp ?? this.clock?.now(),
     })
   }
 }

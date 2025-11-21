@@ -4,14 +4,14 @@ import { pino } from 'pino'
 import { FxPinoLogger } from './FxPinoLogger'
 
 describe('FxPinoLogger', () => {
-  let buffer: string | null
+  let log = ''
   const context = fx.context().with(
     FxPinoLogger(
       pino(
         { level: 'debug' },
         {
           write(message: string) {
-            buffer = message
+            log = message
           },
         },
       ),
@@ -19,7 +19,7 @@ describe('FxPinoLogger', () => {
   )
 
   beforeEach(() => {
-    buffer = null
+    log = ''
   })
 
   describe.each([
@@ -35,7 +35,14 @@ describe('FxPinoLogger', () => {
     test(`using level "${_level}" (${level})`, async () => {
       await fx.runPromise(Logger[severity]('foo'), context)
 
-      expect(JSON.parse(buffer ?? '')).toMatchObject({ level, msg: 'foo' })
+      expect(JSON.parse(log)).toMatchObject({ level, msg: 'foo' })
     })
+  })
+
+  test('overriding timestamp', async () => {
+    const timestamp = new Date()
+    await fx.runPromise(Logger.debug({ timestamp }), context)
+
+    expect(JSON.parse(log)).toMatchObject({ time: timestamp.getTime() })
   })
 })

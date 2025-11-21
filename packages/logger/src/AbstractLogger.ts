@@ -1,75 +1,62 @@
-import type { Attributes } from './Attributes'
 import type { LogFunction, LogFunctionWithoutSeverity } from './LogFunction'
 import type { Logger } from './Logger'
-import type { Severity } from './Severity'
+import type { LogSeverity } from './LogSeverity'
 
 export abstract class AbstractLogger implements Logger {
-  readonly log: LogFunction = (
-    severity,
-    messageOrAttributes: any,
-    attributesOrError?: any,
-    error?: Error,
-  ) =>
-    typeof messageOrAttributes === 'string'
-      ? attributesOrError instanceof Error
-        ? this._log(severity, messageOrAttributes, undefined, attributesOrError)
-        : this._log(severity, messageOrAttributes, attributesOrError, error)
-      : messageOrAttributes instanceof Error
-      ? this._log(severity, undefined, undefined, messageOrAttributes)
-      : this._log(severity, undefined, messageOrAttributes, attributesOrError)
-
   readonly debug: LogFunctionWithoutSeverity = (
-    messageOrAttributes: any,
-    attributesOrError?: any,
-    error?: Error,
-  ) => this.log('debug', messageOrAttributes, attributesOrError, error)
+    messageOrErrorOrRecord: any,
+    options?: any,
+  ) => this._log('debug', messageOrErrorOrRecord, options)
 
   readonly info: LogFunctionWithoutSeverity = (
-    messageOrAttributes: any,
-    attributesOrError?: any,
-    error?: Error,
-  ) => this.log('info', messageOrAttributes, attributesOrError, error)
+    messageOrErrorOrRecord: any,
+    options?: any,
+  ) => this._log('info', messageOrErrorOrRecord, options)
 
   readonly notice: LogFunctionWithoutSeverity = (
-    messageOrAttributes: any,
-    attributesOrError?: any,
-    error?: Error,
-  ) => this.log('notice', messageOrAttributes, attributesOrError, error)
+    messageOrErrorOrRecord: any,
+    options?: any,
+  ) => this._log('notice', messageOrErrorOrRecord, options)
 
   readonly warning: LogFunctionWithoutSeverity = (
-    messageOrAttributes: any,
-    attributesOrError?: any,
-    error?: Error,
-  ) => this.log('warning', messageOrAttributes, attributesOrError, error)
+    messageOrErrorOrRecord: any,
+    options?: any,
+  ) => this._log('warning', messageOrErrorOrRecord, options)
 
   readonly error: LogFunctionWithoutSeverity = (
-    messageOrAttributes: any,
-    attributesOrError?: any,
-    error?: Error,
-  ) => this.log('error', messageOrAttributes, attributesOrError, error)
+    messageOrErrorOrRecord: any,
+    options?: any,
+  ) => this._log('error', messageOrErrorOrRecord, options)
 
   readonly critical: LogFunctionWithoutSeverity = (
-    messageOrAttributes: any,
-    attributesOrError?: any,
-    error?: Error,
-  ) => this.log('critical', messageOrAttributes, attributesOrError, error)
+    messageOrErrorOrRecord: any,
+    options?: any,
+  ) => this._log('critical', messageOrErrorOrRecord, options)
 
   readonly alert: LogFunctionWithoutSeverity = (
-    messageOrAttributes: any,
-    attributesOrError?: any,
-    error?: Error,
-  ) => this.log('alert', messageOrAttributes, attributesOrError, error)
+    messageOrErrorOrRecord: any,
+    options?: any,
+  ) => this._log('alert', messageOrErrorOrRecord, options)
 
   readonly emergency: LogFunctionWithoutSeverity = (
-    messageOrAttributes: any,
-    attributesOrError?: any,
-    error?: Error,
-  ) => this.log('emergency', messageOrAttributes, attributesOrError, error)
+    messageOrErrorOrRecord: any,
+    options?: any,
+  ) => this._log('emergency', messageOrErrorOrRecord, options)
 
-  protected abstract readonly _log: (
-    severity: Severity,
-    message?: string,
-    attributes?: Attributes,
-    error?: Error,
-  ) => Promise<void>
+  private readonly _log = (
+    severity: LogSeverity,
+    messageOrErrorOrRecord: any,
+    options?: any,
+  ) =>
+    this.log({
+      ...(options ?? undefined),
+      severity,
+      ...(typeof messageOrErrorOrRecord === 'string'
+        ? { message: messageOrErrorOrRecord }
+        : messageOrErrorOrRecord instanceof Error
+        ? { error: messageOrErrorOrRecord }
+        : messageOrErrorOrRecord),
+    })
+
+  abstract readonly log: LogFunction
 }

@@ -1,12 +1,8 @@
 export * from './AbstractLogger'
-export * from './Attributes'
-export {
-  FxLogFunction,
-  FxLogFunctionWithoutSeverity,
-  LogFunction,
-  LogFunctionWithoutSeverity,
-} from './LogFunction'
+export * from './LogAttributes'
+export { LogFunction } from './LogFunction'
 export * from './Logger'
+export * from './LogRecord'
+export * from './LogSeverity'
 export * from './null/FxNullLogger'
 export * from './null/NullLogger'
-export * from './Severity'

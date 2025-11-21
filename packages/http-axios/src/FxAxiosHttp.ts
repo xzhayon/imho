@@ -46,20 +46,20 @@ export function FxAxiosHttp(axios: Axios) {
         )
         const endTime = yield* Clock.now()
         yield* Logger.debug('HTTP request succeded', {
-          url: response.config.url ?? url.toString(),
-          method,
-          duration: endTime.valueOf() - startTime.valueOf(),
-          source,
+          attributes: {
+            url: response.config.url ?? url.toString(),
+            method,
+            duration: endTime.valueOf() - startTime.valueOf(),
+            source,
+          },
         })
 
         return fromAxiosResponse(response)
       },
       function* (error) {
         yield* Logger.error('HTTP request failed', {
+          attributes: { url: url.toString(), method, source },
           error,
-          url: url.toString(),
-          method,
-          source,
         })
 
         return yield* fx.raise(error)

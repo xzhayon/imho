@@ -1,79 +1,41 @@
 import type { fx } from 'affex'
-import type { Attributes } from './Attributes'
 import type { FxLogger } from './Logger'
-import type { Severity } from './Severity'
+import type { LogRecord } from './LogRecord'
 
 export interface LogFunction {
-  (severity: Severity, error: Error): Promise<void>
-  (severity: Severity, attributes: Attributes, error?: Error): Promise<void>
-  (severity: Severity, message: string, error: Error): Promise<void>
-  (
-    severity: Severity,
-    message: string,
-    attributes?: Attributes,
-    error?: Error,
-  ): Promise<void>
+  (record: LogRecord): Promise<void>
 }
 
 export interface LogFunctionWithoutSeverity {
-  (error: Error): Promise<void>
-  (attributes: Attributes, error?: Error): Promise<void>
-  (message: string, error: Error): Promise<void>
-  (message: string, attributes?: Attributes, error?: Error): Promise<void>
-}
-
-export interface FxLogFunction {
-  (severity: Severity, error: Error): fx.Result<void, never>
-  (severity: Severity, attributes: Attributes, error?: Error): fx.Result<
-    void,
-    never
-  >
-  (severity: Severity, message: string, error: Error): fx.Result<void, never>
   (
-    severity: Severity,
     message: string,
-    attributes?: Attributes,
-    error?: Error,
-  ): fx.Result<void, never>
+    options?: Omit<LogRecord, 'severity' | 'message'>,
+  ): Promise<void>
+  (error: Error, options?: Omit<LogRecord, 'severity' | 'error'>): Promise<void>
+  (record: Omit<LogRecord, 'severity'>): Promise<void>
 }
 
 export interface FxLogFunctionWithoutSeverity {
-  (error: Error): fx.Result<void, never>
-  (attributes: Attributes, error?: Error): fx.Result<void, never>
-  (message: string, error: Error): fx.Result<void, never>
-  (message: string, attributes?: Attributes, error?: Error): fx.Result<
+  (
+    message: string,
+    options?: Omit<LogRecord, 'severity' | 'message'>,
+  ): fx.Result<void, never>
+  (error: Error, options?: Omit<LogRecord, 'severity' | 'error'>): fx.Result<
     void,
     never
   >
-}
-
-export interface FxLogFunctionWithContext {
-  (severity: Severity, error: Error): fx.Effector<void, never, FxLogger>
-  (severity: Severity, attributes: Attributes, error?: Error): fx.Effector<
-    void,
-    never,
-    FxLogger
-  >
-  (severity: Severity, message: string, error: Error): fx.Effector<
-    void,
-    never,
-    FxLogger
-  >
-  (
-    severity: Severity,
-    message: string,
-    attributes?: Attributes,
-    error?: Error,
-  ): fx.Effector<void, never, FxLogger>
+  (record: Omit<LogRecord, 'severity'>): fx.Result<void, never>
 }
 
 export interface FxLogFunctionWithoutSeverityWithContext {
-  (error: Error): fx.Effector<void, never, FxLogger>
-  (attributes: Attributes, error?: Error): fx.Effector<void, never, FxLogger>
-  (message: string, error: Error): fx.Effector<void, never, FxLogger>
-  (message: string, attributes?: Attributes, error?: Error): fx.Effector<
+  (
+    message: string,
+    options?: Omit<LogRecord, 'severity' | 'message'>,
+  ): fx.Effector<void, never, FxLogger>
+  (error: Error, options?: Omit<LogRecord, 'severity' | 'error'>): fx.Effector<
     void,
     never,
     FxLogger
   >
+  (record: Omit<LogRecord, 'severity'>): fx.Effector<void, never, FxLogger>
 }
