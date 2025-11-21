@@ -1,4 +1,5 @@
 {
   "extends": "../../tsconfig.build.json",
+  "references": [{ "path": "../clock" }],
   "compilerOptions": { "rootDir": "src", "outDir": "dist" }
 }
