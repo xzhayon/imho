@@ -10,8 +10,6 @@ export class CompositeLogger extends AbstractLogger {
   }
 
   readonly log: LogFunction = async (record) => {
-    try {
-      await Promise.all(this.props.loggers.map((logger) => logger.log(record)))
-    } catch {}
+    await Promise.all(this.props.loggers.map((logger) => logger.log(record)))
   }
 }
