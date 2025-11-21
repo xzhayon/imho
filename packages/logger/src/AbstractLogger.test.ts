@@ -1,26 +1,18 @@
 import { fx } from 'affex'
-import { AbstractLogger } from './AbstractLogger'
 import type { Attributes } from './Attributes'
 import { Logger, tag } from './Logger'
 import type { Severity } from './Severity'
+import { InMemoryLogger } from './inMemory/InMemoryLogger'
 
 describe('AbstractLogger', () => {
-  let buffer: Record<string, unknown>
-  class BufferLogger extends AbstractLogger {
-    protected readonly _log = async (
-      _severity: Severity,
-      message?: string,
-      attributes?: Attributes,
-      error?: Error,
-    ) => {
-      buffer = { message, attributes, error }
-    }
-  }
-  const context = fx.context().with(fx.layer(tag, new BufferLogger()))
-
-  beforeEach(() => {
-    buffer = {}
-  })
+  const records: Array<{
+    readonly timestamp?: Date
+    readonly severity?: Severity
+    readonly message?: string
+    readonly attributes?: Attributes
+    readonly error?: Error
+  }> = []
+  const context = fx.context().with(fx.layer(tag, new InMemoryLogger(records)))
 
   describe.each([
     ['debug'],
@@ -36,7 +28,7 @@ describe('AbstractLogger', () => {
       const error = new Error()
       await fx.runPromise(Logger[severity](error), context)
 
-      expect(buffer).toStrictEqual({
+      expect(records.slice(-1).at(0)).toMatchObject({
         message: undefined,
         attributes: undefined,
         error,
@@ -48,7 +40,11 @@ describe('AbstractLogger', () => {
       const error = new Error()
       await fx.runPromise(Logger[severity](attributes, error), context)
 
-      expect(buffer).toStrictEqual({ message: undefined, attributes, error })
+      expect(records.slice(-1).at(0)).toMatchObject({
+        message: undefined,
+        attributes,
+        error,
+      })
     })
 
     test('logging message and error', async () => {
@@ -56,7 +52,11 @@ describe('AbstractLogger', () => {
       const error = new Error()
       await fx.runPromise(Logger[severity](message, error), context)
 
-      expect(buffer).toStrictEqual({ message, attributes: undefined, error })
+      expect(records.slice(-1).at(0)).toMatchObject({
+        message,
+        attributes: undefined,
+        error,
+      })
     })
 
     test('logging message, attributes and error', async () => {
@@ -65,7 +65,11 @@ describe('AbstractLogger', () => {
       const error = new Error()
       await fx.runPromise(Logger[severity](message, attributes, error), context)
 
-      expect(buffer).toStrictEqual({ message, attributes, error })
+      expect(records.slice(-1).at(0)).toMatchObject({
+        message,
+        attributes,
+        error,
+      })
     })
   })
 })
