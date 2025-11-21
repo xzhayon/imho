@@ -6,8 +6,8 @@ import { FxPinoLogger } from './FxPinoLogger'
 describe('FxPinoLogger', () => {
   let log = ''
   const context = fx.context().with(
-    FxPinoLogger(
-      pino(
+    FxPinoLogger({
+      pino: pino(
         { level: 'debug' },
         {
           write(message: string) {
@@ -15,7 +15,7 @@ describe('FxPinoLogger', () => {
           },
         },
       ),
-    ),
+    }),
   )
 
   beforeEach(() => {

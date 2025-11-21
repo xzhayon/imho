@@ -1,11 +1,10 @@
 import { fx } from 'affex'
 import { InMemoryLogger } from './inMemory/InMemoryLogger'
 import { Logger, tag } from './Logger'
-import type { LogRecord } from './LogRecord'
 
 describe('AbstractLogger', () => {
-  const records: Array<LogRecord> = []
-  const context = fx.context().with(fx.layer(tag, new InMemoryLogger(records)))
+  const logger = new InMemoryLogger()
+  const context = fx.context().with(fx.layer(tag, logger))
 
   describe.each([
     ['debug'],
@@ -27,7 +26,7 @@ describe('AbstractLogger', () => {
         context,
       )
 
-      expect(records.slice(-1).at(0)).toMatchObject({
+      expect(logger.records.at(-1)).toMatchObject({
         severity,
         message,
         attributes,
@@ -41,7 +40,7 @@ describe('AbstractLogger', () => {
         context,
       )
 
-      expect(records.slice(-1).at(0)).toMatchObject({
+      expect(logger.records.at(-1)).toMatchObject({
         severity,
         message,
         attributes,
@@ -55,7 +54,7 @@ describe('AbstractLogger', () => {
         context,
       )
 
-      expect(records.slice(-1).at(0)).toMatchObject({
+      expect(logger.records.at(-1)).toMatchObject({
         severity,
         message,
         attributes,

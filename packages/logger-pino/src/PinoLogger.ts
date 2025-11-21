@@ -17,13 +17,13 @@ const LEVELS: Record<LogSeverity, pino.Level> = {
 }
 
 export class PinoLogger extends AbstractLogger {
-  constructor(private readonly pino: pino.Logger) {
+  constructor(private readonly props: { readonly pino: pino.Logger }) {
     super()
   }
 
   readonly log: LogFunction = async (record) => {
     try {
-      this.pino[LEVELS[record.severity]](
+      this.props.pino[LEVELS[record.severity]](
         {
           ...(record.timestamp !== undefined
             ? { time: record.timestamp.getTime() }
