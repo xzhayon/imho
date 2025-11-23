@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/xzhayon/imho/compare/@imho/logger@0.9.0...@imho/logger@0.9.1) (2025-11-23)
+
+
+### Bug Fixes
+
+* **logger:** export missing modules ([#175](https://github.com/xzhayon/imho/issues/175)) ([b3f87be](https://github.com/xzhayon/imho/commit/b3f87be553ec7858e92a90ac88950781516f8242))
+
+
+
+
+
 # 0.9.0 (2025-11-23)
 
 
