@@ -1,4 +1,4 @@
-export type Severity =
+export type LogSeverity =
   | 'debug'
   | 'info'
   | 'notice'

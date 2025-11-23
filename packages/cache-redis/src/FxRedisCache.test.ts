@@ -1,6 +1,6 @@
 import { Cache } from '@imho/cache'
 import { FxZodDecoder, ZodDecoder } from '@imho/codec-zod'
-import { FxNullLog } from '@imho/log'
+import { FxNullLogger } from '@imho/logger'
 import { RedisClientType, RedisFlushModes } from '@redis/client'
 import { fx } from 'affex'
 import { z } from 'zod'
@@ -10,7 +10,11 @@ import { FxRedisCache } from './FxRedisCache'
 
 describe('FxRedisCache', () => {
   const redis = new RedisMock() as any as RedisClientType
-  const context = fx.context().with(FxRedisCache(redis)).with(FxNullLog()).do()
+  const context = fx
+    .context()
+    .with(FxRedisCache(redis))
+    .with(FxNullLogger())
+    .do()
 
   beforeEach(async () => {
     await use(redis, (redis) => redis.flushDb(RedisFlushModes.ASYNC))

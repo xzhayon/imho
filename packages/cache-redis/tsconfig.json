@@ -4,7 +4,7 @@
     { "path": "../cache" },
     { "path": "../codec" },
     { "path": "../codec-zod" },
-    { "path": "../log" }
+    { "path": "../logger" }
   ],
   "compilerOptions": { "outDir": "dist" }
 }

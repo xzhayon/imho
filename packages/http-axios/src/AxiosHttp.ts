@@ -7,7 +7,7 @@ import {
   Options,
   Url,
 } from '@imho/http'
-import { Log } from '@imho/log'
+import { Logger } from '@imho/logger'
 import { Axios, isAxiosError } from 'axios'
 import { fromAxiosResponse } from './Response'
 
@@ -17,7 +17,7 @@ export class AxiosHttp implements Http {
   constructor(
     private readonly axios: Axios,
     private readonly clock: Clock,
-    private readonly log: Log,
+    private readonly logger: Logger,
   ) {}
 
   delete(url: Url, options?: Options) {
@@ -65,11 +65,13 @@ export class AxiosHttp implements Http {
         signal: options?.abortSignal,
       })
       const endTime = this.clock.now()
-      await this.log.debug('HTTP request succeded', {
-        url: response.config.url ?? url.toString(),
-        method,
-        duration: endTime.valueOf() - startTime.valueOf(),
-        source,
+      await this.logger.debug('HTTP request succeded', {
+        attributes: {
+          url: response.config.url ?? url.toString(),
+          method,
+          duration: endTime.valueOf() - startTime.valueOf(),
+          source,
+        },
       })
 
       return fromAxiosResponse(response)
@@ -82,11 +84,9 @@ export class AxiosHttp implements Http {
               { cause },
             )
           : new HttpError('Cannot get response from server', { cause })
-      await this.log.error('HTTP request failed', {
+      await this.logger.error('HTTP request failed', {
+        attributes: { url: url.toString(), method, source },
         error,
-        url: url.toString(),
-        method,
-        source,
       })
 
       throw error

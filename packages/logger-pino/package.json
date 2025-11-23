@@ -1,6 +1,6 @@
 {
-  "name": "@imho/log",
-  "version": "0.8.0",
+  "name": "@imho/logger-pino",
+  "version": "0.7.2",
   "description": "",
   "license": "MIT",
   "author": "Alberto Villa <villa.alberto@gmail.com>",
@@ -17,7 +17,9 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "affex": "^0.12.0"
+    "@imho/logger": "*",
+    "affex": "^0.10.0 || ^0.11.0 || ^0.12.0",
+    "pino": "^8.14.1"
   },
   "publishConfig": {
     "access": "public"

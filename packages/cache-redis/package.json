@@ -23,7 +23,7 @@
   "peerDependencies": {
     "@imho/cache": "^0.8.0 || ^0.9.0",
     "@imho/codec": "^0.7.0",
-    "@imho/log": "^0.7.0 || ^0.8.0",
+    "@imho/logger": "*",
     "@redis/client": "^1.5.8",
     "affex": "^0.12.0"
   },

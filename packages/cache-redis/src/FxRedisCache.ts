@@ -1,7 +1,7 @@
 import { CacheError, tag } from '@imho/cache'
 import { CodecError } from '@imho/codec'
 import { FxZodDecoder } from '@imho/codec-zod'
-import { Log } from '@imho/log'
+import { Logger } from '@imho/logger'
 import {
   RedisClientType,
   RedisFlushModes,
@@ -31,10 +31,13 @@ export function FxRedisCache<
           () => redis.connect(),
           (cause) => new CacheError('Cannot connect to Redis', { cause }),
         )
-        yield* Log.debug('Connection opened', { source })
+        yield* Logger.debug('Connection opened', { attributes: { source } })
       },
       function* (error) {
-        yield* Log.error('Connection failed', { error, source })
+        yield* Logger.error('Connection failed', {
+          attributes: { source },
+          error,
+        })
 
         return yield* fx.raise(error)
       },
@@ -51,7 +54,10 @@ export function FxRedisCache<
           new CacheError(`Cannot check for item "${key}" on Redis`, { cause }),
       ),
       function* (error) {
-        yield* Log.error('Cache item not found', { error, key, source })
+        yield* Logger.error('Cache item not found', {
+          attributes: { key, source },
+          error,
+        })
 
         return yield* fx.raise(error)
       },
@@ -82,24 +88,26 @@ export function FxRedisCache<
               ),
             ),
           )
-          yield* Log.debug('Cache item retrieved', { key, source })
+          yield* Logger.debug('Cache item retrieved', {
+            attributes: { key, source },
+          })
 
           return value
         },
         async function* (error) {
           if (error instanceof CacheItemNotFoundError) {
-            yield* Log.debug('Cache item not found', { source })
+            yield* Logger.debug('Cache item not found', {
+              attributes: { key, source },
+            })
           } else if (error instanceof CodecError) {
-            yield* Log.error('Cache item decoding failed', {
+            yield* Logger.error('Cache item decoding failed', {
+              attributes: { key, source },
               error,
-              key,
-              source,
             })
           } else {
-            yield* Log.error('Cache item not found', {
+            yield* Logger.error('Cache item not found', {
+              attributes: { key, source },
               error,
-              key,
-              source,
             })
           }
 
@@ -114,12 +122,17 @@ export function FxRedisCache<
                     cause,
                   }),
               )
-              yield* Log.debug('Cache item saved', { key, source })
+              yield* Logger.debug('Cache item saved', {
+                attributes: { key, source },
+              })
 
               return value
             },
             function* (error) {
-              yield* Log.error('Cache item not saved', { error, key, source })
+              yield* Logger.error('Cache item not saved', {
+                attributes: { key, source },
+                error,
+              })
 
               return yield* fx.raise(error)
             },
@@ -139,15 +152,18 @@ export function FxRedisCache<
                 cause,
               }),
           )
-          yield* Log.debug(
+          yield* Logger.debug(
             found ? 'Cache item deleted' : 'Cache item not found for deletion',
-            { key, source },
+            { attributes: { key, source } },
           )
 
           return found
         },
         function* (error) {
-          yield* Log.error('Cache item not deleted', { error, key, source })
+          yield* Logger.error('Cache item not deleted', {
+            attributes: { key, source },
+            error,
+          })
 
           return yield* fx.raise(error)
         },
@@ -162,10 +178,13 @@ export function FxRedisCache<
             () => redis.flushDb(RedisFlushModes.ASYNC),
             (cause) => new CacheError('Cannot flush Redis database', { cause }),
           )
-          yield* Log.debug('Cache cleared', { source })
+          yield* Logger.debug('Cache cleared', { attributes: { source } })
         },
         function* (error) {
-          yield* Log.error('Cache not cleared', { error, source })
+          yield* Logger.error('Cache not cleared', {
+            attributes: { source },
+            error,
+          })
 
           return yield* fx.raise(error)
         },

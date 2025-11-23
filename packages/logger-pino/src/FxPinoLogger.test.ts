@@ -1,25 +1,25 @@
-import { Log } from '@imho/log'
+import { Logger } from '@imho/logger'
 import { fx } from 'affex'
 import { pino } from 'pino'
-import { FxPinoLog } from './FxPinoLog'
+import { FxPinoLogger } from './FxPinoLogger'
 
-describe('FxPinoLog', () => {
-  let buffer: string | null
+describe('FxPinoLogger', () => {
+  let log = ''
   const context = fx.context().with(
-    FxPinoLog(
-      pino(
+    FxPinoLogger({
+      pino: pino(
         { level: 'debug' },
         {
           write(message: string) {
-            buffer = message
+            log = message
           },
         },
       ),
-    ),
+    }),
   )
 
   beforeEach(() => {
-    buffer = null
+    log = ''
   })
 
   describe.each([
@@ -33,9 +33,16 @@ describe('FxPinoLog', () => {
     ['emergency', 'fatal', 60],
   ] as const)('%s', (severity, _level, level) => {
     test(`using level "${_level}" (${level})`, async () => {
-      await fx.runPromise(Log[severity]('foo'), context)
+      await fx.runPromise(Logger[severity]('foo'), context)
 
-      expect(JSON.parse(buffer ?? '')).toMatchObject({ level, msg: 'foo' })
+      expect(JSON.parse(log)).toMatchObject({ level, msg: 'foo' })
     })
+  })
+
+  test('overriding timestamp', async () => {
+    const timestamp = new Date()
+    await fx.runPromise(Logger.debug({ timestamp }), context)
+
+    expect(JSON.parse(log)).toMatchObject({ time: timestamp.getTime() })
   })
 })
