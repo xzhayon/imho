@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.8.0 (2025-11-23)
+
+
+### Features
+
+* **logger:** rename package and update interface ([#174](https://github.com/xzhayon/imho/issues/174)) ([5b9f473](https://github.com/xzhayon/imho/commit/5b9f473bbdaffde39e5871a44978953c388f67bd))
+
+
+
+
+
 ## [0.7.2](https://github.com/xzhayon/imho/compare/@imho/log-pino@0.7.1...@imho/log-pino@0.7.2) (2024-06-05)
 
 **Note:** Version bump only for package @imho/log-pino

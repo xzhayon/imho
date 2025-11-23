@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/xzhayon/imho/compare/@imho/cache-redis@0.9.0...@imho/cache-redis@0.10.0) (2025-11-23)
+
+
+### Features
+
+* **logger:** rename package and update interface ([#174](https://github.com/xzhayon/imho/issues/174)) ([5b9f473](https://github.com/xzhayon/imho/commit/5b9f473bbdaffde39e5871a44978953c388f67bd))
+
+
+
+
+
 # [0.9.0](https://github.com/xzhayon/imho/compare/@imho/cache-redis@0.8.1...@imho/cache-redis@0.9.0) (2024-06-05)
 
 
