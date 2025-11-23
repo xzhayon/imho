@@ -1,5 +1,5 @@
 import { fx } from 'affex'
-import { InMemoryLogger } from './inMemory/InMemoryLogger'
+import { InMemoryLogger } from './in-memory/InMemoryLogger'
 import { Logger, tag } from './Logger'
 
 describe('AbstractLogger', () => {

@@ -1,4 +1,4 @@
-import { InMemoryLogger } from '../inMemory/InMemoryLogger'
+import { InMemoryLogger } from '../in-memory/InMemoryLogger'
 import { CompositeLogger } from './CompositeLogger'
 
 describe('CompositeLogger', () => {
