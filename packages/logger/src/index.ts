@@ -1,4 +1,7 @@
 export * from './AbstractLogger'
+export * from './composite/CompositeLogger'
+export * from './in-memory/FxInMemoryLogger'
+export * from './in-memory/InMemoryLogger'
 export * from './LogAttributes'
 export { LogFunction } from './LogFunction'
 export * from './Logger'
